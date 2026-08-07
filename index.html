@@ -1,195 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FF Redditch | Football • Fitness • Community</title>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body data-page="home">
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="index.html">
+      <span class="brand-badge">FF</span>
+      <span>REDDITCH<small>BETTER EVERY GAME</small></span>
+    </a>
+    <button class="menu" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="tnf.html">TNF</a>
+      <a href="progress.html">Progress</a>
+      <a href="community.html">Community</a>
+      <a href="eleven.html">11s</a>
+      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a><a class="join-link join-btn" href="#">Join</a>
+    </nav>
+  </div>
+</header>
 
-:root{
-  --black:#0b0b0d;
-  --panel:#151518;
-  --panel2:#1c1c20;
-  --red:#e1171f;
-  --red2:#a90e14;
-  --yellow:#ffd21c;
-  --white:#f6f6f4;
-  --muted:#b5b5b8;
-  --line:rgba(255,255,255,.10);
-  --radius:20px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--black);color:var(--white);line-height:1.55}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{width:min(1180px,calc(100% - 34px));margin:0 auto}
-.site-header{position:sticky;top:0;z-index:50;background:rgba(11,11,13,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.navbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.08em}
-.brand-badge{background:var(--red);color:#fff;padding:5px 9px;transform:skew(-8deg);font-size:1.15rem}
-.brand small{display:block;color:var(--yellow);font-size:.66rem;letter-spacing:.18em}
-.nav{display:flex;align-items:center;gap:24px;font-weight:800;text-transform:uppercase;font-size:.84rem}
-.nav a{color:#ddd}
-.nav a:hover{color:#fff}
-.join-link{background:var(--yellow);color:#111!important;padding:10px 15px;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
-.menu{display:none;background:none;border:0;color:#fff;font-size:1.5rem}
+<section class="hero"><div class="container hero-inner">
+  <span class="kicker">Fitness Football Redditch</span>
+  <h1>Play.<br><span class="yellow">Progress.</span><br>Belong.</h1>
+  <p class="hero-copy">Weekly football, personal progress and a proper community. Whether your goal is to get fitter, lose weight, get back into football or simply enjoy playing again, FF Redditch is built around getting you involved.</p>
+  <div class="cta-row"><a class="btn btn-yellow join-btn" href="#">Join FF Redditch</a><a class="btn btn-dark" href="tnf.html">Session Info</a></div>
+</div></section>
 
-.hero{min-height:760px;position:relative;display:grid;place-items:center;overflow:hidden;background:#0d0d0f}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:
-   linear-gradient(90deg,rgba(0,0,0,.93) 0%,rgba(0,0,0,.76) 42%,rgba(0,0,0,.35) 72%,rgba(0,0,0,.75) 100%),
-   url("ff-redditch-branding.jpeg") center/cover no-repeat;
-  filter:saturate(.9) contrast(1.05);
-}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:80px;background:linear-gradient(165deg,transparent 49%,var(--black) 50%)}
-.hero-inner{position:relative;z-index:2;padding:110px 0 140px}
-.kicker{display:inline-block;background:var(--yellow);color:#111;font-weight:1000;text-transform:uppercase;letter-spacing:.12em;padding:7px 12px;transform:skew(-7deg);margin-bottom:22px}
-.hero h1,.title,.stat-big,.player-name,.section-title{font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;text-transform:uppercase;letter-spacing:.01em}
-.hero h1{font-size:clamp(4.5rem,11vw,9.5rem);line-height:.82;margin:0;max-width:860px;text-shadow:0 5px 20px rgba(0,0,0,.35)}
-.hero h1 .yellow{color:var(--yellow)}
-.hero-copy{max-width:710px;font-size:1.18rem;color:#ddd;margin:28px 0 30px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 24px;font-weight:1000;text-transform:uppercase;border:0;cursor:pointer;letter-spacing:.04em;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
-.btn-yellow{background:var(--yellow);color:#111}
-.btn-red{background:var(--red);color:#fff}
-.btn-dark{background:#222;color:#fff;border:1px solid #444}
-.section{padding:92px 0}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
-.section-title{font-size:clamp(3rem,6vw,5.8rem);line-height:.92;margin:0}
-.section-title .yellow{color:var(--yellow)}
-.section-intro{max-width:620px;color:var(--muted)}
-.red-rule{height:8px;width:120px;background:var(--red);transform:skew(-15deg);margin-bottom:16px}
+<section class="stats-strip"><div class="container stats-grid">
+  <div class="stat-box"><span class="stat-big" id="communityKgLost">0kg</span><span class="stat-label">Lost by our community</span></div>
+  <div class="stat-box"><span class="stat-big" id="activeMembers">0</span><span class="stat-label">Active players</span></div>
+  <div class="stat-box"><span class="stat-big" id="tnfSessions">0</span><span class="stat-label">TNF sessions</span></div>
+  <div class="stat-box"><span class="stat-big" id="playersInto11s">0</span><span class="stat-label">Players into 11s</span></div>
+</div></section>
 
-.stats-strip{background:var(--red);padding:26px 0}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.18)}
-.stat-box{background:var(--red);padding:24px 18px;text-align:center}
-.stat-big{display:block;font-size:3.5rem;line-height:1;color:#fff}
-.stat-label{font-weight:900;text-transform:uppercase;color:#fff;font-size:.78rem;letter-spacing:.08em}
+<section class="section quick-join"><div class="container quick-join-grid">
+  <div><div class="red-rule"></div><h2 class="section-title">Want to <span class="yellow">join?</span></h2><p>No long form on the website. Hit the button, complete the FF Redditch Google Form and your introductory email can handle the practical details from there.</p></div>
+  <div><a class="btn btn-yellow join-btn" href="#">Complete joining form</a></div>
+</div></section>
 
-.quick-join{background:linear-gradient(135deg,#161619,#0b0b0d);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.quick-join-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
-.quick-join h2{font-size:clamp(3rem,6vw,6rem);margin:0}
-.quick-join p{color:var(--muted);font-size:1.08rem}
+<section class="section"><div class="container">
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">What is <span class="yellow">FF Redditch?</span></h2></div><p class="section-intro">TNF is the heartbeat. The community is what keeps people coming back. Personal progress is celebrated, and the 11s gives players a competitive pathway.</p></div>
+  <div class="cards">
+    <div class="card"><div class="card-tag">Tuesday Night Football</div><h3>Play every week</h3><p>Welcoming football for mixed abilities with fitness built naturally into the session.</p></div>
+    <div class="card"><div class="card-tag">Progress</div><h3>Make it personal</h3><p>Weight loss, fitness, confidence, attendance and football milestones all count.</p></div>
+    <div class="card"><div class="card-tag">Community</div><h3>Belong to something</h3><p>Football, friendships, socials, matchdays and a club identity people are proud to be part of.</p></div>
+  </div>
+</div></section>
 
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:linear-gradient(180deg,#19191d,#111114);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
-.card::before{content:"";position:absolute;left:0;top:0;width:9px;height:100%;background:var(--red)}
-.card h3{font-size:1.55rem;margin:6px 0 10px;text-transform:uppercase}
-.card p{color:var(--muted);margin:0}
-.card-tag{color:var(--yellow);font-weight:1000;text-transform:uppercase;font-size:.72rem;letter-spacing:.12em}
+<section class="section" style="background:#0f0f11"><div class="container">
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Current <span class="yellow">Leaderboard</span></h2></div><p class="section-intro">A live-style progress board. Once connected to Google Sheets, update the sheet and the site can update automatically.</p></div>
+  <div class="leaderboard-wrap">
+    <div class="tabs"><button class="tab active" data-mode="total">Total Lost</button><button class="tab" data-mode="percent">% Lost</button><button class="tab" data-mode="month">This Month</button></div>
+    <div class="leader-row head"><span>Pos</span><span>Player</span><span style="text-align:right">Progress</span><span class="sessions">Attendance</span></div>
+    <div id="leaderRows"></div>
+  </div>
+</div></section>
 
-.leaderboard-wrap{background:#111114;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.tabs{display:flex;gap:10px;padding:18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tab{background:#222;border:1px solid #333;color:#ddd;padding:9px 14px;font-weight:900;text-transform:uppercase;cursor:pointer;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
-.tab.active{background:var(--yellow);color:#111;border-color:var(--yellow)}
-.leader-row{display:grid;grid-template-columns:72px 1fr 150px 130px;gap:16px;padding:17px 20px;border-bottom:1px solid var(--line);align-items:center}
-.leader-row:last-child{border:0}
-.leader-row.head{background:#19191d;color:#aaa;text-transform:uppercase;font-weight:900;font-size:.72rem;letter-spacing:.08em}
-.rank{font-family:Impact;font-size:1.8rem;color:var(--yellow)}
-.value{font-weight:1000;text-align:right}
-.sessions{color:#aaa;text-align:right}
+<section class="section"><div class="container">
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Player <span class="yellow">Spotlight</span></h2></div><p class="section-intro">Hero the person, not just the number. Their progress story can include fitness, football, confidence and the move into the 11s.</p></div>
+  <div class="spotlight"><div class="spotlight-media"><div class="spotlight-number">FF</div></div><div class="spotlight-copy">
+    <div class="card-tag">Player Progress</div><h3 class="player-name" id="spotlightName">Player One</h3><div class="progress-number" id="spotlightLoss">0kg LOST</div><p id="spotlightText">Player story goes here.</p><a href="progress.html" class="btn btn-red">View Progress</a>
+  </div></div>
+</div></section>
 
-.spotlight{display:grid;grid-template-columns:1fr 1fr;min-height:450px;background:linear-gradient(135deg,#17171a,#0d0d0f);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.spotlight-media{background:
-  linear-gradient(145deg,rgba(225,23,31,.85),rgba(10,10,12,.55)),
-  url("ff-redditch-branding.jpeg") center/cover;
-  min-height:360px;display:flex;align-items:flex-end;padding:32px}
-.spotlight-number{font-family:Impact;font-size:8rem;line-height:.8;color:rgba(255,255,255,.18)}
-.spotlight-copy{padding:42px;display:flex;flex-direction:column;justify-content:center}
-.player-name{font-size:4rem;line-height:.9;margin:0}
-.progress-number{font-family:Impact;font-size:4.4rem;color:var(--yellow);line-height:1;margin:20px 0 8px}
-.spotlight-copy p{color:var(--muted)}
+<section class="section" style="background:#111114"><div class="container">
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Tuesday Night <span class="yellow">Football</span></h2></div></div>
+  <div class="tnf-panel"><div><h3>The heartbeat of FF Redditch</h3><p>Weekly football built around enjoyment, fitness and a strong community.</p><a class="btn btn-yellow" href="tnf.html">Session Info</a></div>
+  <div class="tnf-info"><div><strong>Venue</strong><span id="tnfVenue">Add venue</span></div><div><strong>Time</strong><span id="tnfTime">Add time</span></div><div><strong>Ability</strong><span>Mixed abilities welcome</span></div><div><strong>Join</strong><span>Complete our Google Form</span></div></div></div>
+</div></section>
 
-.tnf-panel{background:linear-gradient(135deg,var(--red2),var(--red));border-radius:var(--radius);padding:38px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.tnf-panel h3{font-family:Impact;text-transform:uppercase;font-size:4rem;line-height:.9;margin:0 0 16px}
-.tnf-panel p{color:#ffecec}
-.tnf-info{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.tnf-info div{background:rgba(0,0,0,.18);padding:18px;border:1px solid rgba(255,255,255,.15)}
-.tnf-info strong{display:block;text-transform:uppercase;color:var(--yellow);font-size:.8rem;letter-spacing:.1em}
+<section class="section"><div class="container">
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">FF Redditch <span class="yellow">11s</span></h2></div><p class="section-intro">Fixtures, results, top scorers and assists — the competitive football side of the community.</p></div>
+  <div class="eleven-grid">
+    <div class="panel"><h3>Next Fixture</h3><div class="fixture"><div class="club">FF Redditch</div><div class="vs">VS</div><div class="club right" id="fixtureOpponent">Opponent TBC</div></div><p id="fixtureMeta">Date • Competition • Venue</p><a class="btn btn-red" href="eleven.html">View 11s</a></div>
+    <div class="panel"><h3>Top Scorers</h3><ol class="simple-list" id="scorers"></ol></div>
+    <div class="panel"><h3>Top Assists</h3><ol class="simple-list" id="assists"></ol></div>
+  </div>
+</div></section>
 
-.eleven-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:20px}
-.panel{background:#131316;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-.panel h3{margin:0 0 18px;text-transform:uppercase;color:var(--yellow);font-size:.84rem;letter-spacing:.12em}
-.fixture{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin:30px 0}
-.club{font-family:Impact;text-transform:uppercase;font-size:2rem;line-height:1}
-.club.right{text-align:right;color:#aaa}
-.vs{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--red);font-weight:1000}
-.simple-list{list-style:none;margin:0;padding:0}
-.simple-list li{display:grid;grid-template-columns:34px 1fr 50px;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
-.simple-list li:last-child{border:0}
-.simple-list .pos{color:var(--yellow);font-family:Impact;font-size:1.35rem}
-.simple-list .num{text-align:right;font-weight:1000}
+<section class="section quick-join"><div class="container quick-join-grid"><div><div class="red-rule"></div><h2 class="section-title">Ready to <span class="yellow">play?</span></h2><p>Complete the joining form and we'll take it from there.</p></div><div><a class="btn btn-yellow join-btn" href="#">Join FF Redditch</a></div></div></section>
 
-.subhero{padding:100px 0 70px;background:
- linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.6)),
- url("ff-redditch-branding.jpeg") center/cover}
-.subhero h1{font-family:Impact;text-transform:uppercase;font-size:clamp(4rem,9vw,8rem);line-height:.85;margin:0}
-.subhero p{max-width:700px;color:#ddd;font-size:1.12rem}
-.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.info-block{background:#141417;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
-.info-block h3{text-transform:uppercase;margin-top:0}
-.info-block p{color:var(--muted)}
-.footer{padding:50px 0 24px;border-top:1px solid var(--line);background:#070708}
-.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:center}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:#bbb;font-weight:800;text-transform:uppercase;font-size:.8rem}
-.copy{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);color:#777;font-size:.82rem}
-
-@media(max-width:900px){
-  .menu{display:block}
-  .nav{display:none;position:absolute;top:72px;left:0;right:0;background:#0b0b0d;padding:20px;flex-direction:column;align-items:stretch}
-  .nav.open{display:flex}
-  .quick-join-grid,.spotlight,.tnf-panel,.content-grid{grid-template-columns:1fr}
-  .cards,.eleven-grid{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .section-head{display:block}
-  .section-intro{margin-top:18px}
-  .leader-row{grid-template-columns:54px 1fr 110px}
-  .leader-row .sessions{display:none}
-}
-@media(max-width:560px){
-  .container{width:min(100% - 24px,1180px)}
-  .hero{min-height:690px}
-  .hero-inner{padding:90px 0 130px}
-  .hero h1{font-size:clamp(4rem,20vw,6rem)}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .stat-big{font-size:2.7rem}
-  .section{padding:70px 0}
-  .player-name{font-size:3rem}
-  .progress-number{font-size:3.3rem}
-  .spotlight-copy{padding:28px}
-  .tnf-panel{padding:26px}
-  .tnf-panel h3{font-size:3rem}
-  .tnf-info{grid-template-columns:1fr}
-  .fixture{grid-template-columns:1fr;text-align:center}
-  .club.right{text-align:center}
-  .vs{margin:auto}
-  .footer-top{flex-direction:column;align-items:flex-start}
-}
-
-/* 11s dynamic match centre */
-.match-centre-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.match-feature-card{background:linear-gradient(180deg,#19191d,#111114);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
-.match-feature-card::before{content:"";position:absolute;left:0;top:0;width:9px;height:100%;background:var(--red)}
-.club-v-club{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:center;margin:26px 0}
-.club-side{text-align:center;display:grid;justify-items:center;gap:10px}
-.club-side strong{text-transform:uppercase;font-size:1.1rem}
-.club-badge{width:92px;height:92px;object-fit:contain}
-.club-badge[src=""]{display:none}
-.badge-placeholder{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--red);font-family:Impact;font-size:2rem;color:#fff;border:4px solid #fff}
-.fixture-centre{text-align:center;display:grid;gap:8px;justify-items:center}
-.versus-big,.score-big{font-family:Impact;font-size:2.8rem;line-height:1;color:var(--yellow)}
-.score-big{font-size:3.4rem}
-.fixture-pill{background:var(--yellow);color:#111;font-weight:1000;padding:4px 10px;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-.fixture-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
-.fixture-detail-grid div{background:rgba(255,255,255,.04);border:1px solid var(--line);padding:14px}
-.fixture-detail-grid span{display:block;text-transform:uppercase;color:var(--yellow);font-size:.68rem;font-weight:900;letter-spacing:.08em;margin-bottom:3px}
-.fixture-detail-grid strong{font-size:.95rem}
-.result-details{border-top:1px solid var(--line);padding-top:18px}
-.result-details p{margin:8px 0;color:#ddd}
-.match-centre-grid .panel{min-height:220px}
-.potm-month{font-family:Impact;font-size:2.4rem;text-transform:uppercase;color:#fff}
-.potm-coming{margin-top:16px;color:#ccc}
-@media(max-width:900px){.match-centre-grid{grid-template-columns:1fr}.fixture-detail-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.club-v-club{grid-template-columns:1fr auto 1fr;gap:8px}.club-badge,.badge-placeholder{width:66px;height:66px}.badge-placeholder{font-size:1.5rem}.club-side strong{font-size:.82rem}.fixture-detail-grid{grid-template-columns:1fr}}
-
-/* Match-centre crest polish */
-.home-club-badge{filter:drop-shadow(0 7px 14px rgba(0,0,0,.35))}
-.result-layout .club-badge,.result-layout .home-club-badge{width:100px;height:100px}
-.result-details strong{color:#fff}
-.match-feature-card .card-tag{letter-spacing:.08em}
-@media(max-width:560px){.result-layout .club-badge,.result-layout .home-club-badge{width:68px;height:68px}}
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
+    <div class="footer-links">
+      <a href="tnf.html">TNF</a><a href="progress.html">Progress</a><a href="community.html">Community</a><a href="eleven.html">11s</a><a href="https://members.ffredditch.co.uk">Members Login</a><a class="join-btn" href="#">Join</a>
+    </div>
+  </div>
+  <div class="container copy">© 2026 FF Redditch</div>
+</footer>
+<script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>
