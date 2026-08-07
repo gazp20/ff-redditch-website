@@ -161,35 +161,6 @@ img{max-width:100%;display:block}
   .footer-top{flex-direction:column;align-items:flex-start}
 }
 
-/* 11s dynamic match centre */
-.match-centre-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.match-feature-card{background:linear-gradient(180deg,#19191d,#111114);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
-.match-feature-card::before{content:"";position:absolute;left:0;top:0;width:9px;height:100%;background:var(--red)}
-.club-v-club{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:center;margin:26px 0}
-.club-side{text-align:center;display:grid;justify-items:center;gap:10px}
-.club-side strong{text-transform:uppercase;font-size:1.1rem}
-.club-badge{width:92px;height:92px;object-fit:contain}
-.club-badge[src=""]{display:none}
-.badge-placeholder{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--red);font-family:Impact;font-size:2rem;color:#fff;border:4px solid #fff}
-.fixture-centre{text-align:center;display:grid;gap:8px;justify-items:center}
-.versus-big,.score-big{font-family:Impact;font-size:2.8rem;line-height:1;color:var(--yellow)}
-.score-big{font-size:3.4rem}
-.fixture-pill{background:var(--yellow);color:#111;font-weight:1000;padding:4px 10px;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-.fixture-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
-.fixture-detail-grid div{background:rgba(255,255,255,.04);border:1px solid var(--line);padding:14px}
-.fixture-detail-grid span{display:block;text-transform:uppercase;color:var(--yellow);font-size:.68rem;font-weight:900;letter-spacing:.08em;margin-bottom:3px}
-.fixture-detail-grid strong{font-size:.95rem}
-.result-details{border-top:1px solid var(--line);padding-top:18px}
-.result-details p{margin:8px 0;color:#ddd}
-.match-centre-grid .panel{min-height:220px}
-.potm-month{font-family:Impact;font-size:2.4rem;text-transform:uppercase;color:#fff}
-.potm-coming{margin-top:16px;color:#ccc}
-@media(max-width:900px){.match-centre-grid{grid-template-columns:1fr}.fixture-detail-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.club-v-club{grid-template-columns:1fr auto 1fr;gap:8px}.club-badge,.badge-placeholder{width:66px;height:66px}.badge-placeholder{font-size:1.5rem}.club-side strong{font-size:.82rem}.fixture-detail-grid{grid-template-columns:1fr}}
-
-/* Match-centre crest polish */
-.home-club-badge{filter:drop-shadow(0 7px 14px rgba(0,0,0,.35))}
-.result-layout .club-badge,.result-layout .home-club-badge{width:100px;height:100px}
-.result-details strong{color:#fff}
-.match-feature-card .card-tag{letter-spacing:.08em}
-@media(max-width:560px){.result-layout .club-badge,.result-layout .home-club-badge{width:68px;height:68px}}
+/* Public members login */
+.members-link{border:1px solid rgba(255,255,255,.28);padding:9px 13px;color:#fff!important;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
+.members-link:hover{border-color:var(--yellow);color:var(--yellow)!important}
