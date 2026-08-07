@@ -1,9 +1,8 @@
 {
-  "activeMembers": 0,
-  "communityKgLost": 0,
-  "tnfSessions": 0,
-  "playersInto11s": 0,
-  "nextSession": "Tuesday Night Football",
-  "venue": "Add venue here",
-  "time": "Add time here"
+  "communityKgLost": 48,
+  "weeklyKgLost": 2.6,
+  "totalMembers": 36,
+  "tnfSessions": 26,
+  "venue": "Arrow Vale 3G",
+  "time": "Tuesday \u2022 8:00pm"
 }
