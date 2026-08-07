@@ -7,16 +7,18 @@
     "ko": "15:45",
     "venue": "Arrow Vale 3G",
     "address": "Matchborough Way, Redditch, B98 0GF",
+    "opponentBadge": "assets/badges/sandwell-social.png",
     "status": "upcoming"
   },
   {
     "date": "2026-08-02",
     "opponent": "Solihull",
     "homeAway": "H",
-    "competition": "MFFL West Prem",
+    "competition": "Friendly",
     "result": "4-2",
     "scorers": "Sproston, Nedjat (2), Poole",
     "motm": "Poole",
+    "opponentBadge": "assets/badges/solihull.png",
     "status": "played"
   }
 ]
