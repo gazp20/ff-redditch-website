@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Player One",
+    "totalLostKg": 12.4,
+    "percentLost": 9.8,
+    "monthlyLostKg": 3.1,
+    "sessions": 18,
+    "spotlight": true
+  },
+  {
+    "name": "Player Two",
+    "totalLostKg": 10.2,
+    "percentLost": 8.9,
+    "monthlyLostKg": 2.8,
+    "sessions": 16,
+    "spotlight": false
+  },
+  {
+    "name": "Player Three",
+    "totalLostKg": 8.7,
+    "percentLost": 7.6,
+    "monthlyLostKg": 2.4,
+    "sessions": 20,
+    "spotlight": false
+  },
+  {
+    "name": "Player Four",
+    "totalLostKg": 7.9,
+    "percentLost": 6.5,
+    "monthlyLostKg": 2.0,
+    "sessions": 14,
+    "spotlight": false
+  },
+  {
+    "name": "Player Five",
+    "totalLostKg": 6.5,
+    "percentLost": 5.9,
+    "monthlyLostKg": 1.8,
+    "sessions": 12,
+    "spotlight": false
+  }
+]
