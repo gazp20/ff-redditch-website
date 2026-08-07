@@ -1,11 +1,22 @@
 [
   {
-    "date": "TBC",
-    "opponent": "Opponent TBC",
-    "homeAway": "Home",
-    "competition": "League",
-    "ffScore": "",
-    "oppScore": "",
+    "date": "2026-08-09",
+    "opponent": "Sandwell Social",
+    "homeAway": "H",
+    "competition": "MFFL West Prem",
+    "ko": "15:45",
+    "venue": "Arrow Vale 3G",
+    "address": "Matchborough Way, Redditch, B98 0GF",
     "status": "upcoming"
+  },
+  {
+    "date": "2026-08-02",
+    "opponent": "Solihull",
+    "homeAway": "H",
+    "competition": "MFFL West Prem",
+    "result": "4-2",
+    "scorers": "Sproston, Nedjat (2), Poole",
+    "motm": "Poole",
+    "status": "played"
   }
 ]
