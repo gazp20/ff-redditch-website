@@ -118,4 +118,64 @@ document.addEventListener("DOMContentLoaded",()=>{
     renderLeaderboard(progress,t.dataset.mode);
   }));
   if(document.body.dataset.page==="home") homeInit();
+  if(document.body.dataset.page==="eleven") elevenPageInit();
 });
+
+
+async function elevenPageInit(){
+  const fixtures = await loadData(cfg.sheets?.fixturesCsv,"data/fixtures.json");
+  const stats = await loadData(cfg.sheets?.elevenStatsCsv,"data/eleven.json");
+  const clubs = await loadJSON("data/clubs.json");
+
+  const upcoming = fixtures
+    .filter(f => (f.status||"").toLowerCase()==="upcoming")
+    .sort((a,b)=>String(a.date||"").localeCompare(String(b.date||"")))[0];
+
+  const played = fixtures
+    .filter(f => (f.status||"").toLowerCase()==="played")
+    .sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")))[0];
+
+  const set=(id,val)=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=val||"TBC";
+  };
+
+  const clubInfo=(name)=>{
+    const key=String(name||"").trim().toLowerCase();
+    return clubs[key] || {name:name||"Opponent", badge:""};
+  };
+
+  const setBadge=(id,name,explicitBadge)=>{
+    const img=document.getElementById(id);
+    if(!img) return;
+    const info=clubInfo(name);
+    const src=explicitBadge || info.badge;
+    if(src){
+      img.src=src;
+      img.alt=(info.name||name||"Opponent")+" badge";
+      img.style.display="";
+    }else{
+      img.style.display="none";
+    }
+  };
+
+  if(upcoming){
+    set("nextOpponent", upcoming.opponent);
+    set("nextHomeAway", upcoming.homeAway);
+    set("nextKO", upcoming.ko);
+    set("nextCompetition", upcoming.competition);
+    set("nextVenue", upcoming.venue);
+    set("nextAddress", upcoming.address);
+    setBadge("nextOpponentBadge", upcoming.opponent, upcoming.opponentBadge);
+  }
+
+  if(played){
+    set("lastOpponent", played.opponent);
+    set("lastScore", played.result);
+    set("lastScorers", played.scorers);
+    set("lastMotm", played.motm);
+    setBadge("lastOpponentBadge", played.opponent, played.opponentBadge);
+  }
+
+  renderEleven(stats);
+}
