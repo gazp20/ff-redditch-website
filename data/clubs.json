@@ -1,0 +1,58 @@
+{
+  "ff redditch": {
+    "name": "FF Redditch",
+    "badge": "assets/badges/ffredditch.png"
+  },
+  "sandwell": {
+    "name": "Sandwell Social",
+    "badge": "assets/badges/sandwell-social.png"
+  },
+  "sandwell social": {
+    "name": "Sandwell Social",
+    "badge": "assets/badges/sandwell-social.png"
+  },
+  "solihull": {
+    "name": "Solihull",
+    "badge": "assets/badges/solihull.png"
+  },
+  "bromsgrove": {
+    "name": "Bromsgrove Forge",
+    "badge": "assets/badges/bromsgrove-forge.png"
+  },
+  "bromsgrove forge": {
+    "name": "Bromsgrove Forge",
+    "badge": "assets/badges/bromsgrove-forge.png"
+  },
+  "oldbury": {
+    "name": "Oldbury Lions",
+    "badge": "assets/badges/oldbury-lions.png"
+  },
+  "oldbury lions": {
+    "name": "Oldbury Lions",
+    "badge": "assets/badges/oldbury-lions.png"
+  },
+  "sutton": {
+    "name": "Sutton United",
+    "badge": "assets/badges/sutton-united.png"
+  },
+  "sutton united": {
+    "name": "Sutton United",
+    "badge": "assets/badges/sutton-united.png"
+  },
+  "stoke 17s": {
+    "name": "Stoke 17's",
+    "badge": "assets/badges/stoke-17s.png"
+  },
+  "stoke 17's": {
+    "name": "Stoke 17's",
+    "badge": "assets/badges/stoke-17s.png"
+  },
+  "kidderminster": {
+    "name": "Kidderminster MVF",
+    "badge": "assets/badges/kidderminster-mvf.png"
+  },
+  "kidderminster mvf": {
+    "name": "Kidderminster MVF",
+    "badge": "assets/badges/kidderminster-mvf.png"
+  }
+}
