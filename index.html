@@ -1,7 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FF Redditch | Football • Fitness • Community</title>
-<link rel="stylesheet" href="assets/styles.css"></head>
-<body data-page="home">
+<link rel="stylesheet" href="assets/styles.css"></head><body data-page="home">
 <header class="site-header">
   <div class="container navbar">
     <a class="brand" href="index.html">
@@ -11,14 +10,13 @@
     <button class="menu" aria-label="Menu">☰</button>
     <nav class="nav">
       <a href="tnf.html">TNF</a>
-      <a href="progress.html">Progress</a>
       <a href="community.html">Community</a>
-      <a href="eleven.html">11s</a>
-      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a><a class="join-link join-btn" href="#">Join</a>
+      <a href="eleven.html">FF Redditch 11s</a>
+      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a>
+      <a class="join-link join-btn" href="#">Join</a>
     </nav>
   </div>
 </header>
-
 <section class="hero"><div class="container hero-inner">
   <span class="kicker">Fitness Football Redditch</span>
   <h1>Play.<br><span class="yellow">Progress.</span><br>Belong.</h1>
@@ -27,64 +25,46 @@
 </div></section>
 
 <section class="stats-strip"><div class="container stats-grid">
-  <div class="stat-box"><span class="stat-big" id="communityKgLost">0kg</span><span class="stat-label">Lost by our community</span></div>
-  <div class="stat-box"><span class="stat-big" id="activeMembers">0</span><span class="stat-label">Active players</span></div>
-  <div class="stat-box"><span class="stat-big" id="tnfSessions">0</span><span class="stat-label">TNF sessions</span></div>
-  <div class="stat-box"><span class="stat-big" id="playersInto11s">0</span><span class="stat-label">Players into 11s</span></div>
+  <div class="stat-box"><span class="stat-big" id="communityKgLost">48kg</span><span class="stat-label">Total Community Weight Loss</span></div>
+  <div class="stat-box"><span class="stat-big" id="weeklyKgLost">2.6kg</span><span class="stat-label">Weekly Community Weight Loss</span></div>
+  <div class="stat-box"><span class="stat-big" id="totalMembers">36</span><span class="stat-label">Total Members</span></div>
+  <div class="stat-box"><span class="stat-big" id="tnfSessions">26</span><span class="stat-label">TNF Sessions Held</span></div>
 </div></section>
 
 <section class="section quick-join"><div class="container quick-join-grid">
-  <div><div class="red-rule"></div><h2 class="section-title">Want to <span class="yellow">join?</span></h2><p>No long form on the website. Hit the button, complete the FF Redditch Google Form and your introductory email can handle the practical details from there.</p></div>
+  <div><div class="red-rule"></div><h2 class="section-title">Want to <span class="yellow">join?</span></h2><p>Complete our joining form and we'll send you everything you need before your first session.</p></div>
   <div><a class="btn btn-yellow join-btn" href="#">Complete joining form</a></div>
 </div></section>
 
 <section class="section"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">What is <span class="yellow">FF Redditch?</span></h2></div><p class="section-intro">TNF is the heartbeat. The community is what keeps people coming back. Personal progress is celebrated, and the 11s gives players a competitive pathway.</p></div>
+  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">What is <span class="yellow">FF Redditch?</span></h2></div><p class="section-intro">TNF is the heartbeat. The community is what keeps people coming back. Personal progress is celebrated privately in our members portal, while the 11s gives players a competitive pathway.</p></div>
   <div class="cards">
-    <div class="card"><div class="card-tag">Tuesday Night Football</div><h3>Play every week</h3><p>Welcoming football for mixed abilities with fitness built naturally into the session.</p></div>
-    <div class="card"><div class="card-tag">Progress</div><h3>Make it personal</h3><p>Weight loss, fitness, confidence, attendance and football milestones all count.</p></div>
-    <div class="card"><div class="card-tag">Community</div><h3>Belong to something</h3><p>Football, friendships, socials, matchdays and a club identity people are proud to be part of.</p></div>
+    <div class="card"><div class="card-tag">Tuesday Night Football</div><h3>Play every week</h3><p>Welcoming football for mixed abilities with fitness built naturally into the session.</p><a href="tnf.html" class="text-link">TNF info →</a></div>
+    <div class="card"><div class="card-tag">Community</div><h3>Belong to something</h3><p>Football, friendships, socials, matchdays and a club identity people are proud to be part of.</p><a href="community.html" class="text-link">About us →</a></div>
+    <div class="card"><div class="card-tag">FF Redditch 11s</div><h3>Competitive football</h3><p>Fixtures, results and season stats for the competitive side of the FF Redditch community.</p><a href="eleven.html" class="text-link">Match centre →</a></div>
   </div>
-</div></section>
-
-<section class="section" style="background:#0f0f11"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Current <span class="yellow">Leaderboard</span></h2></div><p class="section-intro">A live-style progress board. Once connected to Google Sheets, update the sheet and the site can update automatically.</p></div>
-  <div class="leaderboard-wrap">
-    <div class="tabs"><button class="tab active" data-mode="total">Total Lost</button><button class="tab" data-mode="percent">% Lost</button><button class="tab" data-mode="month">This Month</button></div>
-    <div class="leader-row head"><span>Pos</span><span>Player</span><span style="text-align:right">Progress</span><span class="sessions">Attendance</span></div>
-    <div id="leaderRows"></div>
-  </div>
-</div></section>
-
-<section class="section"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Player <span class="yellow">Spotlight</span></h2></div><p class="section-intro">Hero the person, not just the number. Their progress story can include fitness, football, confidence and the move into the 11s.</p></div>
-  <div class="spotlight"><div class="spotlight-media"><div class="spotlight-number">FF</div></div><div class="spotlight-copy">
-    <div class="card-tag">Player Progress</div><h3 class="player-name" id="spotlightName">Player One</h3><div class="progress-number" id="spotlightLoss">0kg LOST</div><p id="spotlightText">Player story goes here.</p><a href="progress.html" class="btn btn-red">View Progress</a>
-  </div></div>
 </div></section>
 
 <section class="section" style="background:#111114"><div class="container">
   <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Tuesday Night <span class="yellow">Football</span></h2></div></div>
   <div class="tnf-panel"><div><h3>The heartbeat of FF Redditch</h3><p>Weekly football built around enjoyment, fitness and a strong community.</p><a class="btn btn-yellow" href="tnf.html">Session Info</a></div>
-  <div class="tnf-info"><div><strong>Venue</strong><span id="tnfVenue">Add venue</span></div><div><strong>Time</strong><span id="tnfTime">Add time</span></div><div><strong>Ability</strong><span>Mixed abilities welcome</span></div><div><strong>Join</strong><span>Complete our Google Form</span></div></div></div>
+  <div class="tnf-info"><div><strong>Venue</strong><span>Arrow Vale 3G</span></div><div><strong>Time</strong><span>Tuesday • 8:00pm</span></div><div><strong>Cost</strong><span>£5 per session</span></div><div><strong>Ability</strong><span>Mixed abilities welcome</span></div></div></div>
 </div></section>
 
-<section class="section"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">FF Redditch <span class="yellow">11s</span></h2></div><p class="section-intro">Fixtures, results, top scorers and assists — the competitive football side of the community.</p></div>
-  <div class="eleven-grid">
-    <div class="panel"><h3>Next Fixture</h3><div class="fixture"><div class="club">FF Redditch</div><div class="vs">VS</div><div class="club right" id="fixtureOpponent">Opponent TBC</div></div><p id="fixtureMeta">Date • Competition • Venue</p><a class="btn btn-red" href="eleven.html">View 11s</a></div>
-    <div class="panel"><h3>Top Scorers</h3><ol class="simple-list" id="scorers"></ol></div>
-    <div class="panel"><h3>Top Assists</h3><ol class="simple-list" id="assists"></ol></div>
-  </div>
+<section class="section quick-join"><div class="container quick-join-grid">
+  <div><div class="red-rule"></div><h2 class="section-title">Already a <span class="yellow">member?</span></h2><p>Your personal journey, private progress and members-only features live behind our secure member login.</p></div>
+  <div><a class="btn btn-dark members-cta" href="https://members.ffredditch.co.uk">Members Login</a></div>
 </div></section>
-
-<section class="section quick-join"><div class="container quick-join-grid"><div><div class="red-rule"></div><h2 class="section-title">Ready to <span class="yellow">play?</span></h2><p>Complete the joining form and we'll take it from there.</p></div><div><a class="btn btn-yellow join-btn" href="#">Join FF Redditch</a></div></div></section>
 
 <footer class="footer">
   <div class="container footer-top">
     <div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
     <div class="footer-links">
-      <a href="tnf.html">TNF</a><a href="progress.html">Progress</a><a href="community.html">Community</a><a href="eleven.html">11s</a><a href="https://members.ffredditch.co.uk">Members Login</a><a class="join-btn" href="#">Join</a>
+      <a href="tnf.html">TNF</a>
+      <a href="community.html">Community</a>
+      <a href="eleven.html">FF Redditch 11s</a>
+      <a href="https://members.ffredditch.co.uk">Members Login</a>
+      <a class="join-btn" href="#">Join</a>
     </div>
   </div>
   <div class="container copy">© 2026 FF Redditch</div>
