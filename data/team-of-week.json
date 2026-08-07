@@ -1,0 +1,32 @@
+[
+  {
+    "memberId": "demo-003",
+    "label": "Player 03",
+    "weeklyChangeKg": -1.5,
+    "slot": "st"
+  },
+  {
+    "memberId": "demo-005",
+    "label": "Player 05",
+    "weeklyChangeKg": -1.3,
+    "slot": "lm"
+  },
+  {
+    "memberId": "demo-002",
+    "label": "Player 02",
+    "weeklyChangeKg": -1.1,
+    "slot": "cm"
+  },
+  {
+    "memberId": "demo-006",
+    "label": "Player 06",
+    "weeklyChangeKg": -1.0,
+    "slot": "rm"
+  },
+  {
+    "memberId": "demo-004",
+    "label": "Player 04",
+    "weeklyChangeKg": -0.9,
+    "slot": "gk"
+  }
+]

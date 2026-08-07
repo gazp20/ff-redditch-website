@@ -1,0 +1,32 @@
+[
+  {
+    "id": "katsu-001",
+    "title": "Sticky Chicken Katsu Curry",
+    "tagline": "Fakeaway favourite",
+    "image": "assets/sticky-chicken-katsu.jpg",
+    "calories": 420,
+    "proteinG": 32,
+    "carbsG": 48,
+    "fatG": 11,
+    "minutes": 30,
+    "serves": 2,
+    "difficulty": "Easy",
+    "ingredients": [
+      "2 chicken breasts",
+      "120g basmati rice",
+      "1 carrot",
+      "2 spring onions",
+      "2 tbsp panko breadcrumbs",
+      "1 tsp curry powder",
+      "200ml light coconut milk",
+      "1 tbsp light soy sauce",
+      "1 tsp honey"
+    ],
+    "method": [
+      "Cook the rice according to the packet instructions.",
+      "Coat the chicken lightly in the breadcrumbs and cook until golden and cooked through.",
+      "Simmer the curry powder, coconut milk, soy and honey into a smooth sauce.",
+      "Slice the chicken, spoon over the sauce and finish with carrot and spring onion."
+    ]
+  }
+]

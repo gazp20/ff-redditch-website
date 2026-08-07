@@ -1,0 +1,20 @@
+{
+  "demoMode": true,
+  "brand": {
+    "name": "The Changing Room",
+    "strapline": "Getting Fitter. One Tuesday at a Time.",
+    "footerLine": "Keep showing up. \ud83d\udc9a"
+  },
+  "currentMemberId": "demo-001",
+  "nextSession": {
+    "name": "Tuesday Night Football",
+    "day": "Tuesday",
+    "time": "8:00pm",
+    "venue": "Arrow Vale 3G",
+    "spondUrl": "https://spond.com/invite/XJRNG"
+  },
+  "clubNews": {
+    "title": "Welcome to The Changing Room",
+    "body": "This is the first demo build. Live member data will be connected after the design is signed off."
+  }
+}
