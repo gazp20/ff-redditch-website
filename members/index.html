@@ -6,6 +6,104 @@
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
   <link rel="stylesheet" href="changing-room.css">
+
+<style>
+.leave-room-top{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:#0b1a0d;border:1px solid rgba(255,255,255,.25);
+  padding:8px 11px;border-radius:8px;font-size:.72rem;font-weight:900;
+  white-space:nowrap;
+}
+.leave-room-top:hover{background:#55d74c;color:#061007}
+.leave-room-side{
+  display:block;margin:0 0 15px;padding:10px 11px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.76rem;
+  font-weight:900;text-align:center;background:rgba(255,255,255,.05);
+}
+.leave-room-side:hover{background:#1b8524}
+@media(max-width:500px){
+  .leave-room-top{font-size:0;width:38px;height:38px;padding:0;justify-content:center}
+  .leave-room-top::before{content:"🚪";font-size:1rem}
+}
+</style>
+
+
+<style>
+/* ===== FFR LEAGUE + RULE BOOK ===== */
+.ffr-league-panel{gap:18px}
+.ffr-rulebook{
+  border-radius:14px;
+  background:linear-gradient(145deg,#071009,#102116);
+  color:#fff;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.10)
+}
+.ffr-rulebook .panel-title{color:#63dc57}
+.ffr-rulebook h3{
+  margin:10px 0 5px;
+  font-size:1.35rem
+}
+.ffr-rule-intro{
+  color:#c3cdc5;
+  font-size:.82rem;
+  line-height:1.45;
+  margin:0 0 14px
+}
+.ffr-rules{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.ffr-rule{
+  display:grid;
+  grid-template-columns:34px 1fr auto;
+  gap:9px;
+  align-items:center;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:10px 11px
+}
+.ffr-rule .rule-icon{
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.08)
+}
+.ffr-rule div{display:grid;gap:2px}
+.ffr-rule strong{font-size:.76rem}
+.ffr-rule small{font-size:.62rem;color:#9faaa1;line-height:1.25}
+.ffr-rule>b{
+  font-size:1.05rem;
+  min-width:34px;
+  text-align:center;
+  padding:6px 7px;
+  border-radius:8px;
+  background:#1d8f28;
+  color:#fff
+}
+.ffr-rule.negative>b{background:#b52432}
+.ffr-rule.milestone>b{background:#a36b0c}
+.ffr-rule.football>b{background:#216aa8}
+.ffr-rule.attendance>b{background:#6c3c99}
+.ffr-rule-note{
+  margin:13px 0 0;
+  padding-top:11px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#aab5ac;
+  font-size:.66rem;
+  line-height:1.4
+}
+.ffr-table{
+  padding-top:0!important;
+  border-top:0!important
+}
+@media(max-width:560px){
+  .ffr-rules{grid-template-columns:1fr}
+  .ffr-rulebook{padding:15px}
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
@@ -23,7 +121,7 @@
         <a href="#player-card">🪪 <span>My Player Card</span></a>
         <a href="#journey">📈 <span>My Journey</span></a>
         <a href="#squad">👥 <span>The Squad</span></a>
-        <a href="#leaderboards">🏆 <span>Leaderboards</span></a>
+        <a href="#leaderboards">🏆 <span>FFR League</span></a>
         <a href="#recipes">🍽️ <span>Matchday Fuel</span></a>
         <a href="#football">⚽ <span>My Football</span></a>
         <a id="spondSideLink" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">📅 <span>Spond</span></a>
@@ -37,6 +135,7 @@
       </div>
 
       <div class="sidebar-bottom">
+        <a class="leave-room-side" href="/logout.html">🚪 Leave The Changing Room</a>
         <span>FF REDDITCH</span>
         <small>FOOTBALL • FITNESS • COMMUNITY</small>
       </div>
@@ -52,6 +151,7 @@
         <div class="top-actions">
           <button class="bell" title="Notifications">🔔<b>3</b></button>
           <div class="member-chip"><span class="avatar">DM</span><strong id="topName">Demo</strong></div>
+          <a class="leave-room-top" href="/logout.html" title="Log out and return to FF Redditch">🚪 Log Out</a>
         </div>
       </header>
 
@@ -111,16 +211,71 @@
             <div class="pitch-box bottom"></div>
             <div id="teamWeekPlayers"></div>
           </div>
-          <button class="btn purple" data-scroll="#leaderboards">VIEW LEADERBOARDS</button>
+          <button class="btn purple" data-scroll="#leaderboards">VIEW FFR LEAGUE</button>
         </article>
 
-        <article class="panel leaderboards" id="leaderboards">
-          <div class="leaderboard-block">
-            <div class="panel-title">🏆 LEADERBOARD — FF POINTS</div>
+        <article class="panel leaderboards ffr-league-panel" id="leaderboards">
+
+          <div class="ffr-rulebook">
+            <div class="panel-title">📖 THE FFR RULE BOOK</div>
+            <h3>How to earn FF Points</h3>
+            <p class="ffr-rule-intro">
+              Earn points by making progress, turning up and getting involved at TNF.
+              Every point counts towards your position in the FFR League Table.
+            </p>
+
+            <div class="ffr-rules">
+              <div class="ffr-rule positive">
+                <span class="rule-icon">⚖️</span>
+                <div><strong>Lose weight at weigh-in</strong><small>A positive week on the scales.</small></div>
+                <b>+2</b>
+              </div>
+
+              <div class="ffr-rule positive">
+                <span class="rule-icon">➖</span>
+                <div><strong>Maintain your weight</strong><small>Consistency still counts.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule milestone">
+                <span class="rule-icon">🎯</span>
+                <div><strong>Reach a new 5% milestone</strong><small>5%, 10%, 15%, 20% and beyond.</small></div>
+                <b>+5</b>
+              </div>
+
+              <div class="ffr-rule football">
+                <span class="rule-icon">⚽</span>
+                <div><strong>Score a goal at TNF</strong><small>Find the net on Tuesday night.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule attendance">
+                <span class="rule-icon">👟</span>
+                <div><strong>Complete every 3 TNF sessions</strong><small>Keep showing up.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule negative">
+                <span class="rule-icon">⬆️</span>
+                <div><strong>Gain weight at weigh-in</strong><small>One week never defines the journey.</small></div>
+                <b>-1</b>
+              </div>
+            </div>
+
+            <p class="ffr-rule-note">
+              Points can stack in the same week. Milestone points are awarded once for each new 5% milestone reached.
+            </p>
+          </div>
+
+          <div class="leaderboard-block ffr-table">
+            <div class="panel-title">🏆 FFR LEAGUE TABLE</div>
+            <p class="muted">Your FF Points ranking across The Changing Room.</p>
             <div id="pointsLeaderboard"></div>
           </div>
+
           <div class="leaderboard-block">
-            <div class="panel-title">💪 LEADERBOARD — MOST WEIGHT LOST</div>
+            <div class="panel-title">💪 MOST WEIGHT LOST</div>
+            <p class="muted">Separate from FF Points — ranked by total weight lost.</p>
             <div id="weightLeaderboard"></div>
           </div>
         </article>
