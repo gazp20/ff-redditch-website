@@ -99,7 +99,7 @@
             <span>💪 <b id="recipeProtein">--</b><small>Protein</small></span>
             <span>⏱️ <b id="recipeMinutes">--</b><small>Mins</small></span>
           </div>
-          <button class="btn orange" id="recipeOpen">VIEW RECIPE</button>
+          <button class="btn orange" id="recipeOpen" type="button" onclick="openRecipeModal()">VIEW RECIPE</button>
         </article>
 
         <article class="panel team-week" id="squad">
@@ -210,8 +210,8 @@
     </main>
   </div>
 
-  <dialog id="recipeDialog">
-    <button class="dialog-close" id="recipeClose">×</button>
+  <dialog id="recipeDialog" aria-labelledby="dialogRecipeTitle">
+    <button class="dialog-close" id="recipeClose" type="button" onclick="closeRecipeModal()">×</button>
     <img id="dialogRecipeImage" alt="">
     <div class="dialog-copy">
       <span class="recipe-tag">MATCHDAY FUEL</span>
