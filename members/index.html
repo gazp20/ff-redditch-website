@@ -104,6 +104,171 @@
 }
 </style>
 
+
+<style>
+/* ===== DESKTOP POLISH V1 ===== */
+@media(min-width:1201px){
+  .main{
+    background:#eef0ed;
+  }
+
+  .metric-grid,
+  .dashboard-grid,
+  .news-strip,
+  .lower-grid,
+  .challenge-row,
+  .account{
+    max-width:1450px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .metric-grid{
+    margin-top:14px;
+    margin-bottom:16px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr 1.35fr;
+    gap:16px;
+    align-items:stretch;
+  }
+
+  .dashboard-grid > .next-session,
+  .dashboard-grid > .recipe-preview,
+  .dashboard-grid > .team-week{
+    min-height:100%;
+  }
+
+  .dashboard-grid > .leaderboards{
+    grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:18px;
+    align-items:start;
+    padding:18px;
+  }
+
+  .ffr-rulebook{
+    height:100%;
+    padding:20px;
+  }
+
+  .ffr-rulebook h3{
+    font-size:1.45rem;
+    margin-top:8px;
+  }
+
+  .ffr-rule-intro{
+    max-width:720px;
+    margin-bottom:16px;
+  }
+
+  .ffr-rules{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .ffr-rule{
+    min-height:82px;
+    padding:12px 13px;
+  }
+
+  .ffr-rule strong{
+    font-size:.82rem;
+  }
+
+  .ffr-rule small{
+    font-size:.66rem;
+  }
+
+  .leaderboards .ffr-table,
+  .leaderboards .leaderboard-block:last-child{
+    background:#fafbfa;
+    border:1px solid #e4e8e4;
+    border-radius:14px;
+    padding:16px!important;
+    border-top:1px solid #e4e8e4!important;
+  }
+
+  .leaderboards .ffr-table{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  .leaderboards .leaderboard-block:last-child{
+    grid-column:2;
+    grid-row:2;
+    margin-top:0;
+  }
+
+  .leaderboards .ffr-rulebook{
+    grid-column:1;
+    grid-row:1 / span 2;
+  }
+
+  .leader-row{
+    padding:10px 4px;
+    font-size:.86rem;
+  }
+
+  .panel{
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(20,30,22,.055);
+  }
+
+  .next-session,
+  .recipe-preview,
+  .team-week{
+    padding:20px;
+  }
+
+  .team-week .pitch{
+    height:300px;
+  }
+
+  .recipe-preview img{
+    height:220px;
+  }
+
+  .news-strip{
+    margin-top:16px;
+    margin-bottom:16px;
+  }
+
+  .lower-grid{
+    grid-template-columns:1.55fr .8fr .62fr 1.15fr;
+    gap:16px;
+  }
+
+  .achievements{
+    grid-column:1 / -1;
+  }
+
+  .challenge-row{
+    grid-template-columns:1fr 1fr;
+  }
+
+  footer{
+    margin-top:8px;
+  }
+}
+
+@media(min-width:1500px){
+  .dashboard-grid{
+    grid-template-columns:.95fr 1fr 1.4fr;
+  }
+
+  .dashboard-grid > .leaderboards{
+    grid-template-columns:1.5fr 1fr;
+  }
+
+  .team-week .pitch{
+    height:320px;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
