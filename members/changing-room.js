@@ -1,4 +1,48 @@
 
+window.openRecipeModal = function(){
+  const d = document.getElementById("recipeDialog");
+  if(!d) return;
+  try{
+    if(typeof d.showModal === "function"){
+      if(!d.open) d.showModal();
+    }else{
+      d.setAttribute("open","");
+      d.style.display="block";
+      d.style.position="fixed";
+      d.style.inset="5vh auto auto 50%";
+      d.style.transform="translateX(-50%)";
+      d.style.zIndex="9999";
+      d.style.maxHeight="90vh";
+      d.style.overflow="auto";
+    }
+  }catch(e){
+    d.setAttribute("open","");
+    d.style.display="block";
+    d.style.position="fixed";
+    d.style.inset="5vh auto auto 50%";
+    d.style.transform="translateX(-50%)";
+    d.style.zIndex="9999";
+    d.style.maxHeight="90vh";
+    d.style.overflow="auto";
+  }
+};
+
+window.closeRecipeModal = function(){
+  const d = document.getElementById("recipeDialog");
+  if(!d) return;
+  try{
+    if(typeof d.close === "function" && d.open) d.close();
+    else{
+      d.removeAttribute("open");
+      d.style.display="none";
+    }
+  }catch(e){
+    d.removeAttribute("open");
+    d.style.display="none";
+  }
+};
+
+
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
 
@@ -239,8 +283,8 @@ async function init(){
   const icons=["🟢","🔥","💙","⚽","🟣"];
   $("#achievementGrid").innerHTML=achievements.map((a,i)=>`<div class="achievement"><div class="badge">${icons[i%icons.length]}</div><b>${a}</b></div>`).join("");
 
-  $("#recipeOpen").onclick=()=>$("#recipeDialog").showModal();
-  $("#recipeClose").onclick=()=>$("#recipeDialog").close();
+  if($("#recipeOpen")) $("#recipeOpen").onclick=window.openRecipeModal;
+  if($("#recipeClose")) $("#recipeClose").onclick=window.closeRecipeModal;
   $("#menuBtn").onclick=()=>$("#sidebar").classList.toggle("open");
   $$(".side-nav a").forEach(a=>a.addEventListener("click",()=>$("#sidebar").classList.remove("open")));
   $$("[data-scroll]").forEach(b=>b.onclick=()=>document.querySelector(b.dataset.scroll)?.scrollIntoView({behavior:"smooth"}));
