@@ -1,72 +1,252 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FF Redditch | Football • Fitness • Community</title>
-<link rel="stylesheet" href="assets/styles.css"></head><body data-page="home">
-<header class="site-header">
-  <div class="container navbar">
-    <a class="brand" href="index.html">
-      <span class="brand-badge">FF</span>
-      <span>REDDITCH<small>BETTER EVERY GAME</small></span>
-    </a>
-    <button class="menu" aria-label="Menu">☰</button>
-    <nav class="nav">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-link join-btn" href="#">Join</a>
-    </nav>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071009">
+  <title>The Changing Room | FF Redditch</title>
+  <link rel="stylesheet" href="changing-room.css">
+
+<style>
+.leave-room-top{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:#0b1a0d;border:1px solid rgba(255,255,255,.25);
+  padding:8px 11px;border-radius:8px;font-size:.72rem;font-weight:900;
+  white-space:nowrap;
+}
+.leave-room-top:hover{background:#55d74c;color:#061007}
+.leave-room-side{
+  display:block;margin:0 0 15px;padding:10px 11px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.76rem;
+  font-weight:900;text-align:center;background:rgba(255,255,255,.05);
+}
+.leave-room-side:hover{background:#1b8524}
+@media(max-width:500px){
+  .leave-room-top{font-size:0;width:38px;height:38px;padding:0;justify-content:center}
+  .leave-room-top::before{content:"🚪";font-size:1rem}
+}
+</style>
+
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-block">
+        <img class="brand-crest" src="ffredditch-crest.png" alt="FF Redditch">
+        <div>
+          <div class="brand-title">THE CHANGING ROOM</div>
+          <div class="brand-sub">GETTING FITTER. ONE TUESDAY AT A TIME.</div>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a class="active" href="#dashboard">🏠 <span>Dashboard</span></a>
+        <a href="#player-card">🪪 <span>My Player Card</span></a>
+        <a href="#journey">📈 <span>My Journey</span></a>
+        <a href="#squad">👥 <span>The Squad</span></a>
+        <a href="#leaderboards">🏆 <span>Leaderboards</span></a>
+        <a href="#recipes">🍽️ <span>Matchday Fuel</span></a>
+        <a href="#football">⚽ <span>My Football</span></a>
+        <a id="spondSideLink" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">📅 <span>Spond</span></a>
+        <a href="#account">🎒 <span>Kit Bag</span></a>
+      </nav>
+
+      <div class="gaffer-card">
+        <div class="quote-mark">“</div>
+        <p id="gafferQuote">Nobody ever regrets turning up.</p>
+        <strong>— The Gaffer</strong>
+      </div>
+
+      <div class="sidebar-bottom">
+        <a class="leave-room-side" href="/logout.html">🚪 Leave The Changing Room</a>
+        <span>FF REDDITCH</span>
+        <small>FOOTBALL • FITNESS • COMMUNITY</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div>
+          <strong>THE CHANGING ROOM</strong>
+          <span>GETTING FITTER. ONE TUESDAY AT A TIME.</span>
+        </div>
+        <div class="top-actions">
+          <button class="bell" title="Notifications">🔔<b>3</b></button>
+          <div class="member-chip"><span class="avatar">DM</span><strong id="topName">Demo</strong></div>
+          <a class="leave-room-top" href="/logout.html" title="Log out and return to FF Redditch">🚪 Log Out</a>
+        </div>
+      </header>
+
+      <section class="locker-hero" id="dashboard">
+        <div class="locker-overlay"></div>
+        <div class="locker-brand">
+          <img src="ffredditch-crest.png" alt="">
+          <h1>THE CHANGING ROOM</h1>
+          <p>GETTING FITTER. ONE TUESDAY AT A TIME.</p>
+        </div>
+        <div class="welcome-card">
+          <span class="eyebrow">👋 WELCOME BACK,</span>
+          <h2 id="welcomeName">DEMO!</h2>
+          <div id="welcomeMessage"></div>
+          <em>Keep showing up. 💚</em>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Your weekly progress">
+        <article class="metric"><span>⚖️</span><small>Current Weight</small><strong id="currentWeight">--</strong><em id="lastWeight">Last week --</em></article>
+        <article class="metric"><span>⬇️</span><small>This Week</small><strong id="weeklyChange">--</strong><em id="weeklyLabel">Keep going!</em></article>
+        <article class="metric"><span>📉</span><small>Total Lost</small><strong id="totalLost">--</strong><em>Since joining</em></article>
+        <article class="metric"><span>⭐</span><small>FF Points</small><strong id="ffPoints">--</strong><em>Keep it going!</em></article>
+        <article class="metric"><span>📊</span><small>Club Position</small><strong id="clubRank">--</strong><em id="rankOutOf">Out of --</em></article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel next-session">
+          <div class="panel-title">📅 NEXT SESSION</div>
+          <h3 id="sessionName">Tuesday Night Football</h3>
+          <dl>
+            <div><dt>📆</dt><dd id="sessionDay">Tuesday</dd></div>
+            <div><dt>🕗</dt><dd id="sessionTime">8:00pm</dd></div>
+            <div><dt>📍</dt><dd id="sessionVenue">Arrow Vale 3G</dd></div>
+          </dl>
+          <a class="btn green" id="spondButton" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
+        </article>
+
+        <article class="panel recipe-preview" id="recipes">
+          <div class="panel-title">👨‍🍳 RECIPE OF THE WEEK</div>
+          <h3 id="recipeTitle">Loading…</h3>
+          <img id="recipeImage" src="sticky-chicken-katsu.jpg" alt="Sticky Chicken Katsu Curry">
+          <div class="recipe-macros">
+            <span>🔥 <b id="recipeCalories">--</b><small>Calories</small></span>
+            <span>💪 <b id="recipeProtein">--</b><small>Protein</small></span>
+            <span>⏱️ <b id="recipeMinutes">--</b><small>Mins</small></span>
+          </div>
+          <button class="btn orange" id="recipeOpen" type="button" onclick="openRecipeModal()">VIEW RECIPE</button>
+        </article>
+
+        <article class="panel team-week" id="squad">
+          <div class="panel-title">🏆 TEAM OF THE WEEK</div>
+          <p class="muted">Top 5 performers this week</p>
+          <div class="pitch">
+            <div class="pitch-line centre"></div>
+            <div class="pitch-box top"></div>
+            <div class="pitch-box bottom"></div>
+            <div id="teamWeekPlayers"></div>
+          </div>
+          <button class="btn purple" data-scroll="#leaderboards">VIEW LEADERBOARDS</button>
+        </article>
+
+        <article class="panel leaderboards" id="leaderboards">
+          <div class="leaderboard-block">
+            <div class="panel-title">🏆 LEADERBOARD — FF POINTS</div>
+            <div id="pointsLeaderboard"></div>
+          </div>
+          <div class="leaderboard-block">
+            <div class="panel-title">💪 LEADERBOARD — MOST WEIGHT LOST</div>
+            <div id="weightLeaderboard"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="news-strip">
+        <span>📣 <b>CLUB NEWS</b></span>
+        <div><strong id="newsTitle">Welcome</strong><small id="newsBody"></small></div>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel journey" id="journey">
+          <div class="panel-head"><div class="panel-title">📈 MY JOURNEY</div><span>Private to you</span></div>
+          <div class="chart-wrap">
+            <svg id="weightChart" viewBox="0 0 760 220" role="img" aria-label="Weight journey chart"></svg>
+          </div>
+          <div class="journey-stats">
+            <span><small>Start</small><b id="journeyStart">--</b></span>
+            <span><small>Current</small><b id="journeyCurrent">--</b></span>
+            <span><small>Lost</small><b id="journeyLost">--</b></span>
+            <span><small>% Lost</small><b id="journeyPercent">--</b></span>
+          </div>
+          <div class="recent-weighins" id="recentWeighins"></div>
+        </article>
+
+        <article class="panel milestones">
+          <div class="panel-title">🎖️ MILESTONES</div>
+          <div id="milestoneList"></div>
+        </article>
+
+        <article class="panel streak">
+          <div class="panel-title">🔥 CURRENT STREAK</div>
+          <strong id="currentStreak">--</strong>
+          <span>Weeks</span>
+          <p>Keep it going!</p>
+        </article>
+
+        <article class="panel player-card-panel" id="player-card">
+          <div class="panel-title">🪪 MY PLAYER CARD</div>
+          <div class="player-card">
+            <div class="player-card-top">
+              <b id="cardNumber">#--</b>
+              <img src="ffredditch-crest.png" alt="">
+            </div>
+            <div class="player-silhouette">⚽</div>
+            <h3 id="cardName">DEMO MEMBER</h3>
+            <p id="cardPosition">PLAYER</p>
+            <small id="cardJoined">JOINED --</small>
+          </div>
+          <div class="player-card-stats" id="football">
+            <div><span>⚖️ Weight</span><b id="cardWeight">--</b></div>
+            <div><span>📉 Total Lost</span><b id="cardLoss">--</b></div>
+            <div><span>⚽ Goals</span><b id="cardGoals">--</b></div>
+            <div><span>🎯 Assists</span><b id="cardAssists">--</b></div>
+            <div><span>📅 Attendance</span><b id="cardAttendance">--</b></div>
+            <div><span>⭐ FF Points</span><b id="cardPoints">--</b></div>
+          </div>
+        </article>
+
+        <article class="panel achievements">
+          <div class="panel-title">🏅 ACHIEVEMENTS</div>
+          <div id="achievementGrid"></div>
+        </article>
+      </section>
+
+      <section class="challenge-row">
+        <article>
+          <span>🎯</span>
+          <div><strong>WEEKLY CHALLENGE</strong><p>Complete your session, log your weigh-in and keep the streak going.</p></div>
+        </article>
+        <article>
+          <span>💬</span>
+          <div><strong>THE TEAM'S BEHIND YOU</strong><p>Progress isn't about being perfect. It's about showing up.</p></div>
+        </article>
+      </section>
+
+      <section class="panel account" id="account">
+        <div class="panel-title">🎒 KIT BAG</div>
+        <p>Your account and privacy controls will live here when the live member connection is switched on.</p>
+      </section>
+
+      <footer>
+        <span>© 2026 FF Redditch</span>
+        <strong>Keep showing up. 💚</strong>
+        <span>Privacy • Terms</span>
+      </footer>
+    </main>
   </div>
-</header>
-<section class="hero"><div class="container hero-inner">
-  <span class="kicker">Fitness Football Redditch</span>
-  <h1>Play.<br><span class="yellow">Progress.</span><br>Belong.</h1>
-  <p class="hero-copy">Weekly football, personal progress and a proper community. Whether your goal is to get fitter, lose weight, get back into football or simply enjoy playing again, FF Redditch is built around getting you involved.</p>
-  <div class="cta-row"><a class="btn btn-yellow join-btn" href="#">Join FF Redditch</a><a class="btn btn-dark" href="tnf.html">Session Info</a></div>
-</div></section>
 
-<section class="stats-strip"><div class="container stats-grid">
-  <div class="stat-box"><span class="stat-big" id="communityKgLost">48kg</span><span class="stat-label">Total Community Weight Loss</span></div>
-  <div class="stat-box"><span class="stat-big" id="weeklyKgLost">2.6kg</span><span class="stat-label">Weekly Community Weight Loss</span></div>
-  <div class="stat-box"><span class="stat-big" id="totalMembers">36</span><span class="stat-label">Total Members</span></div>
-  <div class="stat-box"><span class="stat-big" id="tnfSessions">26</span><span class="stat-label">TNF Sessions Held</span></div>
-</div></section>
-
-<section class="section quick-join"><div class="container quick-join-grid">
-  <div><div class="red-rule"></div><h2 class="section-title">Want to <span class="yellow">join?</span></h2><p>Complete our joining form and we'll send you everything you need before your first session.</p></div>
-  <div><a class="btn btn-yellow join-btn" href="#">Complete joining form</a></div>
-</div></section>
-
-<section class="section"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">What is <span class="yellow">FF Redditch?</span></h2></div><p class="section-intro">TNF is the heartbeat. The community is what keeps people coming back. Personal progress is celebrated privately in our members portal, while the 11s gives players a competitive pathway.</p></div>
-  <div class="cards">
-    <div class="card"><div class="card-tag">Tuesday Night Football</div><h3>Play every week</h3><p>Welcoming football for mixed abilities with fitness built naturally into the session.</p><a href="tnf.html" class="text-link">TNF info →</a></div>
-    <div class="card"><div class="card-tag">Community</div><h3>Belong to something</h3><p>Football, friendships, socials, matchdays and a club identity people are proud to be part of.</p><a href="community.html" class="text-link">About us →</a></div>
-    <div class="card"><div class="card-tag">FF Redditch 11s</div><h3>Competitive football</h3><p>Fixtures, results and season stats for the competitive side of the FF Redditch community.</p><a href="eleven.html" class="text-link">Match centre →</a></div>
-  </div>
-</div></section>
-
-<section class="section" style="background:#111114"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Tuesday Night <span class="yellow">Football</span></h2></div></div>
-  <div class="tnf-panel"><div><h3>The heartbeat of FF Redditch</h3><p>Weekly football built around enjoyment, fitness and a strong community.</p><a class="btn btn-yellow" href="tnf.html">Session Info</a></div>
-  <div class="tnf-info"><div><strong>Venue</strong><span>Arrow Vale 3G</span></div><div><strong>Time</strong><span>Tuesday • 8:00pm</span></div><div><strong>Cost</strong><span>£5 per session</span></div><div><strong>Ability</strong><span>Mixed abilities welcome</span></div></div></div>
-</div></section>
-
-<section class="section quick-join"><div class="container quick-join-grid">
-  <div><div class="red-rule"></div><h2 class="section-title">Already a <span class="yellow">member?</span></h2><p>Your personal journey, private progress and members-only features live behind our secure member login.</p></div>
-  <div><a class="btn btn-dark members-cta" href="https://members.ffredditch.co.uk">Members Login</a></div>
-</div></section>
-
-<footer class="footer">
-  <div class="container footer-top">
-    <div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
-    <div class="footer-links">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-btn" href="#">Join</a>
+  <dialog id="recipeDialog" aria-labelledby="dialogRecipeTitle">
+    <button class="dialog-close" id="recipeClose" type="button" onclick="closeRecipeModal()">×</button>
+    <img id="dialogRecipeImage" alt="">
+    <div class="dialog-copy">
+      <span class="recipe-tag">MATCHDAY FUEL</span>
+      <h2 id="dialogRecipeTitle"></h2>
+      <div class="dialog-macros" id="dialogMacros"></div>
+      <h3>You'll need</h3>
+      <ul id="dialogIngredients"></ul>
+      <h3>Method</h3>
+      <ol id="dialogMethod"></ol>
     </div>
-  </div>
-  <div class="container copy">© 2026 FF Redditch</div>
-</footer>
-<script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>
+  </dialog>
+
+  <script src="changing-room.js"></script>
+</body>
+</html>
