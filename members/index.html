@@ -501,6 +501,92 @@
 }
 </style>
 
+
+<style>
+/* ===== GOLD PLAYER CARD / BLACK PANEL ===== */
+
+/* Keep only this panel dark */
+.player-card-panel{
+  background:linear-gradient(155deg,#0a0d0b 0%,#050706 100%)!important;
+  color:#fff!important;
+  border-color:#1b211d!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.16)!important;
+}
+.player-card-panel .panel-title{
+  color:#fff!important;
+}
+
+/* Gold card */
+.player-card{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,.38),transparent 24%),
+    radial-gradient(circle at 76% 16%,rgba(255,244,181,.35),transparent 18%),
+    linear-gradient(145deg,#f7d56b 0%,#d6a838 38%,#b77a16 72%,#8f5d0b 100%)!important;
+  border-color:#ffdf72!important;
+  color:#111!important;
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,222,112,.45),
+    inset 0 0 26px rgba(255,255,255,.22)!important;
+}
+.player-card:before{
+  border-color:rgba(107,64,5,.34)!important;
+}
+.player-card:after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent)!important;
+}
+.player-card-top b{
+  color:#111!important;
+  text-shadow:none!important;
+}
+.player-card-crest{
+  width:66px!important;
+  height:66px!important;
+}
+.player-silhouette{
+  filter:sepia(1) saturate(.8) brightness(.55) contrast(1.15) drop-shadow(0 5px 8px rgba(0,0,0,.22))!important;
+}
+.player-card h3{
+  color:#111!important;
+  text-shadow:none!important;
+}
+.player-card p{
+  color:#188c20!important;
+  text-shadow:none!important;
+}
+.joined-ribbon{
+  background:linear-gradient(90deg,#111,#242424,#111)!important;
+  color:#ffd95d!important;
+  border:1px solid rgba(255,221,102,.65)!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.28)!important;
+}
+
+/* Player stats below card now sit cleanly on black */
+.player-card-stats{
+  color:#fff!important;
+}
+.player-card-stats div{
+  border-bottom-color:rgba(255,255,255,.16)!important;
+}
+.player-card-stats span{
+  color:#f0f3f0!important;
+}
+.player-card-stats b{
+  color:#fff!important;
+}
+
+/* Make sure no other panels accidentally turn dark */
+.journey,
+.milestones,
+.streak,
+.next-session,
+.recipe-preview,
+.team-week,
+.news-strip{
+  color:inherit;
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
