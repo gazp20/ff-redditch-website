@@ -673,6 +673,47 @@
 }
 </style>
 
+
+<style>
+/* ===== MOBILE SIDEBAR BOTTOM CONTENT FIX ===== */
+@media(max-width:850px){
+  .sidebar{
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:calc(28px + env(safe-area-inset-bottom))!important;
+  }
+
+  .side-nav{
+    flex-shrink:0;
+  }
+
+  .gaffer-card{
+    flex-shrink:0!important;
+    margin-top:16px!important;
+    margin-bottom:12px!important;
+  }
+
+  .sidebar-bottom{
+    position:relative!important;
+    flex-shrink:0!important;
+    margin-top:0!important;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))!important;
+  }
+
+  .leave-room-side{
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    min-height:44px;
+    margin-bottom:14px!important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
