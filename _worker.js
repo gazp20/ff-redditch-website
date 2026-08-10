@@ -168,6 +168,8 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
 
       } else if (url.pathname.startsWith("/data/")) {
         target.pathname = url.pathname;
+        } else if (url.pathname.startsWith("/members/images/")) {
+  target.pathname = url.pathname;
       } else if (
         !url.pathname.startsWith("/members/")
       ) {
