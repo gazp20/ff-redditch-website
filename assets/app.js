@@ -77,7 +77,7 @@ function renderEleven(data){
 
 async function elevenPageInit(){
   try{
-    const stats=await loadData(cfg.sheets?.elevenStatsCsv,"data/eleven.json");
+    const stats=await loadData(cfg.sheets?.elevenStatsCsv,"data/eleven-stats.json");
     renderEleven(stats);
   }catch(e){console.warn(e)}
 }
