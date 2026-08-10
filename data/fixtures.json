@@ -1,24 +1,20 @@
 [
   {
-    "date": "2026-08-09",
-    "opponent": "Sandwell Social",
-    "homeAway": "H",
+    "date": "2026-08-16",
+    "opponent": "Sutton United",
     "competition": "MFFL West Prem",
     "ko": "15:45",
-    "venue": "Arrow Vale 3G",
-    "address": "Matchborough Way, Redditch, B98 0GF",
-    "opponentBadge": "assets/badges/sandwell-social.png",
+    "opponentBadge": "assets/badges/sutton-united.png",
     "status": "upcoming"
   },
   {
-    "date": "2026-08-02",
-    "opponent": "Solihull",
-    "homeAway": "H",
-    "competition": "Friendly",
-    "result": "4-2",
-    "scorers": "Sproston, Nedjat (2), Poole",
-    "motm": "Poole",
-    "opponentBadge": "assets/badges/solihull.png",
+    "date": "2026-08-09",
+    "opponent": "Sandwell Social",
+    "competition": "MFFL West Prem",
+    "result": "3-2",
+    "scorers": "Nedjat, Wood, Nurthen",
+    "motm": "Wood",
+    "opponentBadge": "assets/badges/sandwell-social.png",
     "status": "played"
   }
 ]
