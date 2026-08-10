@@ -205,15 +205,40 @@ function renderRecipe(r){
 }
 
 async function init(){
-  const [portal, members, weighins, recipes, team] = await Promise.all([
-    getJSON("data/portal.json", FALLBACK.portal),
-    getJSON("data/members.json", FALLBACK.members),
-    getJSON("data/weighins.json", FALLBACK.weighins),
-    getJSON("data/recipes.json", FALLBACK.recipes),
-    getJSON("data/team-of-week.json", FALLBACK.team)
-  ]);
+  const [portal, members, weighins, recipes, team, meData] = await Promise.all([
+getJSON("data/portal.json", FALLBACK.portal),
+getJSON("data/members.json", FALLBACK.members),
+getJSON("data/weighins.json", FALLBACK.weighins),
+getJSON("data/recipes.json", FALLBACK.recipes),
+getJSON("data/team-of-week.json", FALLBACK.team),
+getJSON("/api/me", null)
+]);
 
-  const m=members.find(x=>x.id===portal.currentMemberId) || members[0] || FALLBACK.members[0];
+ const sheetMember = meData && meData.success ? meData.member : null;
+
+const m = sheetMember ? {
+  id: "live-member",
+  name: sheetMember["Name"] || "Member",
+  firstName: sheetMember["First Name"] || "Member",
+  number: sheetMember["shirt number"] || "--",
+  position: sheetMember["Position"] || "Player",
+  joined: sheetMember["Date Joined"] || "--",
+  photo: sheetMember["player photo"] || "",
+  currentWeightKg: Number(sheetMember["Current weight"] || 0),
+  startingWeightKg: Number(sheetMember["Start weight"] || 0),
+  totalLostKg: Number(sheetMember["total weight loss"] || sheetMember["weight lost"] || 0),
+  percentLost: Number(sheetMember["% lost"] || 0),
+  weeklyChangeKg: -Number(sheetMember["weekly weight loss"] || 0),
+  previousWeightKg: Number(sheetMember["Current weight"] || 0) + Number(sheetMember["weekly weight loss"] || 0),
+  ffPoints: Number(sheetMember["FF Total points"] || 0),
+  weeklyFFPoints: Number(sheetMember["FF weekly points"] || 0),
+  currentStreak: Number(sheetMember["week streak"] || 0),
+  milestones: [
+    sheetMember["5% milestone"] ? "5% Club" : null,
+    sheetMember["10% milestone"] ? "10% Club" : null,
+    sheetMember["15% milestone"] ? "15% Club" : null
+  ].filter(Boolean)
+} : FALLBACK.members[0];
   const history=weighins[m.id] || FALLBACK.weighins["demo-001"];
 
   $("#topName").textContent=m.firstName || "Member";
