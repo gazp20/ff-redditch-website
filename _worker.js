@@ -61,17 +61,14 @@ try {
         );
       }
 
-      const apiUrl = new URL(env.MEMBERS_API_URL);
+const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
 
       apiUrl.searchParams.set(
         "email",
         email.trim().toLowerCase()
       );
 
-      apiUrl.searchParams.set(
-        "key",
-        env.MEMBERS_API_SECRET
-      );
+ apiUrl.searchParams.set("key", String(env.MEMBERS_API_SECRET).trim());
 
       try {
         const googleResponse = await fetch(
