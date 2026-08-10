@@ -112,7 +112,7 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
     // ==========================================
       if (
   url.hostname === "members.ffredditch.co.uk" &&
-  url.pathname === "/api/rankings"
+  (url.pathname === "/api/rankings" || url.pathname === "/api/rankings/")
 ) {
   try {
     const googleResponse = await fetch(
