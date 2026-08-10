@@ -129,6 +129,8 @@ try {
       ) {
         target.pathname = "/members/";
 
+      } else if (url.pathname.startsWith("/data/")) {
+        target.pathname = "/members" + url.pathname;
       } else if (
         !url.pathname.startsWith("/members/")
       ) {
