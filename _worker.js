@@ -63,20 +63,15 @@ try {
 
 const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
 
-      apiUrl.searchParams.set(
-        "email",
-        email.trim().toLowerCase()
-      );
-
- apiUrl.searchParams.set("key", String(env.MEMBERS_API_SECRET).trim());
-
       try {
         const googleResponse = await fetch(
           apiUrl.toString(),
           {
-            method: "GET",
+            method: "POST",
+            body: JSON.stringify({ email: email.trim().toLowerCase(), key: String(env.MEMBERS_API_SECRET).trim() }),
             headers: {
-              "accept": "application/json"
+              "accept": "application/json",
+              "content-type": "application/json"
             }
           }
         );
