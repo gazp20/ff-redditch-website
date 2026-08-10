@@ -185,7 +185,7 @@ function renderTeam(team){
     <div class="pitch-player ${p.slot}">
       <div class="head">${i+1}</div>
       <b>${p.label}</b>
-      <small>${Number(p.weeklyChangeKg).toFixed(1)} kg</small>
+      <small>${Number(p.weeklyPoints || 0)} FF pts</small>
     </div>
   `).join("");
 }
@@ -210,7 +210,7 @@ getJSON("data/portal.json", FALLBACK.portal),
 getJSON("data/members.json", FALLBACK.members),
 getJSON("data/weighins.json", FALLBACK.weighins),
 getJSON("data/recipes.json", FALLBACK.recipes),
-getJSON("data/team-of-week.json", FALLBACK.team),
+getJSON("/api/rankings", { success:false, members:[] })
 getJSON("/api/me", null)
 ]);
 
@@ -265,9 +265,34 @@ const m = sheetMember ? {
   });
 
   renderRecipe((recipes && recipes[0]) || FALLBACK.recipes[0]);
-  renderTeam(team || FALLBACK.team);
+  const weeklyTeam = (team.success ? team.members : [])
+  .filter(p => Number(p.weeklyPoints) > 0)
+  .sort((a,b) => Number(b.weeklyPoints) - Number(a.weeklyPoints))
+  .slice(0,5)
+  .map((p,i) => ({
+    label: p.name,
+    weeklyPoints: Number(p.weeklyPoints),
+    weeklyChangeKg: 0,
+    slot: ["st","lm","cm","rm","gk"][i]
+  }));
 
-  $("#pointsLeaderboard").innerHTML=renderLeaderboard(members,"ffPoints","",m.id);
+renderTeam(weeklyTeam.length ? weeklyTeam : FALLBACK.team);
+
+  const liveLeague = (team.success ? team.members : [])
+  .filter(p => Number(p.totalPoints) > 0)
+  .sort((a,b) => Number(b.totalPoints) - Number(a.totalPoints))
+  .map((p,i) => ({
+    id: p.name === m.name ? m.id : `league-${i}`,
+    name: p.name,
+    ffPoints: Number(p.totalPoints)
+  }));
+
+$("#pointsLeaderboard").innerHTML = renderLeaderboard(
+  liveLeague.length ? liveLeague : members,
+  "ffPoints",
+  "",
+  m.id
+);
   $("#weightLeaderboard").innerHTML=renderLeaderboard(members,"totalLostKg"," kg",m.id);
 
   $("#newsTitle").textContent=portal.clubNews?.title || FALLBACK.portal.clubNews.title;
