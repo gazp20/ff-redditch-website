@@ -16,9 +16,19 @@ export default {
       url.pathname === "/api/me"
     ) {
 const accessJwt = request.headers.get("Cf-Access-Jwt-Assertion");
-        "cf-access-authenticated-user-email"
-      );
-
+      let email = "";
+      if (accessJwt) {
+try {
+  const payloadPart = accessJwt.split(".")[1];
+  const base64 = payloadPart.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+  const payload = JSON.parse(atob(padded));
+  email = payload.email || payload.sub || "";
+  email = String(email).trim().toLowerCase();
+  } catch (e) {
+  email = "";
+  }
+        }
       if (!email) {
         return new Response(
           JSON.stringify({
