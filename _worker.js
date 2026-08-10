@@ -7,7 +7,7 @@ export default {
       return env.ASSETS.fetch(request);
     }
 
-    // Members subdomain always serves files from /members.
+    // Members subdomain: serve from /members.
     if (url.hostname === "members.ffredditch.co.uk") {
       const target = new URL(request.url);
 
@@ -20,9 +20,9 @@ export default {
       return env.ASSETS.fetch(new Request(target, request));
     }
 
-    // Explicit public-page routes.
-    // This prevents /eleven being mistaken for data/eleven.json.
-    const pageRoutes = {
+    // HARD redirects for clean public page URLs.
+    // This avoids any collision with data/eleven.json.
+    const redirects = {
       "/eleven": "/eleven.html",
       "/eleven/": "/eleven.html",
       "/tnf": "/tnf.html",
@@ -35,13 +35,13 @@ export default {
       "/progress/": "/progress.html"
     };
 
-    if (pageRoutes[url.pathname]) {
-      const target = new URL(request.url);
-      target.pathname = pageRoutes[url.pathname];
-      return env.ASSETS.fetch(new Request(target, request));
+    if (redirects[url.pathname]) {
+      return Response.redirect(
+        `${url.protocol}//${url.host}${redirects[url.pathname]}`,
+        302
+      );
     }
 
-    // Everything else (assets, JSON data, homepage, etc.) stays untouched.
     return env.ASSETS.fetch(request);
   }
 };
