@@ -414,6 +414,9 @@
 .player-silhouette{
   font-size:4.7rem;
   height:102px;
+  width:100%;
+  object-fit:cover;
+  object-position:center top;
   display:grid;
   place-items:center;
   margin-top:2px;
@@ -931,7 +934,7 @@
               <img class="player-card-crest" src="ffredditch-crest.png" alt="FF Redditch">
             </div>
             <div class="player-card-centre">
-              <div class="player-silhouette">⚽</div>
+            <img id="cardPhoto" class="player-silhouette" src="" alt="Player photo">
               <h3 id="cardName">DEMO MEMBER</h3>
               <p id="cardPosition">PLAYER</p>
               <div class="joined-ribbon" id="cardJoined">JOINED • --</div>
