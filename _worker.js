@@ -2,12 +2,10 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Cloudflare-managed endpoints such as Access logout must pass through.
     if (url.pathname.startsWith("/cdn-cgi/")) {
       return env.ASSETS.fetch(request);
     }
 
-    // The members subdomain is backed by files inside /members.
     if (url.hostname === "members.ffredditch.co.uk") {
       const target = new URL(request.url);
 
@@ -20,7 +18,6 @@ export default {
       return env.ASSETS.fetch(new Request(target, request));
     }
 
-    // Public website: let Cloudflare Pages handle clean URLs normally.
     return env.ASSETS.fetch(request);
   }
 };
