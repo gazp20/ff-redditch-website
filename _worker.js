@@ -15,7 +15,7 @@ export default {
       url.hostname === "members.ffredditch.co.uk" &&
       url.pathname === "/api/me"
     ) {
-      const email = request.headers.get(
+const accessJwt = request.headers.get("Cf-Access-Jwt-Assertion");
         "cf-access-authenticated-user-email"
       );
 
