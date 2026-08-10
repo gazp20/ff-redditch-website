@@ -110,8 +110,53 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
     // ==========================================
     // EXISTING MEMBERS SUBDOMAIN ROUTING
     // ==========================================
-    if (
-      url.hostname === "members.ffredditch.co.uk"
+      if (
+  url.hostname === "members.ffredditch.co.uk" &&
+  url.pathname === "/api/rankings"
+) {
+  try {
+    const googleResponse = await fetch(
+      String(env.MEMBERS_API_URL).trim(),
+      {
+        method: "POST",
+        body: JSON.stringify({
+          action: "rankings",
+          key: String(env.MEMBERS_API_SECRET).trim()
+        }),
+        headers: {
+          "accept": "application/json",
+          "content-type": "application/json"
+        }
+      }
+    );
+
+    const body = await googleResponse.text();
+
+    return new Response(body, {
+      status: googleResponse.ok ? 200 : googleResponse.status,
+      headers: {
+        "content-type": "application/json; charset=UTF-8",
+        "cache-control": "no-store"
+      }
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Could not load rankings"
+      }),
+      {
+        status: 502,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+}
+      if (
+    url.hostname === "members.ffredditch.co.uk"
     ) {
       const target = new URL(request.url);
 
