@@ -2,14 +2,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Cloudflare-managed endpoints (including Access logout) must not be
-    // rewritten into the /members directory.
+    // Let Cloudflare-managed endpoints work normally.
     if (url.pathname.startsWith("/cdn-cgi/")) {
       return env.ASSETS.fetch(request);
     }
 
-    // The members subdomain is backed by files stored inside /members
-    // in the Pages project. Rewrite members-subdomain requests there.
+    // Members subdomain always serves files from /members.
     if (url.hostname === "members.ffredditch.co.uk") {
       const target = new URL(request.url);
 
@@ -22,7 +20,28 @@ export default {
       return env.ASSETS.fetch(new Request(target, request));
     }
 
-    // Public website remains unchanged.
+    // Explicit public-page routes.
+    // This prevents /eleven being mistaken for data/eleven.json.
+    const pageRoutes = {
+      "/eleven": "/eleven.html",
+      "/eleven/": "/eleven.html",
+      "/tnf": "/tnf.html",
+      "/tnf/": "/tnf.html",
+      "/community": "/community.html",
+      "/community/": "/community.html",
+      "/join": "/join.html",
+      "/join/": "/join.html",
+      "/progress": "/progress.html",
+      "/progress/": "/progress.html"
+    };
+
+    if (pageRoutes[url.pathname]) {
+      const target = new URL(request.url);
+      target.pathname = pageRoutes[url.pathname];
+      return env.ASSETS.fetch(new Request(target, request));
+    }
+
+    // Everything else (assets, JSON data, homepage, etc.) stays untouched.
     return env.ASSETS.fetch(request);
   }
 };
