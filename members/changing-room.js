@@ -210,7 +210,7 @@ getJSON("data/portal.json", FALLBACK.portal),
 getJSON("data/members.json", FALLBACK.members),
 getJSON("data/weighins.json", FALLBACK.weighins),
 getJSON("data/recipes.json", FALLBACK.recipes),
-getJSON("/api/rankings", { success:false, members:[] })
+getJSON("/api/rankings", { success:false, members:[] }),
 getJSON("/api/me", null)
 ]);
 
