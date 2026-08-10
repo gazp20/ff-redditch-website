@@ -1,153 +1,38 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FF Redditch 11s | FF Redditch</title><link rel="stylesheet" href="assets/styles.css"></head><body data-page="eleven">
-<header class="site-header">
-  <div class="container navbar">
-    <a class="brand" href="index.html">
-      <span class="brand-badge">FF</span>
-      <span>REDDITCH<small>BETTER EVERY GAME</small></span>
-    </a>
-    <button class="menu" aria-label="Menu">☰</button>
-    <nav class="nav">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-link join-btn" href="#">Join</a>
-    </nav>
-  </div>
-</header>
-
-<section class="subhero"><div class="container"><span class="kicker">Competitive Football</span><h1>FF Redditch 11s</h1><p>Fixtures, results and season statistics for the competitive side of the FF Redditch community.</p></div></section>
-
-<section class="section"><div class="container">
-  <div class="match-centre-grid">
-    <div class="match-feature-card">
-      <div class="card-tag">Next Fixture</div>
-      <div class="club-v-club">
-        <div class="club-side"><img class="club-badge home-club-badge" src="assets/badges/ffredditch.png" alt="FF Redditch badge"><strong>FF Redditch</strong></div>
-        <div class="fixture-centre"><span class="versus-big">VS</span><span id="nextHomeAway" class="fixture-pill">H</span></div>
-        <div class="club-side"><img id="nextOpponentBadge" class="club-badge" src="assets/badges/sutton-united.png" alt="Sutton United badge"><strong id="nextOpponent">Sutton United</strong></div>
-      </div>
-      <div class="fixture-detail-grid">
-        <div><span>Date</span><strong id="nextDate">16/08/2026</strong></div>
-        <div><span>Kick Off</span><strong id="nextKO">15:45</strong></div>
-        <div><span>Competition</span><strong id="nextCompetition">MFFL West Prem</strong></div>
-        <div><span>Opponent</span><strong>Sutton United</strong></div>
-      </div>
-    </div>
-
-    <div class="match-feature-card">
-      <div class="card-tag">Last Result</div>
-      <div class="club-v-club result-layout">
-        <div class="club-side"><img class="club-badge home-club-badge" src="assets/badges/ffredditch.png" alt="FF Redditch badge"><strong>FF Redditch</strong></div>
-        <div class="fixture-centre"><span id="lastScore" class="score-big">3–2</span></div>
-        <div class="club-side"><img id="lastOpponentBadge" class="club-badge" src="assets/badges/sandwell-social.png" alt="Sandwell Social badge"><strong id="lastOpponent">Sandwell Social</strong></div>
-      </div>
-      <div class="result-details"><p><strong>Scorers:</strong> <span id="lastScorers">Nedjat, Wood, Dan Nurthen</span></p><p><strong>Player of the Match:</strong> <span id="lastMotm">Wood</span></p></div>
-    </div>
-  </div>
-
-  <div class="stats-three-grid">
-    <div class="panel">
-      <h3>Top Scorers</h3>
-      <ol class="simple-list" id="scorers"></ol>
-    </div>
-    <div class="panel">
-      <h3>Top Assists</h3>
-      <ol class="simple-list" id="assists"></ol>
-    </div>
-    <div class="panel">
-      <h3>Discipline</h3>
-      <div class="discipline-table" id="discipline"></div>
-    </div>
-  </div>
-</div></section>
-
-<section class="section sponsors-section" id="sponsors">
-  <div class="container">
-    <div class="sponsors-panel">
-      <div class="sponsors-heading">
-        <span>🤝 CLUB PARTNERS</span>
-        <h2>Our Sponsors</h2>
-        <p>Proudly supporting FF Redditch 11s.</p>
-      </div>
-      <div class="sponsors-grid">
-        <div class="sponsor-card">
-          <img src="assets/reddi2heat.png" alt="Reddi 2 Heat">
-        </div>
-        <div class="sponsor-card">
-          <img src="assets/knights-mot-services.png" alt="Knights MOT & Services">
-        </div>
-        <div class="sponsor-card sponsor-card-wide">
-          <img src="assets/all-tech-midlands.png" alt="All-Tech (Midlands) Ltd">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-.sponsors-section{padding:22px 0 38px}
-.sponsors-panel{
-  background:#0a1710;
-  border-radius:22px;
-  padding:28px;
-  box-shadow:0 12px 32px rgba(0,0,0,.12);
-}
-.sponsors-heading{text-align:center;margin-bottom:22px}
-.sponsors-heading span{
-  color:#42df58;font-weight:900;font-size:.78rem;letter-spacing:.08em
-}
-.sponsors-heading h2{color:#fff;margin:6px 0 4px;font-size:1.8rem}
-.sponsors-heading p{color:#b9c6bd;margin:0}
-.sponsors-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-  align-items:stretch;
-}
-.sponsor-card{
-  min-height:180px;
-  background:#fff;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:22px;
-  overflow:hidden;
-}
-.sponsor-card img{
-  display:block;
-  max-width:100%;
-  max-height:150px;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-}
-.sponsor-card-wide img{max-height:115px}
-@media(max-width:760px){
-  .sponsors-panel{padding:20px 14px}
-  .sponsors-grid{grid-template-columns:1fr}
-  .sponsor-card{min-height:145px;padding:18px}
-  .sponsor-card img{max-height:120px}
-  .sponsor-card-wide img{max-height:90px}
-}
-</style>
-
-<footer class="footer">
-  <div class="container footer-top">
-    <div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
-    <div class="footer-links">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-btn" href="#">Join</a>
-    </div>
-  </div>
-  <div class="container copy">© 2026 FF Redditch</div>
-
-
-
-</footer>
-<script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>
+[
+  {
+    "name": "Kem Nedjat",
+    "apps": 0,
+    "goals": 1,
+    "assists": 1,
+    "motm": 0,
+    "yellow": 0,
+    "red": 0
+  },
+  {
+    "name": "Craig Wood",
+    "apps": 0,
+    "goals": 1,
+    "assists": 0,
+    "motm": 1,
+    "yellow": 0,
+    "red": 0
+  },
+  {
+    "name": "Dan Nurthen",
+    "apps": 0,
+    "goals": 1,
+    "assists": 0,
+    "motm": 0,
+    "yellow": 0,
+    "red": 0
+  },
+  {
+    "name": "Aaron Benton",
+    "apps": 0,
+    "goals": 0,
+    "assists": 1,
+    "motm": 0,
+    "yellow": 0,
+    "red": 0
+  }
+]
