@@ -294,6 +294,7 @@ const m = sheetMember ? {
   $("#currentStreak").textContent=m.currentStreak ?? 0;
 
   $("#cardNumber").textContent=`#${m.number ?? "--"}`;
+  $("#cardPhoto").src = m.photo ? `/members/images/players/${m.photo}` : "/badge.png";
   $("#cardName").textContent=(m.name || "Member").toUpperCase();
   $("#cardPosition").textContent=(m.position || "Player").toUpperCase();
   $("#cardJoined").textContent=`JOINED ${(m.joined || "--").toUpperCase()}`;
