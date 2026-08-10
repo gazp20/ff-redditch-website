@@ -185,4 +185,32 @@
 
 
 </footer>
-<script src="assets/config.js"></script><script src="assets/app-eleven-v2.js?v=20260810-1"></script></body></html>
+<script src="assets/config.js"></script><script src="assets/app-eleven-v2.js?v=20260810-1"></script>
+<script>
+(function(){
+  function fixTopScorerName(){
+    const list = document.getElementById("scorers");
+    if(!list) return;
+    list.querySelectorAll("li span").forEach(function(el){
+      if(el.textContent.trim() === "Nurthen"){
+        el.textContent = "Dan Nurthen";
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    fixTopScorerName();
+
+    const list = document.getElementById("scorers");
+    if(list){
+      const observer = new MutationObserver(fixTopScorerName);
+      observer.observe(list, {childList:true, subtree:true, characterData:true});
+    }
+
+    setTimeout(fixTopScorerName, 250);
+    setTimeout(fixTopScorerName, 1000);
+  });
+})();
+</script>
+
+</body></html>
