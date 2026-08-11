@@ -140,6 +140,18 @@ async function getJSON(path, fallback){
 
 const fmtKg = n => `${Number(n||0).toFixed(1)} kg`;
 
+const ordinal = n => {
+  n = Number(n || 0);
+  const mod100 = n % 100;
+  if(mod100 >= 11 && mod100 <= 13) return `${n}th`;
+  switch(n % 10){
+    case 1: return `${n}st`;
+    case 2: return `${n}nd`;
+    case 3: return `${n}rd`;
+    default: return `${n}th`;
+  }
+};
+
 function welcomeFor(member){
   if(Number(member.weeklyChangeKg) < 0){
     return `<p><strong>👏 Great work this week!</strong></p><p>Every step forward counts. Keep turning up and trust the process.</p>`;
@@ -213,18 +225,53 @@ function renderTeam(team){
   `).join("");
 }
 
+
+  const featuredRecipe = {
+    id:"gousto-southern-fried",
+    title:"Southern Fried Chicken With Creamy Slaw, Gravy & Chips",
+    image:"southern-fried-chicken-gousto.jpg",
+    sourceUrl:"https://www.gousto.co.uk/cookbook/recipes/southern-fried-chicken-with-creamy-slaw-gravy-chips",
+    sourceName:"Gousto",
+    ingredients:[
+      "Carrot & cabbage slaw mix (160g)",
+      "Skinless chicken thighs (320g)",
+      "Mayonnaise (50ml)",
+      "Southern fried seasoning (1 tbsp)"
+    ],
+    method:[
+      "Open the original Gousto recipe for the complete step-by-step cooking method."
+    ]
+  };
+
 function renderRecipe(r){
   $("#recipeTitle").textContent=r.title;
   $("#recipeImage").src=r.image || "sticky-chicken-katsu.jpg";
-  $("#recipeCalories").textContent=r.calories;
-  $("#recipeProtein").textContent=`${r.proteinG}g`;
-  $("#recipeMinutes").textContent=r.minutes;
+  $("#recipeImage").alt=r.title || "Recipe of the week";
+
+  const calories = $("#recipeCalories");
+  const protein = $("#recipeProtein");
+  const minutes = $("#recipeMinutes");
+  if(calories) calories.textContent = r.calories ?? "See recipe";
+  if(protein) protein.textContent = r.proteinG != null ? `${r.proteinG}g` : "Gousto";
+  if(minutes) minutes.textContent = r.minutes ?? "↗";
 
   $("#dialogRecipeImage").src=r.image || "sticky-chicken-katsu.jpg";
   $("#dialogRecipeTitle").textContent=r.title;
-  $("#dialogMacros").innerHTML=`<b>🔥 ${r.calories} kcal</b><b>💪 ${r.proteinG}g protein</b><b>⏱️ ${r.minutes} mins</b><b>🍽️ Serves ${r.serves}</b>`;
+  $("#dialogMacros").innerHTML = r.sourceName
+    ? `<b>🍽️ Recipe source: ${r.sourceName}</b>`
+    : `<b>🔥 ${r.calories} kcal</b><b>💪 ${r.proteinG}g protein</b><b>⏱️ ${r.minutes} mins</b><b>🍽️ Serves ${r.serves}</b>`;
+
   $("#dialogIngredients").innerHTML=(r.ingredients||[]).map(x=>`<li>${x}</li>`).join("");
   $("#dialogMethod").innerHTML=(r.method||[]).map(x=>`<li>${x}</li>`).join("");
+
+  const btn=$("#recipeOpen");
+  if(btn && r.sourceUrl){
+    btn.textContent="VIEW RECIPE ON GOUSTO ↗";
+    btn.onclick=()=>window.open(r.sourceUrl,"_blank","noopener");
+  }else if(btn){
+    btn.textContent="VIEW RECIPE";
+    btn.onclick=window.openRecipeModal;
+  }
 }
 
 async function init(){
@@ -274,8 +321,17 @@ const m = sheetMember ? {
   $("#weeklyLabel").textContent=Number(m.weeklyChangeKg)<0?"Nice work!":Number(m.weeklyChangeKg)>0?"We go again.":"Steady week.";
   $("#totalLost").textContent=fmtKg(m.totalLostKg);
   $("#ffPoints").textContent=m.ffPoints ?? 0;
-  $("#clubRank").textContent=m.ffRank ? `${m.ffRank}th` : "--";
-  $("#rankOutOf").textContent=`Out of ${members.length}`;
+
+  const liveRankings = (team && team.success && Array.isArray(team.members))
+    ? [...team.members].sort((a,b)=>Number(b.totalPoints||0)-Number(a.totalPoints||0))
+    : [];
+
+  const liveRankIndex = liveRankings.findIndex(p =>
+    String(p.name || "").trim().toLowerCase() === String(m.name || "").trim().toLowerCase()
+  );
+
+  $("#clubRank").textContent = liveRankIndex >= 0 ? ordinal(liveRankIndex + 1) : "--";
+  $("#rankOutOf").textContent = liveRankings.length ? `Out of ${liveRankings.length}` : "Out of --";
 
   $("#sessionName").textContent=portal.nextSession?.name || FALLBACK.portal.nextSession.name;
   $("#sessionDay").textContent=portal.nextSession?.day || "Tuesday";
@@ -287,7 +343,7 @@ const m = sheetMember ? {
     if(a){ a.href=spond; a.target="_blank"; a.rel="noopener"; }
   });
 
-  renderRecipe((recipes && recipes[0]) || FALLBACK.recipes[0]);
+  renderRecipe(featuredRecipe);
   const weeklyTeam = (team.success ? team.members : [])
   .filter(p => Number(p.weeklyPoints) > 0)
   .sort((a,b) => Number(b.weeklyPoints) - Number(a.weeklyPoints))
@@ -374,7 +430,6 @@ $("#weightLeaderboard").innerHTML = liveWeightLeague.length
   const icons=["🟢","🔥","💙","⚽","🟣"];
   $("#achievementGrid").innerHTML=achievements.map((a,i)=>`<div class="achievement"><div class="badge">${icons[i%icons.length]}</div><b>${a}</b></div>`).join("");
 
-  if($("#recipeOpen")) $("#recipeOpen").onclick=window.openRecipeModal;
   if($("#recipeClose")) $("#recipeClose").onclick=window.closeRecipeModal;
 
   if($("#fullLeagueOpen")) $("#fullLeagueOpen").onclick=()=>{
