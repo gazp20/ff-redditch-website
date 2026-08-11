@@ -200,11 +200,23 @@ function renderFullPointsLeaderboard(players, currentId){
     </div>`).join("");
 }
 
-function renderWeightLeaderboard(players, currentName){
+function renderWeightLeaderboard(players, currentName, limit=5){
   const arr=[...players]
     .filter(p=>Number(p.percentLost)>0 || Number(p.totalKgLost)>0)
     .sort((a,b)=>Number(b.percentLost||0)-Number(a.percentLost||0))
-    .slice(0,6);
+    .slice(0,limit);
+  return arr.map((p,i)=>`
+    <div class="leader-row ${p.name===currentName?'you':''}">
+      <span class="rank">${i+1}</span>
+      <span class="name">${p.name}${p.name===currentName?' (You)':''}</span>
+      <strong class="weight-detail">${Number(p.percentLost||0).toFixed(1)}%<small>${Number(p.totalKgLost||0).toFixed(1)} kg</small></strong>
+    </div>`).join("");
+}
+
+function renderFullWeightLeaderboard(players, currentName){
+  const arr=[...players]
+    .filter(p=>Number(p.percentLost)>0 || Number(p.totalKgLost)>0)
+    .sort((a,b)=>Number(b.percentLost||0)-Number(a.percentLost||0));
   return arr.map((p,i)=>`
     <div class="leader-row ${p.name===currentName?'you':''}">
       <span class="rank">${i+1}</span>
@@ -303,13 +315,25 @@ const m = sheetMember ? {
   ffPoints: Number(sheetMember["FF Total points"] || 0),
   weeklyFFPoints: Number(sheetMember["FF weekly points"] || 0),
   currentStreak: Number(sheetMember["week streak"] || 0),
+  weekWeights: Array.from({length:10}, (_,i) => {
+    const raw = sheetMember[`week ${i+1}`];
+    if(raw === "" || raw === null || raw === undefined) return null;
+    const n = Number(raw);
+    return Number.isFinite(n) && n > 0 ? n : null;
+  }),
   milestones: [
     sheetMember["5% milestone"] ? "5% Club" : null,
     sheetMember["10% milestone"] ? "10% Club" : null,
     sheetMember["15% milestone"] ? "15% Club" : null
   ].filter(Boolean)
 } : FALLBACK.members[0];
-  const history=weighins[m.id] || FALLBACK.weighins["demo-001"];
+  const liveHistory = (m.weekWeights || [])
+    .map((weightKg,i)=> weightKg ? ({ date:`Week ${i+1}`, weightKg:Number(weightKg) }) : null)
+    .filter(Boolean);
+
+  const history = liveHistory.length
+    ? liveHistory
+    : (weighins[m.id] || FALLBACK.weighins["demo-001"]);
 
   $("#topName").textContent=m.firstName || "Member";
   $("#welcomeName").textContent=`${(m.firstName || "Member").toUpperCase()}!`;
@@ -388,8 +412,14 @@ $("#fullPointsLeaderboard").innerHTML = renderFullPointsLeaderboard(
 
 const liveWeightLeague = (team.success ? team.members : []);
 $("#weightLeaderboard").innerHTML = liveWeightLeague.length
-  ? renderWeightLeaderboard(liveWeightLeague, m.name)
+  ? renderWeightLeaderboard(liveWeightLeague, m.name, 5)
   : renderLeaderboard(members,"totalLostKg"," kg",m.id);
+
+if($("#fullWeightLeaderboard")){
+  $("#fullWeightLeaderboard").innerHTML = liveWeightLeague.length
+    ? renderFullWeightLeaderboard(liveWeightLeague, m.name)
+    : renderLeaderboard(members,"totalLostKg"," kg",m.id);
+}
 
   $("#newsTitle").textContent="TNF RETURNS 1ST SEPTEMBER";
   $("#newsBody").innerHTML=`Tuesday Night Football is back! <a href="${spond}" target="_blank" rel="noopener">Click on Spond to book your place ↗</a>`;
@@ -400,10 +430,11 @@ $("#weightLeaderboard").innerHTML = liveWeightLeague.length
   $("#journeyLost").textContent=fmtKg(m.totalLostKg);
   $("#journeyPercent").textContent=`${Number(m.percentLost||0).toFixed(1)}%`;
   $("#recentWeighins").innerHTML=history.slice(-4).reverse().map((x)=>{
-    const idx=history.findIndex(h=>h.date===x.date);
+    const idx=history.indexOf(x);
     const prev=idx>0?history[idx-1].weightKg:x.weightKg;
     const ch=Number(x.weightKg)-Number(prev);
-    return `<div class="weigh-row"><span>${x.date}</span><b>${fmtKg(x.weightKg)}</b><span class="${ch<=0?'down':'up'}">${ch>0?'+':''}${ch.toFixed(1)} kg ${ch<=0?'↓':'↑'}</span></div>`;
+    const changeText = idx===0 ? "Starting point" : `${ch>0?'+':''}${ch.toFixed(1)} kg ${ch<=0?'↓':'↑'}`;
+    return `<div class="weigh-row"><span>${x.date}</span><b>${fmtKg(x.weightKg)}</b><span class="${idx===0?'':(ch<=0?'down':'up')}">${changeText}</span></div>`;
   }).join("");
 
   const achieved=m.milestones || [];
@@ -440,6 +471,19 @@ $("#weightLeaderboard").innerHTML = liveWeightLeague.length
   };
   if($("#fullLeagueClose")) $("#fullLeagueClose").onclick=()=>{
     const d=$("#leagueDialog");
+    if(!d) return;
+    if(typeof d.close==="function") d.close();
+    else d.removeAttribute("open");
+  };
+
+  if($("#fullWeightOpen")) $("#fullWeightOpen").onclick=()=>{
+    const d=$("#weightDialog");
+    if(!d) return;
+    if(typeof d.showModal==="function") d.showModal();
+    else d.setAttribute("open","");
+  };
+  if($("#fullWeightClose")) $("#fullWeightClose").onclick=()=>{
+    const d=$("#weightDialog");
     if(!d) return;
     if(typeof d.close==="function") d.close();
     else d.removeAttribute("open");
