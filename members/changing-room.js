@@ -225,22 +225,6 @@ function renderFullWeightLeaderboard(players, currentName){
     </div>`).join("");
 }
 
-
-function renderFullJourney(items){
-  return items.slice().reverse().map((x,revIndex)=>{
-    const idx = items.length - 1 - revIndex;
-    const prev = idx>0 ? Number(items[idx-1].weightKg) : Number(x.weightKg);
-    const ch = Number(x.weightKg) - prev;
-    const changeText = idx===0 ? "Starting point" : `${ch>0?'+':''}${ch.toFixed(1)} kg ${ch<=0?'↓':'↑'}`;
-    return `
-      <div class="leader-row">
-        <span class="rank">${idx+1}</span>
-        <span class="name">${x.date}</span>
-        <strong class="weight-detail">${fmtKg(x.weightKg)}<small>${changeText}</small></strong>
-      </div>`;
-  }).join("");
-}
-
 function renderTeam(team){
   const el=$("#teamWeekPlayers");
   if(!el) return;
@@ -445,20 +429,13 @@ if($("#fullWeightLeaderboard")){
   $("#journeyCurrent").textContent=fmtKg(m.currentWeightKg);
   $("#journeyLost").textContent=fmtKg(m.totalLostKg);
   $("#journeyPercent").textContent=`${Number(m.percentLost||0).toFixed(1)}%`;
-  $("#recentWeighins").innerHTML=history.slice(-8).reverse().map((x)=>{
+  $("#recentWeighins").innerHTML=history.slice(-4).reverse().map((x)=>{
     const idx=history.indexOf(x);
     const prev=idx>0?history[idx-1].weightKg:x.weightKg;
     const ch=Number(x.weightKg)-Number(prev);
     const changeText = idx===0 ? "Starting point" : `${ch>0?'+':''}${ch.toFixed(1)} kg ${ch<=0?'↓':'↑'}`;
     return `<div class="weigh-row"><span>${x.date}</span><b>${fmtKg(x.weightKg)}</b><span class="${idx===0?'':(ch<=0?'down':'up')}">${changeText}</span></div>`;
   }).join("");
-
-  if($("#fullJourneyList")){
-    $("#fullJourneyList").innerHTML = renderFullJourney(history);
-  }
-  if($("#fullJourneyOpen")){
-    $("#fullJourneyOpen").hidden = history.length <= 8;
-  }
 
   const achieved=m.milestones || [];
   const allMilestones=["5% Club","10% Club","15% Club","20% Club"];
@@ -473,11 +450,9 @@ if($("#fullWeightLeaderboard")){
   $("#cardName").textContent=(m.name || "Member").toUpperCase();
   $("#cardPosition").textContent=(m.position || "Player").toUpperCase();
   $("#cardJoined").textContent=`JOINED ${(m.joined || "--").toUpperCase()}`;
-  if($("#pcStartWeight")) $("#pcStartWeight").textContent=fmtKg(m.startWeightKg);
+  $("#cardStartWeight").textContent=fmtKg(m.startingWeightKg);
   $("#cardWeight").textContent=fmtKg(m.currentWeightKg);
   $("#cardLoss").textContent=fmtKg(m.totalLostKg);
-  $("#cardGoals").textContent=m.goals ?? 0;
-  $("#cardAssists").textContent=m.assists ?? 0;
   $("#cardAttendance").textContent=`${m.attendancePct ?? 0}%`;
   $("#cardPoints").textContent=m.ffPoints ?? 0;
 
@@ -508,19 +483,6 @@ if($("#fullWeightLeaderboard")){
   };
   if($("#fullWeightClose")) $("#fullWeightClose").onclick=()=>{
     const d=$("#weightDialog");
-    if(!d) return;
-    if(typeof d.close==="function") d.close();
-    else d.removeAttribute("open");
-  };
-
-  if($("#fullJourneyOpen")) $("#fullJourneyOpen").onclick=()=>{
-    const d=$("#journeyDialog");
-    if(!d) return;
-    if(typeof d.showModal==="function") d.showModal();
-    else d.setAttribute("open","");
-  };
-  if($("#fullJourneyClose")) $("#fullJourneyClose").onclick=()=>{
-    const d=$("#journeyDialog");
     if(!d) return;
     if(typeof d.close==="function") d.close();
     else d.removeAttribute("open");
