@@ -178,6 +178,29 @@ function renderLeaderboard(players, field, unit, currentId){
     </div>`).join("");
 }
 
+function renderFullPointsLeaderboard(players, currentId){
+  const arr=[...players].sort((a,b)=>Number(b.ffPoints||0)-Number(a.ffPoints||0));
+  return arr.map((p,i)=>`
+    <div class="leader-row ${p.id===currentId?'you':''}">
+      <span class="rank">${i+1}</span>
+      <span class="name">${p.name}${p.id===currentId?' (You)':''}</span>
+      <strong>${Number(p.ffPoints||0).toFixed(0)} pts</strong>
+    </div>`).join("");
+}
+
+function renderWeightLeaderboard(players, currentName){
+  const arr=[...players]
+    .filter(p=>Number(p.percentLost)>0 || Number(p.totalKgLost)>0)
+    .sort((a,b)=>Number(b.percentLost||0)-Number(a.percentLost||0))
+    .slice(0,6);
+  return arr.map((p,i)=>`
+    <div class="leader-row ${p.name===currentName?'you':''}">
+      <span class="rank">${i+1}</span>
+      <span class="name">${p.name}${p.name===currentName?' (You)':''}</span>
+      <strong class="weight-detail">${Number(p.percentLost||0).toFixed(1)}%<small>${Number(p.totalKgLost||0).toFixed(1)} kg</small></strong>
+    </div>`).join("");
+}
+
 function renderTeam(team){
   const el=$("#teamWeekPlayers");
   if(!el) return;
@@ -293,10 +316,27 @@ $("#pointsLeaderboard").innerHTML = renderLeaderboard(
   "",
   m.id
 );
-  $("#weightLeaderboard").innerHTML=renderLeaderboard(members,"totalLostKg"," kg",m.id);
 
-  $("#newsTitle").textContent=portal.clubNews?.title || FALLBACK.portal.clubNews.title;
-  $("#newsBody").textContent=portal.clubNews?.body || FALLBACK.portal.clubNews.body;
+const allLiveLeague = (team.success ? team.members : [])
+  .sort((a,b) => Number(b.totalPoints) - Number(a.totalPoints))
+  .map((p,i) => ({
+    id: p.name === m.name ? m.id : `full-league-${i}`,
+    name: p.name,
+    ffPoints: Number(p.totalPoints)
+  }));
+
+$("#fullPointsLeaderboard").innerHTML = renderFullPointsLeaderboard(
+  allLiveLeague.length ? allLiveLeague : members,
+  m.id
+);
+
+const liveWeightLeague = (team.success ? team.members : []);
+$("#weightLeaderboard").innerHTML = liveWeightLeague.length
+  ? renderWeightLeaderboard(liveWeightLeague, m.name)
+  : renderLeaderboard(members,"totalLostKg"," kg",m.id);
+
+  $("#newsTitle").textContent="TNF RETURNS 1ST SEPTEMBER";
+  $("#newsBody").innerHTML=`Tuesday Night Football is back! <a href="${spond}" target="_blank" rel="noopener">Click on Spond to book your place ↗</a>`;
 
   drawChart(history);
   $("#journeyStart").textContent=fmtKg(m.startingWeightKg);
@@ -336,6 +376,20 @@ $("#pointsLeaderboard").innerHTML = renderLeaderboard(
 
   if($("#recipeOpen")) $("#recipeOpen").onclick=window.openRecipeModal;
   if($("#recipeClose")) $("#recipeClose").onclick=window.closeRecipeModal;
+
+  if($("#fullLeagueOpen")) $("#fullLeagueOpen").onclick=()=>{
+    const d=$("#leagueDialog");
+    if(!d) return;
+    if(typeof d.showModal==="function") d.showModal();
+    else d.setAttribute("open","");
+  };
+  if($("#fullLeagueClose")) $("#fullLeagueClose").onclick=()=>{
+    const d=$("#leagueDialog");
+    if(!d) return;
+    if(typeof d.close==="function") d.close();
+    else d.removeAttribute("open");
+  };
+
   $("#menuBtn").onclick=()=>$("#sidebar").classList.toggle("open");
   $$(".side-nav a").forEach(a=>a.addEventListener("click",()=>$("#sidebar").classList.remove("open")));
   $$("[data-scroll]").forEach(b=>b.onclick=()=>document.querySelector(b.dataset.scroll)?.scrollIntoView({behavior:"smooth"}));
