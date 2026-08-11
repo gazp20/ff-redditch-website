@@ -54,7 +54,7 @@ const FALLBACK = {
       day: "Tuesday",
       time: "8:00pm",
       venue: "Arrow Vale 3G",
-      spondUrl: "https://spond.com/invite/XJRNG"
+      spondUrl: "https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB"
     },
     clubNews: {
       title: "Welcome to The Changing Room",
@@ -378,7 +378,7 @@ const m = sheetMember ? {
   $("#sessionTime").textContent=portal.nextSession?.time || "8:00pm";
   $("#sessionVenue").textContent=portal.nextSession?.venue || "Arrow Vale 3G";
 
-  const spond = "https://spond.com/invite/XJRNG";
+  const spond = "https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB";
   [$("#spondButton"),$("#spondSideLink")].forEach(a=>{
     if(a){ a.href=spond; a.target="_blank"; a.rel="noopener"; }
   });
@@ -473,6 +473,7 @@ if($("#fullWeightLeaderboard")){
   $("#cardName").textContent=(m.name || "Member").toUpperCase();
   $("#cardPosition").textContent=(m.position || "Player").toUpperCase();
   $("#cardJoined").textContent=`JOINED ${(m.joined || "--").toUpperCase()}`;
+  if($("#pcStartWeight")) $("#pcStartWeight").textContent=fmtKg(m.startWeightKg);
   $("#cardWeight").textContent=fmtKg(m.currentWeightKg);
   $("#cardLoss").textContent=fmtKg(m.totalLostKg);
   $("#cardGoals").textContent=m.goals ?? 0;
