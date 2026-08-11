@@ -1070,6 +1070,7 @@
             <span><small>% Lost</small><b id="journeyPercent">--</b></span>
           </div>
           <div class="recent-weighins" id="recentWeighins"></div>
+          <button class="btn green full-league-btn" id="fullJourneyOpen" type="button" hidden>VIEW FULL JOURNEY</button>
         </article>
 
         <article class="panel milestones">
@@ -1162,6 +1163,18 @@
     </div>
   </dialog>
 
+
+  <dialog id="journeyDialog" aria-labelledby="fullJourneyTitle">
+    <div class="full-league-shell">
+      <div class="full-league-head">
+        <h2 id="fullJourneyTitle">📈 FULL WEIGHT JOURNEY</h2>
+        <button class="full-league-close" id="fullJourneyClose" type="button" aria-label="Close full journey">×</button>
+      </div>
+      <p class="muted">Your complete weekly weigh-in history.</p>
+      <div class="full-league-list" id="fullJourneyList"></div>
+    </div>
+  </dialog>
+
   <dialog id="recipeDialog" aria-labelledby="dialogRecipeTitle">
     <button class="dialog-close" id="recipeClose" type="button" onclick="closeRecipeModal()">×</button>
     <img id="dialogRecipeImage" alt="">
@@ -1176,7 +1189,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260811-ffr-ui6"></script>
+  <script src="/changing-room.js?v=20260811-journey2"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
