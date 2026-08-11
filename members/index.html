@@ -874,6 +874,29 @@
 }
 </style>
 
+
+<style>
+/* ===== PLAYER CARD JOINED RIBBON VISIBILITY ===== */
+.joined-ribbon{
+  width:auto!important;
+  min-width:150px!important;
+  max-width:calc(100% - 24px)!important;
+  padding:7px 12px!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  font-size:.72rem!important;
+  line-height:1.15!important;
+  text-align:center!important;
+}
+@media(max-width:850px){
+  .joined-ribbon{
+    min-width:138px!important;
+    font-size:.68rem!important;
+    padding:6px 9px!important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
@@ -894,7 +917,7 @@
         <a href="#leaderboards">🏆 <span>FFR League</span></a>
         <a href="#recipes">🍽️ <span>Matchday Fuel</span></a>
         <a href="#football">⚽ <span>My Football</span></a>
-        <a id="spondSideLink" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">📅 <span>Spond</span></a>
+        <a id="spondSideLink" href="https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB" target="_blank" rel="noopener">📅 <span>Spond</span></a>
         <a href="#account">🎒 <span>Kit Bag</span></a>
       </nav>
 
@@ -956,7 +979,7 @@
             <div><dt>🕗</dt><dd id="sessionTime">8:00pm</dd></div>
             <div><dt>📍</dt><dd id="sessionVenue">Arrow Vale 3G</dd></div>
           </dl>
-          <a class="btn green" id="spondButton" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
+          <a class="btn green" id="spondButton" href="https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
         </article>
 
         <article class="panel recipe-preview" id="recipes">
@@ -1189,7 +1212,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260811-journey2"></script>
+  <script src="/changing-room.js?v=20260811-playercard2"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
