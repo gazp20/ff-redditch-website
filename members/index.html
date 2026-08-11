@@ -1047,6 +1047,7 @@
             <div class="panel-title">💪 MOST WEIGHT LOST</div>
             <p class="muted">Ranked fairly by percentage of starting body weight lost.</p>
             <div id="weightLeaderboard"></div>
+            <button class="btn green full-league-btn" id="fullWeightOpen" type="button">VIEW FULL TABLE</button>
           </div>
         </article>
       </section>
@@ -1149,6 +1150,18 @@
     </div>
   </dialog>
 
+
+  <dialog id="weightDialog" aria-labelledby="fullWeightTitle">
+    <div class="full-league-shell">
+      <div class="full-league-head">
+        <h2 id="fullWeightTitle">💪 FULL WEIGHT LOSS LEAGUE</h2>
+        <button class="full-league-close" id="fullWeightClose" type="button" aria-label="Close full weight loss table">×</button>
+      </div>
+      <p class="muted">All members ranked by percentage of starting body weight lost.</p>
+      <div class="full-league-list" id="fullWeightLeaderboard"></div>
+    </div>
+  </dialog>
+
   <dialog id="recipeDialog" aria-labelledby="dialogRecipeTitle">
     <button class="dialog-close" id="recipeClose" type="button" onclick="closeRecipeModal()">×</button>
     <img id="dialogRecipeImage" alt="">
@@ -1163,7 +1176,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260811-ffr-ui5"></script>
+  <script src="/changing-room.js?v=20260811-ffr-ui6"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
