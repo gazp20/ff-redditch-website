@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
-  <link rel="stylesheet" href="/changing-room.css">
+  <link rel="stylesheet" href="changing-room.css">
 
 <style>
 .leave-room-top{
@@ -833,6 +833,35 @@
 }
 </style>
 
+
+<style>
+/* ===== NEW CHANGING ROOM HERO ===== */
+.locker-brand{display:none!important}
+.locker-hero{
+  background-position:center top!important;
+  background-size:cover!important;
+}
+@media(max-width:850px){
+  .locker-hero{
+    background-position:center top!important;
+  }
+}
+</style>
+
+
+<style>
+/* ===== CLEAN TOP ACCOUNT AREA ===== */
+.top-actions .member-chip{
+  background:transparent!important;
+  padding:0!important;
+  min-height:34px;
+}
+.top-actions .member-chip strong{
+  color:#fff;
+  font-size:.9rem;
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
@@ -878,8 +907,7 @@
           <span>GETTING FITTER. ONE TUESDAY AT A TIME.</span>
         </div>
         <div class="top-actions">
-          <button class="bell" title="Notifications">🔔<b>3</b></button>
-          <div class="member-chip"><span class="avatar">DM</span><strong id="topName">Demo</strong></div>
+          <div class="member-chip"><strong id="topName">Demo</strong></div>
           <a class="leave-room-top" href="/logout.html" title="Log out and return to FF Redditch">🚪 Log Out</a>
         </div>
       </header>
@@ -1123,7 +1151,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260811-ffr-ui4"></script>
+  <script src="/changing-room.js?v=20260811-ffr-ui5"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
