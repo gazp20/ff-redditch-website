@@ -1,72 +1,1144 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FF Redditch | Football • Fitness • Community</title>
-<link rel="stylesheet" href="assets/styles.css"><link rel="icon" type="image/x-icon" href="/favicon.ico"></head><body data-page="home">
-<header class="site-header">
-  <div class="container navbar">
-    <a class="brand" href="index.html">
-      <span class="brand-badge">FF</span>
-      <span>REDDITCH<small>BETTER EVERY GAME</small></span>
-    </a>
-    <button class="menu" aria-label="Menu">☰</button>
-    <nav class="nav">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-link join-btn" href="#">Join</a>
-    </nav>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071009">
+  <title>The Changing Room | FF Redditch</title>
+  <link rel="stylesheet" href="/changing-room.css">
+
+<style>
+.leave-room-top{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:#0b1a0d;border:1px solid rgba(255,255,255,.25);
+  padding:8px 11px;border-radius:8px;font-size:.72rem;font-weight:900;
+  white-space:nowrap;
+}
+.leave-room-top:hover{background:#55d74c;color:#061007}
+.leave-room-side{
+  display:block;margin:0 0 15px;padding:10px 11px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.76rem;
+  font-weight:900;text-align:center;background:rgba(255,255,255,.05);
+}
+.leave-room-side:hover{background:#1b8524}
+@media(max-width:500px){
+  .leave-room-top{font-size:0;width:38px;height:38px;padding:0;justify-content:center}
+  .leave-room-top::before{content:"🚪";font-size:1rem}
+}
+</style>
+
+
+<style>
+/* ===== FFR LEAGUE + RULE BOOK ===== */
+.ffr-league-panel{gap:18px}
+.ffr-rulebook{
+  border-radius:14px;
+  background:linear-gradient(145deg,#071009,#102116);
+  color:#fff;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.10)
+}
+.ffr-rulebook .panel-title{color:#63dc57}
+.ffr-rulebook h3{
+  margin:10px 0 5px;
+  font-size:1.35rem
+}
+.ffr-rule-intro{
+  color:#c3cdc5;
+  font-size:.82rem;
+  line-height:1.45;
+  margin:0 0 14px
+}
+.ffr-rules{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.ffr-rule{
+  display:grid;
+  grid-template-columns:34px 1fr auto;
+  gap:9px;
+  align-items:center;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:10px 11px
+}
+.ffr-rule .rule-icon{
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.08)
+}
+.ffr-rule div{display:grid;gap:2px}
+.ffr-rule strong{font-size:.76rem}
+.ffr-rule small{font-size:.62rem;color:#9faaa1;line-height:1.25}
+.ffr-rule>b{
+  font-size:1.05rem;
+  min-width:34px;
+  text-align:center;
+  padding:6px 7px;
+  border-radius:8px;
+  background:#1d8f28;
+  color:#fff
+}
+.ffr-rule.negative>b{background:#b52432}
+.ffr-rule.milestone>b{background:#a36b0c}
+.ffr-rule.football>b{background:#216aa8}
+.ffr-rule.attendance>b{background:#6c3c99}
+.ffr-rule-note{
+  margin:13px 0 0;
+  padding-top:11px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#aab5ac;
+  font-size:.66rem;
+  line-height:1.4
+}
+.ffr-table{
+  padding-top:0!important;
+  border-top:0!important
+}
+@media(max-width:560px){
+  .ffr-rules{grid-template-columns:1fr}
+  .ffr-rulebook{padding:15px}
+}
+</style>
+
+
+<style>
+/* ===== DESKTOP POLISH V1 ===== */
+@media(min-width:1201px){
+  .main{
+    background:#eef0ed;
+  }
+
+  .metric-grid,
+  .dashboard-grid,
+  .news-strip,
+  .lower-grid,
+  .challenge-row,
+  .account{
+    max-width:1450px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .metric-grid{
+    margin-top:14px;
+    margin-bottom:16px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr 1.35fr;
+    gap:16px;
+    align-items:stretch;
+  }
+
+  .dashboard-grid > .next-session,
+  .dashboard-grid > .recipe-preview,
+  .dashboard-grid > .team-week{
+    min-height:100%;
+  }
+
+  .dashboard-grid > .leaderboards{
+    grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:18px;
+    align-items:start;
+    padding:18px;
+  }
+
+  .ffr-rulebook{
+    height:100%;
+    padding:20px;
+  }
+
+  .ffr-rulebook h3{
+    font-size:1.45rem;
+    margin-top:8px;
+  }
+
+  .ffr-rule-intro{
+    max-width:720px;
+    margin-bottom:16px;
+  }
+
+  .ffr-rules{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .ffr-rule{
+    min-height:82px;
+    padding:12px 13px;
+  }
+
+  .ffr-rule strong{
+    font-size:.82rem;
+  }
+
+  .ffr-rule small{
+    font-size:.66rem;
+  }
+
+  .leaderboards .ffr-table,
+  .leaderboards .leaderboard-block:last-child{
+    background:#fafbfa;
+    border:1px solid #e4e8e4;
+    border-radius:14px;
+    padding:16px!important;
+    border-top:1px solid #e4e8e4!important;
+  }
+
+  .leaderboards .ffr-table{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  .leaderboards .leaderboard-block:last-child{
+    grid-column:2;
+    grid-row:2;
+    margin-top:0;
+  }
+
+  .leaderboards .ffr-rulebook{
+    grid-column:1;
+    grid-row:1 / span 2;
+  }
+
+  .leader-row{
+    padding:10px 4px;
+    font-size:.86rem;
+  }
+
+  .panel{
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(20,30,22,.055);
+  }
+
+  .next-session,
+  .recipe-preview,
+  .team-week{
+    padding:20px;
+  }
+
+  .team-week .pitch{
+    height:300px;
+  }
+
+  .recipe-preview img{
+    height:220px;
+  }
+
+  .news-strip{
+    margin-top:16px;
+    margin-bottom:16px;
+  }
+
+  .lower-grid{
+    grid-template-columns:1.55fr .8fr .62fr 1.15fr;
+    gap:16px;
+  }
+
+  .achievements{
+    grid-column:1 / -1;
+  }
+
+  .challenge-row{
+    grid-template-columns:1fr 1fr;
+  }
+
+  footer{
+    margin-top:8px;
+  }
+}
+
+@media(min-width:1500px){
+  .dashboard-grid{
+    grid-template-columns:.95fr 1fr 1.4fr;
+  }
+
+  .dashboard-grid > .leaderboards{
+    grid-template-columns:1.5fr 1fr;
+  }
+
+  .team-week .pitch{
+    height:320px;
+  }
+}
+</style>
+
+
+<style>
+/* ===== DESKTOP POLISH V2: LOWER DASHBOARD ===== */
+@media(min-width:1201px){
+  /* Turn the lower section into Journey | stacked middle | Player Card */
+  .lower-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.65fr) minmax(250px,.85fr) minmax(330px,1.05fr);
+    grid-template-rows:auto auto;
+    gap:16px;
+    align-items:stretch;
+  }
+
+  /* Existing DOM order:
+     1 Journey
+     2 Milestones
+     3 Streak
+     4 Player Card
+  */
+  .lower-grid > :nth-child(1){
+    grid-column:1;
+    grid-row:1 / span 2;
+  }
+
+  .lower-grid > :nth-child(2){
+    grid-column:2;
+    grid-row:1;
+  }
+
+  .lower-grid > :nth-child(3){
+    grid-column:2;
+    grid-row:2;
+  }
+
+  .lower-grid > :nth-child(4){
+    grid-column:3;
+    grid-row:1 / span 2;
+  }
+
+  .lower-grid > :nth-child(2),
+  .lower-grid > :nth-child(3){
+    min-height:0;
+  }
+
+  .lower-grid > :nth-child(3){
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .lower-grid > :nth-child(4){
+    height:100%;
+  }
+
+  /* Centre the useful content of Next Session while preserving its heading */
+  .next-session{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .next-session > :not(.panel-title):not(h3){
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .next-session h3{
+    text-align:center;
+    margin-top:14px;
+  }
+
+  .next-session .session-detail,
+  .next-session p{
+    width:100%;
+    text-align:center;
+  }
+
+  .next-session a,
+  .next-session button{
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+</style>
+
+
+<style>
+/* ===== PLAYER CARD POLISH ===== */
+.player-card{
+  width:220px;
+  height:300px;
+  margin:16px auto 18px;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(49,122,55,.38),transparent 34%),
+    linear-gradient(155deg,#0a2b10 0%,#061708 58%,#020b04 100%);
+  border:4px solid #d6a838;
+  clip-path:polygon(14% 0,86% 0,100% 14%,92% 88%,50% 100%,8% 88%,0 14%);
+  color:#fff;
+  padding:20px 18px 24px;
+  text-align:center;
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.player-card:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid rgba(214,168,56,.28);
+  clip-path:inherit;
+  pointer-events:none;
+}
+.player-card-top{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.player-card-top b{
+  font-size:1.45rem;
+  line-height:1;
+  letter-spacing:-.03em;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.45);
+}
+.player-card-crest{
+  width:58px!important;
+  height:58px!important;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.35));
+}
+.player-card-centre{
+  position:relative;
+  z-index:2;
+  display:grid;
+  justify-items:center;
+  align-content:start;
+}
+.player-silhouette{
+  font-size:4.7rem;
+  height:102px;
+  width:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:grid;
+  place-items:center;
+  margin-top:2px;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.3));
+}
+.player-card h3{
+  margin:2px 0 4px;
+  max-width:180px;
+  font-size:1.35rem;
+  line-height:1.03;
+  letter-spacing:.01em;
+}
+.player-card p{
+  margin:0 0 10px;
+  color:#64e555;
+  font-size:.9rem;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.joined-ribbon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:145px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#b67c16,#e0b64b,#b67c16);
+  color:#071009;
+  font-size:.67rem;
+  font-weight:1000;
+  letter-spacing:.08em;
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+@media(max-width:850px){
+  .player-card{
+    width:210px;
+    height:288px;
+  }
+}
+</style>
+
+
+<style>
+/* ===== PLAYER CARD CHARCOAL / GOLD EDITION ===== */
+.player-card{
+  background:
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.075),transparent 28%),
+    radial-gradient(circle at 78% 15%,rgba(214,168,56,.11),transparent 22%),
+    linear-gradient(145deg,#242629 0%,#111315 48%,#050607 100%)!important;
+  border-color:#e0b64b!important;
+  box-shadow:
+    0 18px 34px rgba(0,0,0,.30),
+    0 0 0 1px rgba(224,182,75,.12),
+    inset 0 0 30px rgba(255,255,255,.025)!important;
+}
+.player-card:before{
+  border-color:rgba(224,182,75,.35)!important;
+}
+.player-card:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:260px;
+  top:-90px;
+  right:-90px;
+  transform:rotate(24deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.045),transparent);
+  pointer-events:none;
+}
+.player-card-top b{
+  color:#fff!important;
+}
+.player-card p{
+  color:#62e653!important;
+  text-shadow:0 0 12px rgba(98,230,83,.18);
+}
+.player-card-crest{
+  width:64px!important;
+  height:64px!important;
+}
+.joined-ribbon{
+  background:linear-gradient(90deg,#a96f0d,#f0c957,#b67c16)!important;
+  color:#090a09!important;
+  border:1px solid rgba(255,231,155,.42);
+}
+</style>
+
+
+<style>
+/* ===== GOLD PLAYER CARD / BLACK PANEL ===== */
+
+/* Keep only this panel dark */
+.player-card-panel{
+  background:linear-gradient(155deg,#0a0d0b 0%,#050706 100%)!important;
+  color:#fff!important;
+  border-color:#1b211d!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.16)!important;
+}
+.player-card-panel .panel-title{
+  color:#fff!important;
+}
+
+/* Gold card */
+.player-card{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,.38),transparent 24%),
+    radial-gradient(circle at 76% 16%,rgba(255,244,181,.35),transparent 18%),
+    linear-gradient(145deg,#f7d56b 0%,#d6a838 38%,#b77a16 72%,#8f5d0b 100%)!important;
+  border-color:#ffdf72!important;
+  color:#111!important;
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,222,112,.45),
+    inset 0 0 26px rgba(255,255,255,.22)!important;
+}
+.player-card:before{
+  border-color:rgba(107,64,5,.34)!important;
+}
+.player-card:after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent)!important;
+}
+.player-card-top b{
+  color:#111!important;
+  text-shadow:none!important;
+}
+.player-card-crest{
+  width:66px!important;
+  height:66px!important;
+}
+.player-silhouette{
+  filter:sepia(1) saturate(.8) brightness(.55) contrast(1.15) drop-shadow(0 5px 8px rgba(0,0,0,.22))!important;
+}
+.player-card h3{
+  color:#111!important;
+  text-shadow:none!important;
+}
+.player-card p{
+  color:#188c20!important;
+  text-shadow:none!important;
+}
+.joined-ribbon{
+  background:linear-gradient(90deg,#111,#242424,#111)!important;
+  color:#ffd95d!important;
+  border:1px solid rgba(255,221,102,.65)!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.28)!important;
+}
+
+/* Player stats below card now sit cleanly on black */
+.player-card-stats{
+  color:#fff!important;
+}
+.player-card-stats div{
+  border-bottom-color:rgba(255,255,255,.16)!important;
+}
+.player-card-stats span{
+  color:#f0f3f0!important;
+}
+.player-card-stats b{
+  color:#fff!important;
+}
+
+/* Make sure no other panels accidentally turn dark */
+.journey,
+.milestones,
+.streak,
+.next-session,
+.recipe-preview,
+.team-week,
+.news-strip{
+  color:inherit;
+}
+</style>
+
+
+<style>
+/* ===== SIDEBAR QUOTE VISIBILITY FIX ===== */
+@media(min-width:851px){
+  .sidebar{
+    overflow:hidden!important;
+    padding-bottom:12px!important;
+  }
+
+  .side-nav{
+    gap:2px!important;
+  }
+
+  .side-nav a{
+    padding:11px 12px!important;
+  }
+
+  .gaffer-card{
+    margin-top:14px!important;
+    padding:14px!important;
+    flex-shrink:0;
+  }
+
+  .gaffer-card .quote-mark{
+    font-size:2.25rem!important;
+    height:24px!important;
+    line-height:1!important;
+  }
+
+  .gaffer-card p{
+    margin:8px 0 10px!important;
+    font-size:.86rem!important;
+    line-height:1.42!important;
+  }
+
+  .gaffer-card strong{
+    font-size:.75rem!important;
+  }
+
+  .sidebar-bottom{
+    margin-top:10px!important;
+  }
+
+  .sidebar-bottom span{
+    font-size:.72rem!important;
+  }
+
+  .sidebar-bottom small{
+    font-size:.52rem!important;
+  }
+}
+
+@media(min-width:851px) and (max-height:760px){
+  .brand-block{
+    padding-bottom:10px!important;
+  }
+
+  .brand-crest{
+    width:58px!important;
+    height:58px!important;
+  }
+
+  .brand-title{
+    font-size:.94rem!important;
+  }
+
+  .brand-sub{
+    font-size:.55rem!important;
+  }
+
+  .side-nav a{
+    padding:9px 10px!important;
+    font-size:.82rem!important;
+  }
+
+  .gaffer-card{
+    padding:11px!important;
+    margin-top:8px!important;
+  }
+
+  .gaffer-card p{
+    font-size:.78rem!important;
+  }
+}
+</style>
+
+
+<style>
+/* ===== MOBILE SIDEBAR BOTTOM CONTENT FIX ===== */
+@media(max-width:850px){
+  .sidebar{
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:calc(28px + env(safe-area-inset-bottom))!important;
+  }
+
+  .side-nav{
+    flex-shrink:0;
+  }
+
+  .gaffer-card{
+    flex-shrink:0!important;
+    margin-top:16px!important;
+    margin-bottom:12px!important;
+  }
+
+  .sidebar-bottom{
+    position:relative!important;
+    flex-shrink:0!important;
+    margin-top:0!important;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))!important;
+  }
+
+  .leave-room-side{
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    min-height:44px;
+    margin-bottom:14px!important;
+  }
+}
+</style>
+
+
+<style>
+/* ===== CHANGING ROOM UI UPDATE ===== */
+@media(min-width:851px){
+  .dashboard-grid > .next-session{
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+  }
+  .dashboard-grid > .next-session .panel-title{
+    align-self:stretch;
+  }
+  .dashboard-grid > .next-session h3{
+    margin-top:auto;
+  }
+  .dashboard-grid > .next-session .btn{
+    margin-bottom:auto;
+  }
+  .dashboard-grid > .next-session dl{
+    width:min(100%,420px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+.full-league-btn{
+  width:100%;
+  margin-top:14px;
+}
+#leagueDialog{
+  width:min(620px,calc(100vw - 28px));
+  max-height:86vh;
+  border:0;
+  border-radius:18px;
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.35);
+}
+#leagueDialog::backdrop{
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(3px);
+}
+.full-league-shell{
+  background:#fff;
+  color:#111;
+  max-height:86vh;
+  overflow:auto;
+  padding:20px;
+}
+.full-league-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  position:sticky;
+  top:-20px;
+  background:#fff;
+  padding:20px 0 12px;
+  z-index:2;
+  border-bottom:1px solid #e5e8e5;
+}
+.full-league-head h2{
+  margin:0;
+  font-size:1.25rem;
+}
+.full-league-close{
+  border:0;
+  background:#111;
+  color:#fff;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-size:1.3rem;
+  cursor:pointer;
+}
+.full-league-list .leader-row{
+  display:grid;
+  grid-template-columns:38px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:12px 4px;
+  border-bottom:1px solid #ecefec;
+}
+.full-league-list .leader-row.you{
+  font-weight:900;
+  background:#eef9ee;
+}
+.weight-detail{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  line-height:1.15;
+}
+.weight-detail small{
+  font-size:.65rem;
+  color:#7a817b;
+  font-weight:700;
+  margin-top:2px;
+}
+@media(max-width:850px){
+  .full-league-btn{min-height:44px}
+  #leagueDialog{width:calc(100vw - 20px)}
+  .full-league-shell{padding:16px}
+}
+</style>
+
+
+<style>
+/* ===== CLUB NEWS SPOND LINK ===== */
+.news-strip #newsBody a{
+  color:inherit;
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+</style>
+
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-block">
+        <img class="brand-crest" src="ffredditch-crest.png" alt="FF Redditch">
+        <div>
+          <div class="brand-title">THE CHANGING ROOM</div>
+          <div class="brand-sub">GETTING FITTER. ONE TUESDAY AT A TIME.</div>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a class="active" href="#dashboard">🏠 <span>Dashboard</span></a>
+        <a href="#player-card">🪪 <span>My Player Card</span></a>
+        <a href="#journey">📈 <span>My Journey</span></a>
+        <a href="#squad">👥 <span>The Squad</span></a>
+        <a href="#leaderboards">🏆 <span>FFR League</span></a>
+        <a href="#recipes">🍽️ <span>Matchday Fuel</span></a>
+        <a href="#football">⚽ <span>My Football</span></a>
+        <a id="spondSideLink" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">📅 <span>Spond</span></a>
+        <a href="#account">🎒 <span>Kit Bag</span></a>
+      </nav>
+
+      <div class="gaffer-card">
+        <div class="quote-mark">“</div>
+        <p id="gafferQuote">Success is no accident.</p>
+        <strong>— Pelé</strong>
+      </div>
+
+      <div class="sidebar-bottom">
+        <a class="leave-room-side" href="/logout.html">🚪 Leave The Changing Room</a>
+        <span>FF REDDITCH</span>
+        <small>FOOTBALL • FITNESS • COMMUNITY</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div>
+          <strong>THE CHANGING ROOM</strong>
+          <span>GETTING FITTER. ONE TUESDAY AT A TIME.</span>
+        </div>
+        <div class="top-actions">
+          <button class="bell" title="Notifications">🔔<b>3</b></button>
+          <div class="member-chip"><span class="avatar">DM</span><strong id="topName">Demo</strong></div>
+          <a class="leave-room-top" href="/logout.html" title="Log out and return to FF Redditch">🚪 Log Out</a>
+        </div>
+      </header>
+
+      <section class="locker-hero" id="dashboard">
+        <div class="locker-overlay"></div>
+        <div class="locker-brand">
+          <img src="ffredditch-crest.png" alt="">
+          <h1>THE CHANGING ROOM</h1>
+          <p>GETTING FITTER. ONE TUESDAY AT A TIME.</p>
+        </div>
+        <div class="welcome-card">
+          <span class="eyebrow">👋 WELCOME BACK,</span>
+          <h2 id="welcomeName">DEMO!</h2>
+          <div id="welcomeMessage"></div>
+          <em>Keep showing up. 💚</em>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Your weekly progress">
+        <article class="metric"><span>⚖️</span><small>Current Weight</small><strong id="currentWeight">--</strong><em id="lastWeight">Last week --</em></article>
+        <article class="metric"><span>⬇️</span><small>This Week</small><strong id="weeklyChange">--</strong><em id="weeklyLabel">Keep going!</em></article>
+        <article class="metric"><span>📉</span><small>Total Lost</small><strong id="totalLost">--</strong><em>Since joining</em></article>
+        <article class="metric"><span>⭐</span><small>FF Points</small><strong id="ffPoints">--</strong><em>Keep it going!</em></article>
+        <article class="metric"><span>📊</span><small>Club Position</small><strong id="clubRank">--</strong><em id="rankOutOf">Out of --</em></article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel next-session">
+          <div class="panel-title">📅 NEXT SESSION</div>
+          <h3 id="sessionName">Tuesday Night Football</h3>
+          <dl>
+            <div><dt>📆</dt><dd id="sessionDay">Tuesday</dd></div>
+            <div><dt>🕗</dt><dd id="sessionTime">8:00pm</dd></div>
+            <div><dt>📍</dt><dd id="sessionVenue">Arrow Vale 3G</dd></div>
+          </dl>
+          <a class="btn green" id="spondButton" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
+        </article>
+
+        <article class="panel recipe-preview" id="recipes">
+          <div class="panel-title">👨‍🍳 RECIPE OF THE WEEK</div>
+          <h3 id="recipeTitle">Loading…</h3>
+          <img id="recipeImage" src="sticky-chicken-katsu.jpg" alt="Sticky Chicken Katsu Curry">
+          <div class="recipe-macros">
+            <span>🔥 <b id="recipeCalories">--</b><small>Calories</small></span>
+            <span>💪 <b id="recipeProtein">--</b><small>Protein</small></span>
+            <span>⏱️ <b id="recipeMinutes">--</b><small>Mins</small></span>
+          </div>
+          <button class="btn orange" id="recipeOpen" type="button" onclick="openRecipeModal()">VIEW RECIPE</button>
+        </article>
+
+        <article class="panel team-week" id="squad">
+          <div class="panel-title">🏆 TEAM OF THE WEEK</div>
+          <p class="muted">Top 5 performers this week</p>
+          <div class="pitch">
+            <div class="pitch-line centre"></div>
+            <div class="pitch-box top"></div>
+            <div class="pitch-box bottom"></div>
+            <div id="teamWeekPlayers"></div>
+          </div>
+          <button class="btn purple" data-scroll="#leaderboards">VIEW FFR LEAGUE</button>
+        </article>
+
+        <article class="panel leaderboards ffr-league-panel" id="leaderboards">
+
+          <div class="ffr-rulebook">
+            <div class="panel-title">📖 THE FFR RULE BOOK</div>
+            <h3>How to earn FF Points</h3>
+            <p class="ffr-rule-intro">
+              Earn points by making progress, turning up and getting involved at TNF.
+              Every point counts towards your position in the FFR League Table.
+            </p>
+
+            <div class="ffr-rules">
+              <div class="ffr-rule positive">
+                <span class="rule-icon">⚖️</span>
+                <div><strong>Lose weight at weigh-in</strong><small>A positive week on the scales.</small></div>
+                <b>+2</b>
+              </div>
+
+              <div class="ffr-rule positive">
+                <span class="rule-icon">➖</span>
+                <div><strong>Maintain your weight</strong><small>Consistency still counts.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule milestone">
+                <span class="rule-icon">🎯</span>
+                <div><strong>Reach a new 5% milestone</strong><small>5%, 10%, 15%, 20% and beyond.</small></div>
+                <b>+5</b>
+              </div>
+
+              <div class="ffr-rule football">
+                <span class="rule-icon">⚽</span>
+                <div><strong>Score at TNF</strong><small>Score at least one goal on the pitch during a TNF session. Maximum 1 point per session.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule attendance">
+                <span class="rule-icon">👟</span>
+                <div><strong>Complete every 3 TNF sessions</strong><small>Keep showing up.</small></div>
+                <b>+1</b>
+              </div>
+
+              <div class="ffr-rule negative">
+                <span class="rule-icon">⬆️</span>
+                <div><strong>Gain weight at weigh-in</strong><small>One week never defines the journey.</small></div>
+                <b>-1</b>
+              </div>
+            </div>
+
+            <p class="ffr-rule-note">
+              Points can stack in the same week. Milestone points are awarded once for each new 5% milestone reached.
+            </p>
+          </div>
+
+          <div class="leaderboard-block ffr-table">
+            <div class="panel-title">🏆 FFR LEAGUE TABLE</div>
+            <p class="muted">Your FF Points ranking across The Changing Room.</p>
+            <div id="pointsLeaderboard"></div>
+            <button class="btn green full-league-btn" id="fullLeagueOpen" type="button">VIEW FULL TABLE</button>
+          </div>
+
+          <div class="leaderboard-block">
+            <div class="panel-title">💪 MOST WEIGHT LOST</div>
+            <p class="muted">Ranked fairly by percentage of starting body weight lost.</p>
+            <div id="weightLeaderboard"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="news-strip">
+        <span>📣 <b>CLUB NEWS</b></span>
+        <div><strong id="newsTitle">Welcome</strong><small id="newsBody"></small></div>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel journey" id="journey">
+          <div class="panel-head"><div class="panel-title">📈 MY JOURNEY</div><span>Private to you</span></div>
+          <div class="chart-wrap">
+            <svg id="weightChart" viewBox="0 0 760 220" role="img" aria-label="Weight journey chart"></svg>
+          </div>
+          <div class="journey-stats">
+            <span><small>Start</small><b id="journeyStart">--</b></span>
+            <span><small>Current</small><b id="journeyCurrent">--</b></span>
+            <span><small>Lost</small><b id="journeyLost">--</b></span>
+            <span><small>% Lost</small><b id="journeyPercent">--</b></span>
+          </div>
+          <div class="recent-weighins" id="recentWeighins"></div>
+        </article>
+
+        <article class="panel milestones">
+          <div class="panel-title">🎖️ MILESTONES</div>
+          <div id="milestoneList"></div>
+        </article>
+
+        <article class="panel streak">
+          <div class="panel-title">🔥 CURRENT STREAK</div>
+          <strong id="currentStreak">--</strong>
+          <span>Weeks</span>
+          <p>Keep it going!</p>
+        </article>
+
+        <article class="panel player-card-panel" id="player-card">
+          <div class="panel-title">🪪 MY PLAYER CARD</div>
+          <div class="player-card">
+            <div class="player-card-top">
+              <b id="cardNumber">#--</b>
+              <img class="player-card-crest" src="ffredditch-crest.png" alt="FF Redditch">
+            </div>
+            <div class="player-card-centre">
+            <img id="cardPhoto" class="player-silhouette" src="" alt="Player photo">
+              <h3 id="cardName">DEMO MEMBER</h3>
+              <p id="cardPosition">PLAYER</p>
+              <div class="joined-ribbon" id="cardJoined">JOINED • --</div>
+            </div>
+          </div>
+          <div class="player-card-stats" id="football">
+            <div><span>⚖️ Weight</span><b id="cardWeight">--</b></div>
+            <div><span>📉 Total Lost</span><b id="cardLoss">--</b></div>
+            <div><span>⚽ Goals</span><b id="cardGoals">--</b></div>
+            <div><span>🎯 Assists</span><b id="cardAssists">--</b></div>
+            <div><span>📅 Attendance</span><b id="cardAttendance">--</b></div>
+            <div><span>⭐ FF Points</span><b id="cardPoints">--</b></div>
+          </div>
+        </article>
+
+        <article class="panel achievements">
+          <div class="panel-title">🏅 ACHIEVEMENTS</div>
+          <div id="achievementGrid"></div>
+        </article>
+      </section>
+
+      <section class="challenge-row">
+        <article>
+          <span>🎯</span>
+          <div><strong>WEEKLY CHALLENGE</strong><p>Complete your session, log your weigh-in and keep the streak going.</p></div>
+        </article>
+        <article>
+          <span>💬</span>
+          <div><strong>THE TEAM'S BEHIND YOU</strong><p>Progress isn't about being perfect. It's about showing up.</p></div>
+        </article>
+      </section>
+
+      <section class="panel account" id="account">
+        <div class="panel-title">🎒 KIT BAG</div>
+        <p>Your account and privacy controls will live here when the live member connection is switched on.</p>
+      </section>
+
+      <footer>
+        <span>© 2026 FF Redditch</span>
+        <strong>Keep showing up. 💚</strong>
+        <span>Privacy • Terms</span>
+      </footer>
+    </main>
   </div>
-</header>
-<section class="hero"><div class="container hero-inner">
-  <span class="kicker">Fitness Football Redditch</span>
-  <h1>Play.<br><span class="yellow">Progress.</span><br>Belong.</h1>
-  <p class="hero-copy">Weekly football, personal progress and a proper community. Whether your goal is to get fitter, lose weight, get back into football or simply enjoy playing again, FF Redditch is built around getting you involved.</p>
-  <div class="cta-row"><a class="btn btn-yellow join-btn" href="#">Join FF Redditch</a><a class="btn btn-dark" href="tnf.html">Session Info</a></div>
-</div></section>
 
-<section class="stats-strip"><div class="container stats-grid">
-  <div class="stat-box"><span class="stat-big" id="communityKgLost">48kg</span><span class="stat-label">Total Community Weight Loss</span></div>
-  <div class="stat-box"><span class="stat-big" id="weeklyKgLost">2.6kg</span><span class="stat-label">Weekly Community Weight Loss</span></div>
-  <div class="stat-box"><span class="stat-big" id="totalMembers">36</span><span class="stat-label">Total Members</span></div>
-  <div class="stat-box"><span class="stat-big" id="tnfSessions">26</span><span class="stat-label">TNF Sessions Held</span></div>
-</div></section>
 
-<section class="section quick-join"><div class="container quick-join-grid">
-  <div><div class="red-rule"></div><h2 class="section-title">Want to <span class="yellow">join?</span></h2><p>Complete our joining form and we'll send you everything you need before your first session.</p></div>
-  <div><a class="btn btn-yellow join-btn" href="#">Complete joining form</a></div>
-</div></section>
-
-<section class="section"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">What is <span class="yellow">FF Redditch?</span></h2></div><p class="section-intro">TNF is the heartbeat. The community is what keeps people coming back. Personal progress is celebrated privately in our members portal, while the 11s gives players a competitive pathway.</p></div>
-  <div class="cards">
-    <div class="card"><div class="card-tag">Tuesday Night Football</div><h3>Play every week</h3><p>Welcoming football for mixed abilities with fitness built naturally into the session.</p><a href="tnf.html" class="text-link">TNF info →</a></div>
-    <div class="card"><div class="card-tag">Community</div><h3>Belong to something</h3><p>Football, friendships, socials, matchdays and a club identity people are proud to be part of.</p><a href="community.html" class="text-link">About us →</a></div>
-    <div class="card"><div class="card-tag">FF Redditch 11s</div><h3>Competitive football</h3><p>Fixtures, results and season stats for the competitive side of the FF Redditch community.</p><a href="eleven.html" class="text-link">Match centre →</a></div>
-  </div>
-</div></section>
-
-<section class="section" style="background:#111114"><div class="container">
-  <div class="section-head"><div><div class="red-rule"></div><h2 class="section-title">Tuesday Night <span class="yellow">Football</span></h2></div></div>
-  <div class="tnf-panel"><div><h3>The heartbeat of FF Redditch</h3><p>Weekly football built around enjoyment, fitness and a strong community.</p><a class="btn btn-yellow" href="tnf.html">Session Info</a></div>
-  <div class="tnf-info"><div><strong>Venue</strong><span>Arrow Vale 3G</span></div><div><strong>Time</strong><span>Tuesday • 8:00pm</span></div><div><strong>Cost</strong><span>£5 per session</span></div><div><strong>Ability</strong><span>Mixed abilities welcome</span></div></div></div>
-</div></section>
-
-<section class="section quick-join"><div class="container quick-join-grid">
-  <div><div class="red-rule"></div><h2 class="section-title">Already a <span class="yellow">member?</span></h2><p>Your personal journey, private progress and members-only features live behind our secure member login.</p></div>
-  <div><a class="btn btn-dark members-cta" href="https://members.ffredditch.co.uk">Members Login</a></div>
-</div></section>
-
-<footer class="footer">
-  <div class="container footer-top">
-    <div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
-    <div class="footer-links">
-      <a href="tnf.html">TNF</a>
-      <a href="community.html">Community</a>
-      <a href="eleven.html">FF Redditch 11s</a>
-      <a href="https://members.ffredditch.co.uk">Members Login</a>
-      <a class="join-btn" href="#">Join</a>
+  <dialog id="leagueDialog" aria-labelledby="fullLeagueTitle">
+    <div class="full-league-shell">
+      <div class="full-league-head">
+        <h2 id="fullLeagueTitle">🏆 FULL FFR LEAGUE TABLE</h2>
+        <button class="full-league-close" id="fullLeagueClose" type="button" aria-label="Close full league table">×</button>
+      </div>
+      <p class="muted">All members ranked by total FF Points.</p>
+      <div class="full-league-list" id="fullPointsLeaderboard"></div>
     </div>
-  </div>
-  <div class="container copy">© 2026 FF Redditch</div>
-</footer>
-<script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>
+  </dialog>
+
+  <dialog id="recipeDialog" aria-labelledby="dialogRecipeTitle">
+    <button class="dialog-close" id="recipeClose" type="button" onclick="closeRecipeModal()">×</button>
+    <img id="dialogRecipeImage" alt="">
+    <div class="dialog-copy">
+      <span class="recipe-tag">MATCHDAY FUEL</span>
+      <h2 id="dialogRecipeTitle"></h2>
+      <div class="dialog-macros" id="dialogMacros"></div>
+      <h3>You'll need</h3>
+      <ul id="dialogIngredients"></ul>
+      <h3>Method</h3>
+      <ol id="dialogMethod"></ol>
+    </div>
+  </dialog>
+
+  <script src="/changing-room.js?v=20260811-ffr-ui4"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const joined = document.getElementById("cardJoined");
+  if(!joined) return;
+  const obs = new MutationObserver(function(){
+    let t = joined.textContent.trim();
+    if(t && !t.includes("•")){
+      t = t.replace(/^JOINED\s*/i,"").trim();
+      joined.textContent = "JOINED • " + t;
+    }
+  });
+  obs.observe(joined,{childList:true,characterData:true,subtree:true});
+});
+</script>
+
+</body>
+</html>
