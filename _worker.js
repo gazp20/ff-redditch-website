@@ -155,31 +155,20 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
     );
   }
 }
-      if (
-    url.hostname === "members.ffredditch.co.uk"
-    ) {
+    if (url.hostname === "members.ffredditch.co.uk") {
       const target = new URL(request.url);
 
-      if (
-        url.pathname === "/" ||
-        url.pathname === ""
-      ) {
+      // The members subdomain is backed by files stored in /members.
+      // Keep already-prefixed member assets unchanged; prefix everything else.
+      if (url.pathname === "/" || url.pathname === "") {
         target.pathname = "/members/";
-
-      } else if (url.pathname.startsWith("/data/")) {
+      } else if (url.pathname.startsWith("/members/")) {
         target.pathname = url.pathname;
-        } else if (url.pathname.startsWith("/members/images/")) {
-  target.pathname = url.pathname;
-      } else if (
-        !url.pathname.startsWith("/members/")
-      ) {
-        target.pathname =
-          "/members" + url.pathname;
+      } else {
+        target.pathname = "/members" + url.pathname;
       }
 
-      return env.ASSETS.fetch(
-        new Request(target, request)
-      );
+      return env.ASSETS.fetch(new Request(target, request));
     }
 
     // Public FF Redditch website
