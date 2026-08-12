@@ -127,13 +127,23 @@ const FALLBACK = {
   ]
 };
 
-async function getJSON(path, fallback){
+async function getJSON(path, fallback, cacheKey=""){
+  const cached = cacheKey ? localStorage.getItem(cacheKey) : null;
+  let cachedValue = null;
+  if(cached){
+    try{ cachedValue = JSON.parse(cached); }catch(e){}
+  }
+
   try{
     const r = await fetch(path, {cache:"no-store"});
     if(!r.ok) throw new Error(path);
-    return await r.json();
+    const data = await r.json();
+    if(cacheKey){
+      try{ localStorage.setItem(cacheKey, JSON.stringify(data)); }catch(e){}
+    }
+    return data;
   }catch(e){
-    console.warn("Using fallback data for", path);
+    if(cachedValue) return cachedValue;
     return fallback;
   }
 }
@@ -303,14 +313,17 @@ function renderRecipe(r){
 }
 
 async function init(){
-  const [portal, members, weighins, recipes, team, meData] = await Promise.all([
-getJSON("data/portal.json", FALLBACK.portal),
-getJSON("data/members.json", FALLBACK.members),
-getJSON("data/weighins.json", FALLBACK.weighins),
-getJSON("data/recipes.json", FALLBACK.recipes),
-getJSON("/api/rankings", { success:false, members:[] }),
-getJSON("/api/me", null)
-]);
+  // Only the two live endpoints are requested now.
+  const [team, meData] = await Promise.all([
+    getJSON("/api/rankings", { success:false, members:[] }, "ffr-live-rankings"),
+    getJSON("/api/me", null, "ffr-live-member")
+  ]);
+
+  // Session details and featured recipe are local/static.
+  const portal = FALLBACK.portal;
+  const members = [];
+  const weighins = {};
+  const recipes = [];
 
  const sheetMember = meData && meData.success ? meData.member : null;
 
@@ -331,6 +344,10 @@ const m = sheetMember ? {
   ffPoints: Number(sheetMember["FF Total points"] || 0),
   weeklyFFPoints: Number(sheetMember["FF weekly points"] || 0),
   currentStreak: Number(sheetMember["week streak"] || 0),
+  attendancePct: (() => {
+    const raw = Number(sheetMember["Attendance %"] || 0);
+    return raw > 0 && raw <= 1 ? raw * 100 : raw;
+  })(),
   weekWeights: Array.from({length:10}, (_,i) => {
     const raw = sheetMember[`week ${i+1}`];
     if(raw === "" || raw === null || raw === undefined) return null;
@@ -342,14 +359,32 @@ const m = sheetMember ? {
     sheetMember["10% milestone"] ? "10% Club" : null,
     sheetMember["15% milestone"] ? "15% Club" : null
   ].filter(Boolean)
-} : FALLBACK.members[0];
+} : {
+  id:"live-member",
+  name:"Member",
+  firstName:"Member",
+  number:"--",
+  position:"Player",
+  joined:"--",
+  photo:"",
+  currentWeightKg:0,
+  startingWeightKg:0,
+  totalLostKg:0,
+  percentLost:0,
+  weeklyChangeKg:0,
+  previousWeightKg:0,
+  ffPoints:0,
+  weeklyFFPoints:0,
+  currentStreak:0,
+  attendancePct:0,
+  weekWeights:[],
+  milestones:[]
+};
   const liveHistory = (m.weekWeights || [])
     .map((weightKg,i)=> weightKg ? ({ date:`Week ${i+1}`, weightKg:Number(weightKg) }) : null)
     .filter(Boolean);
 
-  const history = liveHistory.length
-    ? liveHistory
-    : (weighins[m.id] || FALLBACK.weighins["demo-001"]);
+  const history = liveHistory;
 
   $("#topName").textContent=m.firstName || "Member";
   $("#welcomeName").textContent=`${(m.firstName || "Member").toUpperCase()}!`;
@@ -395,7 +430,12 @@ const m = sheetMember ? {
     slot: ["st","lm","cm","rm","gk"][i]
   }));
 
-renderTeam(weeklyTeam.length ? weeklyTeam : FALLBACK.team);
+if(weeklyTeam.length){
+  renderTeam(weeklyTeam);
+}else{
+  const teamEl=$("#teamWeekPlayers");
+  if(teamEl) teamEl.innerHTML='<div class="empty-live-state">Team of the Week will appear once weekly FF Points are available.</div>';
+}
 
   const liveLeague = (team.success ? team.members : [])
   .filter(p => Number(p.totalPoints) > 0)
@@ -406,12 +446,9 @@ renderTeam(weeklyTeam.length ? weeklyTeam : FALLBACK.team);
     ffPoints: Number(p.totalPoints)
   }));
 
-$("#pointsLeaderboard").innerHTML = renderLeaderboard(
-  liveLeague.length ? liveLeague : members,
-  "ffPoints",
-  "",
-  m.id
-);
+$("#pointsLeaderboard").innerHTML = liveLeague.length
+  ? renderLeaderboard(liveLeague,"ffPoints","",m.id)
+  : '<div class="empty-live-state">Live FF Points will appear here once rankings are available.</div>';
 
 const allLiveLeague = (team.success ? team.members : [])
   .sort((a,b) => Number(b.totalPoints) - Number(a.totalPoints))
@@ -421,26 +458,29 @@ const allLiveLeague = (team.success ? team.members : [])
     ffPoints: Number(p.totalPoints)
   }));
 
-$("#fullPointsLeaderboard").innerHTML = renderFullPointsLeaderboard(
-  allLiveLeague.length ? allLiveLeague : members,
-  m.id
-);
+$("#fullPointsLeaderboard").innerHTML = allLiveLeague.length
+  ? renderFullPointsLeaderboard(allLiveLeague,m.id)
+  : '<div class="empty-live-state">No live FF Points data available yet.</div>';
 
 const liveWeightLeague = (team.success ? team.members : []);
 $("#weightLeaderboard").innerHTML = liveWeightLeague.length
   ? renderWeightLeaderboard(liveWeightLeague, m.name, 5)
-  : renderLeaderboard(members,"totalLostKg"," kg",m.id);
+  : '<div class="empty-live-state">Live weight-loss rankings will appear here once data is available.</div>';
 
 if($("#fullWeightLeaderboard")){
   $("#fullWeightLeaderboard").innerHTML = liveWeightLeague.length
     ? renderFullWeightLeaderboard(liveWeightLeague, m.name)
-    : renderLeaderboard(members,"totalLostKg"," kg",m.id);
+    : '<div class="empty-live-state">No live weight-loss data available yet.</div>';
 }
 
   $("#newsTitle").textContent="TNF RETURNS 1ST SEPTEMBER";
   $("#newsBody").innerHTML=`Tuesday Night Football is back! <a href="${spond}" target="_blank" rel="noopener">Click on Spond to book your place ↗</a>`;
 
   drawChart(history);
+  if(!history.length){
+    const svg=$("#weightChart");
+    if(svg) svg.innerHTML='<text x="380" y="112" text-anchor="middle" font-size="20" fill="#7a817b">Weekly weigh-ins will appear here</text>';
+  }
   $("#journeyStart").textContent=fmtKg(m.startingWeightKg);
   $("#journeyCurrent").textContent=fmtKg(m.currentWeightKg);
   $("#journeyLost").textContent=fmtKg(m.totalLostKg);
