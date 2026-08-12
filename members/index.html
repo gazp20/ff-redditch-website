@@ -240,12 +240,7 @@
     grid-template-columns:1.55fr .8fr .62fr 1.15fr;
     gap:16px;
   }
-
-  .achievements{
-    grid-column:1 / -1;
-  }
-
-  .challenge-row{
+.challenge-row{
     grid-template-columns:1fr 1fr;
   }
 
@@ -897,6 +892,58 @@
 }
 </style>
 
+
+<style>
+/* ===== WEIGHT LOSS TIPS PANEL ===== */
+.weight-tips{
+  grid-column:1 / -1;
+}
+.weight-tips-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.weight-tip{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  gap:10px;
+  align-items:start;
+  padding:13px;
+  border:1px solid #e3e8e3;
+  border-radius:12px;
+  background:#fafbfa;
+}
+.weight-tip>span{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#eef8ee;
+  font-size:1rem;
+}
+.weight-tip div{
+  display:grid;
+  gap:4px;
+}
+.weight-tip strong{
+  font-size:.83rem;
+}
+.weight-tip small{
+  color:#687069;
+  font-size:.7rem;
+  line-height:1.4;
+}
+@media(max-width:1000px){
+  .weight-tips-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .weight-tips-grid{grid-template-columns:1fr}
+  .weight-tip{padding:12px}
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
@@ -917,7 +964,7 @@
         <a href="#leaderboards">🏆 <span>FFR League</span></a>
         <a href="#recipes">🍽️ <span>Matchday Fuel</span></a>
         <a href="#football">⚽ <span>My Football</span></a>
-        <a id="spondSideLink" href="https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB" target="_blank" rel="noopener">📅 <span>Spond</span></a>
+        <a id="spondSideLink" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">📅 <span>Spond</span></a>
         <a href="#account">🎒 <span>Kit Bag</span></a>
       </nav>
 
@@ -979,7 +1026,7 @@
             <div><dt>🕗</dt><dd id="sessionTime">8:00pm</dd></div>
             <div><dt>📍</dt><dd id="sessionVenue">Arrow Vale 3G</dd></div>
           </dl>
-          <a class="btn green" id="spondButton" href="https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
+          <a class="btn green" id="spondButton" href="https://spond.com/invite/XJRNG" target="_blank" rel="noopener">OPEN IN SPOND ↗</a>
         </article>
 
         <article class="panel recipe-preview" id="recipes">
@@ -1131,9 +1178,27 @@
           </div>
         </article>
 
-        <article class="panel achievements">
-          <div class="panel-title">🏅 ACHIEVEMENTS</div>
-          <div id="achievementGrid"></div>
+        <article class="panel weight-tips">
+          <div class="panel-title">💡 TIPS ON LOSING WEIGHT</div>
+          <p class="muted">Simple habits that can support steady, healthy progress.</p>
+          <div class="weight-tips-grid">
+            <div class="weight-tip">
+              <span>⚖️</span>
+              <div><strong>Calorie awareness</strong><small>For adults aiming to lose weight, focus on a modest, sustainable calorie deficit rather than extreme restriction.</small></div>
+            </div>
+            <div class="weight-tip">
+              <span>🚶</span>
+              <div><strong>Move more</strong><small>Build more everyday movement into your week alongside your football and exercise.</small></div>
+            </div>
+            <div class="weight-tip">
+              <span>😴</span>
+              <div><strong>Improve sleep</strong><small>A consistent sleep routine can help recovery, energy and healthy habits.</small></div>
+            </div>
+            <div class="weight-tip">
+              <span>💪</span>
+              <div><strong>Include protein</strong><small>Include a good protein source in meals to support recovery and help meals feel satisfying.</small></div>
+            </div>
+          </div>
         </article>
       </section>
 
@@ -1211,7 +1276,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260811-playercard-journey4"></script>
+  <script src="/changing-room.js?v=20260812-tips-spond1"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
