@@ -54,7 +54,7 @@ const FALLBACK = {
       day: "Tuesday",
       time: "8:00pm",
       venue: "Arrow Vale 3G",
-      spondUrl: "https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB"
+      spondUrl: "https://spond.com/invite/XJRNG"
     },
     clubNews: {
       title: "Welcome to The Changing Room",
@@ -378,7 +378,7 @@ const m = sheetMember ? {
   $("#sessionTime").textContent=portal.nextSession?.time || "8:00pm";
   $("#sessionVenue").textContent=portal.nextSession?.venue || "Arrow Vale 3G";
 
-  const spond = "https://spond.com/client/groups/177A89E178484F8D81BBB39020AF39FB";
+  const spond = "https://spond.com/invite/XJRNG";
   [$("#spondButton"),$("#spondSideLink")].forEach(a=>{
     if(a){ a.href=spond; a.target="_blank"; a.rel="noopener"; }
   });
@@ -478,12 +478,7 @@ if($("#fullWeightLeaderboard")){
   $("#cardLoss").textContent=fmtKg(m.totalLostKg);
   $("#cardAttendance").textContent=`${m.attendancePct ?? 0}%`;
   $("#cardPoints").textContent=m.ffPoints ?? 0;
-
-  const achievements=m.achievements || FALLBACK.members[0].achievements;
-  const icons=["🟢","🔥","💙","⚽","🟣"];
-  $("#achievementGrid").innerHTML=achievements.map((a,i)=>`<div class="achievement"><div class="badge">${icons[i%icons.length]}</div><b>${a}</b></div>`).join("");
-
-  if($("#recipeClose")) $("#recipeClose").onclick=window.closeRecipeModal;
+if($("#recipeClose")) $("#recipeClose").onclick=window.closeRecipeModal;
 
   if($("#fullLeagueOpen")) $("#fullLeagueOpen").onclick=()=>{
     const d=$("#leagueDialog");
