@@ -1,5 +1,5 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     // Keep Cloudflare system endpoints working
@@ -114,7 +114,26 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
   url.hostname === "members.ffredditch.co.uk" &&
   (url.pathname === "/api/rankings" || url.pathname === "/api/rankings/")
 ) {
+  // Rankings are shared by all authenticated members.
+  // Keep the latest successful result at the Cloudflare edge for 60 seconds
+  // so Team of the Week, Club Position and both leaderboards load quickly.
+  const cache = caches.default;
+  const cacheKey = new Request(
+    "https://members.ffredditch.co.uk/__ffr_cache/rankings-v1",
+    { method: "GET" }
+  );
+
   try {
+    const cached = await cache.match(cacheKey);
+    if (cached) {
+      const headers = new Headers(cached.headers);
+      headers.set("x-ffr-rankings-cache", "HIT");
+      return new Response(cached.body, {
+        status: cached.status,
+        headers
+      });
+    }
+
     const googleResponse = await fetch(
       String(env.MEMBERS_API_URL).trim(),
       {
@@ -132,13 +151,23 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
 
     const body = await googleResponse.text();
 
-    return new Response(body, {
+    const response = new Response(body, {
       status: googleResponse.ok ? 200 : googleResponse.status,
       headers: {
         "content-type": "application/json; charset=UTF-8",
-        "cache-control": "no-store"
+        "cache-control": googleResponse.ok
+          ? "public, max-age=60"
+          : "no-store",
+        "x-ffr-rankings-cache": "MISS"
       }
     });
+
+    // Cache successful live rankings only.
+    if (googleResponse.ok) {
+      ctx.waitUntil(cache.put(cacheKey, response.clone()));
+    }
+
+    return response;
   } catch (error) {
     return new Response(
       JSON.stringify({
@@ -155,20 +184,31 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
     );
   }
 }
-    if (url.hostname === "members.ffredditch.co.uk") {
+      if (
+    url.hostname === "members.ffredditch.co.uk"
+    ) {
       const target = new URL(request.url);
 
-      // The members subdomain is backed by files stored in /members.
-      // Keep already-prefixed member assets unchanged; prefix everything else.
-      if (url.pathname === "/" || url.pathname === "") {
+      if (
+        url.pathname === "/" ||
+        url.pathname === ""
+      ) {
         target.pathname = "/members/";
-      } else if (url.pathname.startsWith("/members/")) {
+
+      } else if (url.pathname.startsWith("/data/")) {
         target.pathname = url.pathname;
-      } else {
-        target.pathname = "/members" + url.pathname;
+        } else if (url.pathname.startsWith("/members/images/")) {
+  target.pathname = url.pathname;
+      } else if (
+        !url.pathname.startsWith("/members/")
+      ) {
+        target.pathname =
+          "/members" + url.pathname;
       }
 
-      return env.ASSETS.fetch(new Request(target, request));
+      return env.ASSETS.fetch(
+        new Request(target, request)
+      );
     }
 
     // Public FF Redditch website
