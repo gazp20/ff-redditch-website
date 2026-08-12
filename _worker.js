@@ -189,6 +189,19 @@ const apiUrl = new URL(String(env.MEMBERS_API_URL).trim());
     ) {
       const target = new URL(request.url);
 
+      // Root-level player/media images should be served directly.
+      // Without this, /dan-bowen.jpg becomes /members/dan-bowen.jpg.
+      if (
+        /\.(?:jpe?g|png|webp|gif|svg)$/i.test(url.pathname) &&
+        !url.pathname.startsWith("/members/")
+      ) {
+        const directImage = await env.ASSETS.fetch(request);
+
+        if (directImage.ok) {
+          return directImage;
+        }
+      }
+
       if (
         url.pathname === "/" ||
         url.pathname === ""
