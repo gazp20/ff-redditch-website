@@ -944,6 +944,33 @@
 }
 </style>
 
+
+<style>
+/* ===== TOP DASHBOARD ACTION BUTTON ALIGNMENT ===== */
+.dashboard-grid > .next-session,
+.dashboard-grid > .recipe-preview,
+.dashboard-grid > .team-week{
+  display:flex!important;
+  flex-direction:column!important;
+}
+.dashboard-grid > .next-session .btn,
+.dashboard-grid > .recipe-preview .btn,
+.dashboard-grid > .team-week .btn{
+  margin-top:auto!important;
+  width:100%!important;
+  min-height:44px;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.dashboard-grid > .recipe-preview .recipe-macros{
+  margin-bottom:12px!important;
+}
+.dashboard-grid > .team-week .pitch{
+  margin-bottom:12px!important;
+}
+</style>
+
 </head>
 <body>
   <div class="shell">
@@ -1276,7 +1303,7 @@
     </div>
   </dialog>
 
-  <script src="/changing-room.js?v=20260812-tips-spond1"></script>
+  <script src="/changing-room.js?v=20260812-final-polish2"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
