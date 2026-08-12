@@ -270,6 +270,9 @@ function renderTeam(team){
     image:"southern-fried-chicken-gousto.jpg",
     sourceUrl:"https://www.gousto.co.uk/cookbook/recipes/southern-fried-chicken-with-creamy-slaw-gravy-chips",
     sourceName:"Gousto",
+    calories:617,
+    proteinG:35.8,
+    minutes:45,
     ingredients:[
       "Carrot & cabbage slaw mix (160g)",
       "Skinless chicken thighs (320g)",
