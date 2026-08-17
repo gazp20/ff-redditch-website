@@ -1,27 +1,68 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FF Redditch 11s | FF Redditch</title><link rel="stylesheet" href="assets/styles.css"><link rel="icon" type="image/x-icon" href="/favicon.ico">
-<style>
-.sponsor-card .sponsor-logo{display:block!important;width:auto!important;height:auto!important;object-fit:contain!important;margin:auto!important}
-.sponsor-card .sponsor-logo-r2h{max-width:150px!important;max-height:150px!important}
-.sponsor-card .sponsor-logo-knights{width:150px!important;height:150px!important;max-width:150px!important;max-height:150px!important;object-fit:contain!important}
-.sponsor-card .sponsor-logo-alltech{max-width:280px!important;max-height:100px!important}
-@media(max-width:760px){.sponsor-card .sponsor-logo-knights{width:120px!important;height:120px!important;max-width:120px!important;max-height:120px!important}}
-</style>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>FF Redditch 11s | FF Redditch</title>
+
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 <style>
+.sponsor-card .sponsor-logo{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  object-fit:contain!important;
+  margin:auto!important;
+}
+
+.sponsor-card .sponsor-logo-r2h{
+  max-width:150px!important;
+  max-height:150px!important;
+}
+
+.sponsor-card .sponsor-logo-knights{
+  width:150px!important;
+  height:150px!important;
+  max-width:150px!important;
+  max-height:150px!important;
+  object-fit:contain!important;
+}
+
+.sponsor-card .sponsor-logo-alltech{
+  max-width:280px!important;
+  max-height:100px!important;
+}
+
+.sponsor-card .sponsor-logo-lotus{
+  max-width:180px!important;
+  max-height:150px!important;
+}
+
 /* ===== PAST FIXTURES TABLE ===== */
-.past-fixtures-section{padding-top:6px}
-.past-fixtures-panel{padding:20px}
+
+.past-fixtures-section{
+  padding-top:6px;
+}
+
+.past-fixtures-panel{
+  padding:20px;
+}
+
 .past-fixtures-wrap{
   overflow-x:auto;
   margin-top:12px;
 }
+
 .past-fixtures-table{
   width:100%;
   border-collapse:collapse;
   min-width:900px;
   font-size:.88rem;
 }
+
 .past-fixtures-table th,
 .past-fixtures-table td{
   padding:12px 10px;
@@ -29,6 +70,7 @@
   text-align:left;
   vertical-align:top;
 }
+
 .past-fixtures-table th{
   background:#0a1710;
   color:#fff;
@@ -36,120 +78,693 @@
   text-transform:uppercase;
   letter-spacing:.04em;
 }
+
 .past-fixtures-table tbody tr{
   background:#111315;
   color:#fff;
 }
+
 .past-fixtures-table tbody tr:nth-child(even){
   background:#171a1d;
 }
+
 .past-fixtures-table tbody td{
   color:#f2f2f2;
 }
-.past-fixtures-table .result-win{font-weight:900;color:#147a2c}
-.past-fixtures-table .result-draw{font-weight:900;color:#9a6b00}
-.past-fixtures-table .result-loss{font-weight:900;color:#b42318}
+
+.past-fixtures-table .result-win{
+  font-weight:900;
+  color:#147a2c;
+}
+
+.past-fixtures-table .result-draw{
+  font-weight:900;
+  color:#9a6b00;
+}
+
+.past-fixtures-table .result-loss{
+  font-weight:900;
+  color:#b42318;
+}
+
+/* ===== SPONSORS ===== */
+
+.sponsors-section{
+  padding:22px 0 38px;
+}
+
+.sponsors-panel{
+  background:#0a1710;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 32px rgba(0,0,0,.12);
+}
+
+.sponsors-heading{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.sponsors-heading span{
+  color:#42df58;
+  font-weight:900;
+  font-size:.78rem;
+  letter-spacing:.08em;
+}
+
+.sponsors-heading h2{
+  color:#fff;
+  margin:6px 0 4px;
+  font-size:1.8rem;
+}
+
+.sponsors-heading p{
+  color:#b9c6bd;
+  margin:0;
+}
+
+.sponsors-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  align-items:stretch;
+}
+
+.sponsor-card{
+  min-height:180px;
+  background:#fff;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  overflow:hidden;
+}
+
+.sponsor-card img{
+  display:block;
+  max-width:100%;
+  max-height:150px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+/* ===== MOBILE ===== */
+
 @media(max-width:760px){
-  .past-fixtures-panel{padding:14px}
-  .past-fixtures-table{font-size:.8rem}
-  .past-fixtures-table th,.past-fixtures-table td{padding:10px 8px}
+
+  .past-fixtures-panel{
+    padding:14px;
+  }
+
+  .past-fixtures-table{
+    font-size:.8rem;
+  }
+
+  .past-fixtures-table th,
+  .past-fixtures-table td{
+    padding:10px 8px;
+  }
+
+  .sponsors-panel{
+    padding:20px 14px;
+  }
+
+  /* FOUR SPONSORS AS 2 x 2 ON MOBILE */
+  .sponsors-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .sponsor-card{
+    min-height:140px;
+    padding:14px;
+  }
+
+  .sponsor-card img,
+  .sponsor-card .sponsor-logo{
+    display:block!important;
+    width:auto!important;
+    height:auto!important;
+    max-width:100%!important;
+    max-height:110px!important;
+    object-fit:contain!important;
+    margin:auto!important;
+  }
+
+  .sponsor-card .sponsor-logo-r2h{
+    max-width:105px!important;
+    max-height:105px!important;
+  }
+
+  .sponsor-card .sponsor-logo-knights{
+    width:105px!important;
+    height:105px!important;
+    max-width:105px!important;
+    max-height:105px!important;
+  }
+
+  .sponsor-card .sponsor-logo-alltech{
+    max-width:100%!important;
+    max-height:75px!important;
+  }
+
+  .sponsor-card .sponsor-logo-lotus{
+    max-width:105px!important;
+    max-height:105px!important;
+  }
 }
 </style>
 
-</head><body data-page="eleven">
-<header class="site-header"><div class="container navbar">
-<a class="brand" href="index.html"><span class="brand-badge">FF</span><span>REDDITCH<small>BETTER EVERY GAME</small></span></a>
-<button class="menu" aria-label="Menu">☰</button>
-<nav class="nav"><a href="tnf.html">TNF</a><a href="community.html">Community</a><a href="eleven.html">FF Redditch 11s</a><a class="members-link" href="https://members.ffredditch.co.uk">Members Login</a><a class="join-link join-btn" href="#">Join</a></nav>
-</div></header>
+</head>
 
-<section class="subhero"><div class="container"><span class="kicker">Competitive Football</span><h1>FF Redditch 11s</h1><p>Fixtures, results and season statistics for the competitive side of the FF Redditch community.</p></div></section>
+<body data-page="eleven">
 
-<section class="section"><div class="container">
-<div class="match-centre-grid">
-<div class="match-feature-card">
-<div class="card-tag">Next Fixture</div>
-<div class="club-v-club">
-<div class="club-side"><img class="club-badge home-club-badge" src="assets/badges/ffredditch.png" alt="FF Redditch badge"><strong>FF Redditch</strong></div>
-<div class="fixture-centre"><span class="versus-big">VS</span><span id="nextHomeAway" class="fixture-pill">H</span></div>
-<div class="club-side"><img id="nextOpponentBadge" class="club-badge" src="assets/badges/ffredditch.png" alt="Opponent badge"><strong id="nextOpponent">Loading…</strong></div>
-</div>
-<div class="fixture-detail-grid">
-<div><span>Date</span><strong id="nextDate">Loading…</strong></div>
-<div><span>Kick Off</span><strong id="nextKO">Loading…</strong></div>
-<div><span>Competition</span><strong id="nextCompetition">Loading…</strong></div>
-<div><span>Opponent</span><strong id="nextOpponentDetail">Loading…</strong></div>
-<div style="grid-column:1/-1"><span>Venue</span><strong id="nextVenue">Loading…</strong></div>
-</div></div>
+<header class="site-header">
 
-<div class="match-feature-card">
-<div class="card-tag">Last Result</div>
-<div class="club-v-club result-layout">
-<div class="club-side"><img class="club-badge home-club-badge" src="assets/badges/ffredditch.png" alt="FF Redditch badge"><strong>FF Redditch</strong></div>
-<div class="fixture-centre"><span id="lastScore" class="score-big">–</span></div>
-<div class="club-side"><img id="lastOpponentBadge" class="club-badge" src="assets/badges/ffredditch.png" alt="Opponent badge"><strong id="lastOpponent">Loading…</strong></div>
-</div>
-<div class="result-details">
-<p><strong>Scorers:</strong> <span id="lastScorers">Loading…</span></p>
-<p><strong>Player of the Match:</strong> <span id="lastMotm">Loading…</span></p>
-<p><strong>Competition:</strong> <span id="lastCompetition">Loading…</span></p>
-<p><strong>Venue:</strong> <span id="lastVenue">Loading…</span></p>
-</div></div></div>
+  <div class="container navbar">
 
-<div class="stats-three-grid">
-<div class="panel"><h3>Top Scorers</h3><ol class="simple-list" id="scorers"></ol></div>
-<div class="panel"><h3>Top Assists</h3><ol class="simple-list" id="assists"></ol></div>
-<div class="panel"><h3>Discipline</h3><div class="discipline-table" id="discipline"></div></div>
-</div></div></section>
+    <a class="brand" href="index.html">
+      <span class="brand-badge">FF</span>
+      <span>
+        REDDITCH
+        <small>BETTER EVERY GAME</small>
+      </span>
+    </a>
 
+    <button class="menu" aria-label="Menu">☰</button>
 
-<section class="section past-fixtures-section">
-  <div class="container">
-    <div class="panel past-fixtures-panel">
-      <div class="panel-title">📋 PAST FIXTURES</div>
-      <div class="past-fixtures-wrap">
-        <table class="past-fixtures-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Opponent</th>
-              <th>H/A</th>
-              <th>Competition</th>
-              <th>KO</th>
-              <th>Result</th>
-              <th>Scorers</th>
-              <th>MOTM</th>
-            </tr>
-          </thead>
-          <tbody id="pastFixturesBody">
-            <tr><td colspan="8">Loading fixtures…</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <nav class="nav">
+      <a href="tnf.html">TNF</a>
+      <a href="community.html">Community</a>
+      <a href="eleven.html">FF Redditch 11s</a>
+      <a class="members-link" href="https://members.ffredditch.co.uk">
+        Members Login
+      </a>
+      <a class="join-link join-btn" href="#">
+        Join
+      </a>
+    </nav>
+
   </div>
+
+</header>
+
+
+<section class="subhero">
+
+  <div class="container">
+
+    <span class="kicker">
+      Competitive Football
+    </span>
+
+    <h1>
+      FF Redditch 11s
+    </h1>
+
+    <p>
+      Fixtures, results and season statistics for the competitive side of the FF Redditch community.
+    </p>
+
+  </div>
+
 </section>
 
-<section class="section sponsors-section" id="sponsors"><div class="container"><div class="sponsors-panel">
-<div class="sponsors-heading"><span>🤝 CLUB PARTNERS</span><h2>Our Sponsors</h2><p>Proudly supporting FF Redditch 11s.</p></div>
-<div class="sponsors-grid">
-<div class="sponsor-card"><img class="sponsor-logo sponsor-logo-r2h" src="assets/reddi2heat.png" alt="Reddi 2 Heat"></div>
-<div class="sponsor-card"><img class="sponsor-logo sponsor-logo-knights" src="assets/knights.jpg" alt="Knights MOT & Services"></div>
-<div class="sponsor-card sponsor-card-wide"><img class="sponsor-logo sponsor-logo-alltech" src="assets/all-tech-midlands.png" alt="All-Tech (Midlands) Ltd"></div>
-</div></div></div></section>
 
-<style>
-.sponsors-section{padding:22px 0 38px}.sponsors-panel{background:#0a1710;border-radius:22px;padding:28px;box-shadow:0 12px 32px rgba(0,0,0,.12)}
-.sponsors-heading{text-align:center;margin-bottom:22px}.sponsors-heading span{color:#42df58;font-weight:900;font-size:.78rem;letter-spacing:.08em}
-.sponsors-heading h2{color:#fff;margin:6px 0 4px;font-size:1.8rem}.sponsors-heading p{color:#b9c6bd;margin:0}
-.sponsors-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
-.sponsor-card{min-height:180px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:22px;overflow:hidden}
-.sponsor-card img{display:block;max-width:100%;max-height:150px;width:auto;height:auto;object-fit:contain}.sponsor-card-wide img{max-height:115px}
-@media(max-width:760px){.sponsors-panel{padding:20px 14px}.sponsors-grid{grid-template-columns:1fr}.sponsor-card{min-height:145px;padding:18px}.sponsor-card img{max-height:120px}.sponsor-card-wide img{max-height:90px}}
-</style>
+<section class="section">
 
-<footer class="footer"><div class="container footer-top"><div class="brand"><span class="brand-badge">FF</span><span>REDDITCH<small>FOOTBALL • FITNESS • COMMUNITY</small></span></div>
-<div class="footer-links"><a href="tnf.html">TNF</a><a href="community.html">Community</a><a href="eleven.html">FF Redditch 11s</a><a href="https://members.ffredditch.co.uk">Members Login</a><a class="join-btn" href="#">Join</a></div></div>
-<div class="container copy">© 2026 FF Redditch</div></footer>
-<script src="assets/config.js"></script><script src="assets/app-eleven-v2.js?v=20260817-live-sheets-4"></script>
-</body></html>
+  <div class="container">
+
+    <div class="match-centre-grid">
+
+
+      <!-- NEXT FIXTURE -->
+
+      <div class="match-feature-card">
+
+        <div class="card-tag">
+          Next Fixture
+        </div>
+
+        <div class="club-v-club">
+
+          <div class="club-side">
+
+            <img
+              class="club-badge home-club-badge"
+              src="assets/badges/ffredditch.png"
+              alt="FF Redditch badge"
+            >
+
+            <strong>
+              FF Redditch
+            </strong>
+
+          </div>
+
+
+          <div class="fixture-centre">
+
+            <span class="versus-big">
+              VS
+            </span>
+
+            <span
+              id="nextHomeAway"
+              class="fixture-pill"
+            >
+              H
+            </span>
+
+          </div>
+
+
+          <div class="club-side">
+
+            <img
+              id="nextOpponentBadge"
+              class="club-badge"
+              src="assets/badges/ffredditch.png"
+              alt="Opponent badge"
+            >
+
+            <strong id="nextOpponent">
+              Loading…
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="fixture-detail-grid">
+
+          <div>
+            <span>Date</span>
+            <strong id="nextDate">
+              Loading…
+            </strong>
+          </div>
+
+          <div>
+            <span>Kick Off</span>
+            <strong id="nextKO">
+              Loading…
+            </strong>
+          </div>
+
+          <div>
+            <span>Competition</span>
+            <strong id="nextCompetition">
+              Loading…
+            </strong>
+          </div>
+
+          <div>
+            <span>Opponent</span>
+            <strong id="nextOpponentDetail">
+              Loading…
+            </strong>
+          </div>
+
+          <div style="grid-column:1/-1">
+            <span>Venue</span>
+            <strong id="nextVenue">
+              Loading…
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- LAST RESULT -->
+
+      <div class="match-feature-card">
+
+        <div class="card-tag">
+          Last Result
+        </div>
+
+        <div class="club-v-club result-layout">
+
+          <div class="club-side">
+
+            <img
+              class="club-badge home-club-badge"
+              src="assets/badges/ffredditch.png"
+              alt="FF Redditch badge"
+            >
+
+            <strong>
+              FF Redditch
+            </strong>
+
+          </div>
+
+
+          <div class="fixture-centre">
+
+            <span
+              id="lastScore"
+              class="score-big"
+            >
+              –
+            </span>
+
+          </div>
+
+
+          <div class="club-side">
+
+            <img
+              id="lastOpponentBadge"
+              class="club-badge"
+              src="assets/badges/ffredditch.png"
+              alt="Opponent badge"
+            >
+
+            <strong id="lastOpponent">
+              Loading…
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="result-details">
+
+          <p>
+            <strong>Scorers:</strong>
+            <span id="lastScorers">
+              Loading…
+            </span>
+          </p>
+
+          <p>
+            <strong>Player of the Match:</strong>
+            <span id="lastMotm">
+              Loading…
+            </span>
+          </p>
+
+          <p>
+            <strong>Competition:</strong>
+            <span id="lastCompetition">
+              Loading…
+            </span>
+          </p>
+
+          <p>
+            <strong>Venue:</strong>
+            <span id="lastVenue">
+              Loading…
+            </span>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats-three-grid">
+
+      <div class="panel">
+
+        <h3>
+          Top Scorers
+        </h3>
+
+        <ol
+          class="simple-list"
+          id="scorers"
+        ></ol>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Top Assists
+        </h3>
+
+        <ol
+          class="simple-list"
+          id="assists"
+        ></ol>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Discipline
+        </h3>
+
+        <div
+          class="discipline-table"
+          id="discipline"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PAST FIXTURES -->
+
+<section class="section past-fixtures-section">
+
+  <div class="container">
+
+    <div class="panel past-fixtures-panel">
+
+      <div class="panel-title">
+        📋 PAST FIXTURES
+      </div>
+
+      <div class="past-fixtures-wrap">
+
+        <table class="past-fixtures-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Date</th>
+
+              <th>Opponent</th>
+
+              <th>H/A</th>
+
+              <th>Competition</th>
+
+              <th>KO</th>
+
+              <th>Result</th>
+
+              <th>Scorers</th>
+
+              <th>MOTM</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="pastFixturesBody">
+
+            <tr>
+
+              <td colspan="8">
+                Loading fixtures…
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SPONSORS -->
+
+<section
+  class="section sponsors-section"
+  id="sponsors"
+>
+
+  <div class="container">
+
+    <div class="sponsors-panel">
+
+      <div class="sponsors-heading">
+
+        <span>
+          🤝 CLUB PARTNERS
+        </span>
+
+        <h2>
+          Our Sponsors
+        </h2>
+
+        <p>
+          Proudly supporting FF Redditch 11s.
+        </p>
+
+      </div>
+
+
+      <div class="sponsors-grid">
+
+
+        <!-- REDDI 2 HEAT -->
+
+        <div class="sponsor-card">
+
+          <img
+            class="sponsor-logo sponsor-logo-r2h"
+            src="assets/reddi2heat.png"
+            alt="Reddi 2 Heat"
+          >
+
+        </div>
+
+
+        <!-- KNIGHTS -->
+
+        <div class="sponsor-card">
+
+          <img
+            class="sponsor-logo sponsor-logo-knights"
+            src="assets/knights.jpg"
+            alt="Knights MOT & Services"
+          >
+
+        </div>
+
+
+        <!-- ALL TECH -->
+
+        <div class="sponsor-card">
+
+          <img
+            class="sponsor-logo sponsor-logo-alltech"
+            src="assets/all-tech-midlands.png"
+            alt="All-Tech (Midlands) Ltd"
+          >
+
+        </div>
+
+
+        <!-- LOTUS HOT TUBS -->
+
+        <div class="sponsor-card">
+
+          <img
+            class="sponsor-logo sponsor-logo-lotus"
+            src="assets/lotus-hot-tubs.jpg"
+            alt="Lotus Hot Tubs"
+          >
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer class="footer">
+
+  <div class="container footer-top">
+
+    <div class="brand">
+
+      <span class="brand-badge">
+        FF
+      </span>
+
+      <span>
+
+        REDDITCH
+
+        <small>
+          FOOTBALL • FITNESS • COMMUNITY
+        </small>
+
+      </span>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="tnf.html">
+        TNF
+      </a>
+
+      <a href="community.html">
+        Community
+      </a>
+
+      <a href="eleven.html">
+        FF Redditch 11s
+      </a>
+
+      <a href="https://members.ffredditch.co.uk">
+        Members Login
+      </a>
+
+      <a
+        class="join-btn"
+        href="#"
+      >
+        Join
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="container copy">
+    © 2026 FF Redditch
+  </div>
+
+</footer>
+
+
+<script src="assets/config.js"></script>
+
+<script src="assets/app-eleven-v2.js?v=20260817-live-sheets-4"></script>
+
+
+</body>
+</html>
