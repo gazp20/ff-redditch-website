@@ -52,8 +52,34 @@ function parseSheetDate(value){if(!value) return null; const s=String(value).tri
 function formatDate(value){const d=parseSheetDate(value); if(!d) return value||"TBC"; return new Intl.DateTimeFormat("en-GB",{day:"2-digit",month:"2-digit",year:"numeric"}).format(d);}
 function shortHA(v){const s=String(v||"").toLowerCase(); if(s.startsWith("h")) return "H"; if(s.startsWith("a")) return "A"; return String(v||"").toUpperCase();}
 function normaliseResult(v){const s=String(v||"").trim(); if(!s) return "–"; return s.replace(/^[WLD]\s*/i,"").replace(/(\d)\s*-\s*(\d)/g,"$1–$2");}
-function opponentSlug(name){return String(name||"").toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");}
-function setBadge(img,opponent){if(!img) return; const slug=opponentSlug(opponent); img.alt=opponent?opponent+" badge":"Opponent badge"; img.onerror=function(){this.onerror=null;this.src="assets/badges/ffredditch.png";}; img.src=slug?("assets/badges/"+slug+".png"):"assets/badges/ffredditch.png";}
+const BADGE_ALIASES = {
+  "wrexham":"wrexham",
+  "sutton":"sutton-united",
+  "sutton united":"sutton-united",
+  "sandwell":"sandwell-social",
+  "sandwell social":"sandwell-social",
+  "bromsgrove":"bromsgrove-forge",
+  "bromsgrove forge":"bromsgrove-forge",
+  "kidderminster":"kidderminster-mvf",
+  "kidderminster mvf":"kidderminster-mvf",
+  "stoke":"stoke-17s",
+  "stoke 17s":"stoke-17s",
+  "oldbury lions":"oldbury-lions",
+  "solihull":"solihull"
+};
+
+function opponentSlug(name){
+  const key=String(name||"").trim().toLowerCase();
+  if(BADGE_ALIASES[key]) return BADGE_ALIASES[key];
+  return key.replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+}
+function setBadge(img,opponent){
+  if(!img) return;
+  const slug=opponentSlug(opponent);
+  img.alt=opponent?opponent+" badge":"Opponent badge";
+  img.onerror=function(){this.onerror=null;this.src="assets/badges/ffredditch.png";};
+  img.src=slug?("assets/badges/"+slug+".png"):"assets/badges/ffredditch.png";
+}
 
 function renderEleven(data){
   const normalised=data.map(p=>({
@@ -62,7 +88,7 @@ function renderEleven(data){
     assists:pick(p,"Assists","assists"),
     yellow:pick(p,"yellow","Yellow"),
     red:pick(p,"red","Red")
-  }));
+  })).filter(p=>p.name);
   const goalPlayers=[...normalised].filter(p=>num(p.goals)>0).sort((a,b)=>num(b.goals)-num(a.goals)).slice(0,5);
   const assistPlayers=[...normalised].filter(p=>num(p.assists)>0).sort((a,b)=>num(b.assists)-num(a.assists)).slice(0,5);
   const cards=[...normalised].filter(p=>num(p.yellow)>0||num(p.red)>0).sort((a,b)=>(num(b.red)*3+num(b.yellow))-(num(a.red)*3+num(a.yellow)));
@@ -88,7 +114,7 @@ function renderPastFixtures(fixtures){
   if(!body) return;
 
   const played=[...fixtures]
-    .filter(r=>r.status.toLowerCase()==="played")
+    .filter(r=>r.status.toLowerCase()==="played" || !!r.result)
     .sort((a,b)=>(parseSheetDate(b.date)?.getTime()||0)-(parseSheetDate(a.date)?.getTime()||0));
 
   if(!played.length){
@@ -117,7 +143,7 @@ function renderFixtures(rows){
     scorers:pick(r,"Scorers","scorers"), motm:pick(r,"MOTM","motm"), status:pick(r,"Status","status"), venue:pick(r,"Venue","venue")
   })).filter(r=>r.opponent||r.date);
 
-  const played=fixtures.filter(r=>r.status.toLowerCase()==="played").sort((a,b)=>(parseSheetDate(b.date)?.getTime()||0)-(parseSheetDate(a.date)?.getTime()||0));
+  const played=fixtures.filter(r=>r.status.toLowerCase()==="played" || !!r.result).sort((a,b)=>(parseSheetDate(b.date)?.getTime()||0)-(parseSheetDate(a.date)?.getTime()||0));
   const upcoming=fixtures.filter(r=>r.status.toLowerCase()==="upcoming").sort((a,b)=>(parseSheetDate(a.date)?.getTime()||Number.MAX_SAFE_INTEGER)-(parseSheetDate(b.date)?.getTime()||Number.MAX_SAFE_INTEGER));
   const last=played[0], next=upcoming[0];
 
