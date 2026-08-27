@@ -265,9 +265,9 @@ function renderTeam(team){
 
 
   const featuredRecipe = {
-    id:"gousto-southern-fried",
-    title:"Southern Fried Chicken With Creamy Slaw, Gravy & Chips",
-    image:"southern-fried-chicken-gousto.jpg",
+  id:"gousto-southern-fried",
+  title:"Southern Fried Chicken With Creamy Slaw, Gravy & Chips",
+  image:"/members/southern-fried-chicken-gousto.jpg",
     sourceUrl:"https://www.gousto.co.uk/cookbook/recipes/southern-fried-chicken-with-creamy-slaw-gravy-chips",
     sourceName:"Gousto",
     calories:617,
@@ -286,7 +286,7 @@ function renderTeam(team){
 
 function renderRecipe(r){
   $("#recipeTitle").textContent=r.title;
-  $("#recipeImage").src=r.image || "sticky-chicken-katsu.jpg";
+  $("#recipeImage").src = r.image || "/members/southern-fried-chicken-gousto.jpg";
   $("#recipeImage").alt=r.title || "Recipe of the week";
 
   const calories = $("#recipeCalories");
@@ -296,7 +296,7 @@ function renderRecipe(r){
   if(protein) protein.textContent = r.proteinG != null ? `${r.proteinG}g` : "Gousto";
   if(minutes) minutes.textContent = r.minutes ?? "↗";
 
-  $("#dialogRecipeImage").src=r.image || "sticky-chicken-katsu.jpg";
+ $("#dialogRecipeImage").src = r.image || "/members/southern-fried-chicken-gousto.jpg";
   $("#dialogRecipeTitle").textContent=r.title;
   $("#dialogMacros").innerHTML = r.sourceName
     ? `<b>🍽️ Recipe source: ${r.sourceName}</b>`
