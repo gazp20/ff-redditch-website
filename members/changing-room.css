@@ -44,7 +44,7 @@ a{text-decoration:none;color:inherit}
 .member-chip{display:flex;align-items:center;gap:8px}
 .avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-weight:1000}
 
-.locker-hero{height:330px;position:relative;background:url("changing-room-bg.jpg") center 45%/cover no-repeat;overflow:hidden}
+.locker-hero{height:330px;position:relative;background:url("/members/changing-room-bg.jpg") !important; background-position:center 45% !important; background-size:cover !important; background-repeat:no-repeat !important; overflow:hidden;}
 .locker-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.15) 50%,rgba(0,0,0,.42)),linear-gradient(0deg,rgba(6,10,8,.4),transparent 55%)}
 .locker-brand{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);text-align:center;color:#fff;text-shadow:0 3px 15px rgba(0,0,0,.7)}
 .locker-brand img{width:90px;height:90px;object-fit:contain}
