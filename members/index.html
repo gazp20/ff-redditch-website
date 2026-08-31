@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
 
-  <link rel="stylesheet" href="changing-room.css">
+  <link rel="stylesheet" href="/members/changing-room.css?v=20260831-assets-fix2">
 
 <style>
 /* =========================================================
@@ -15,7 +14,7 @@
    ========================================================= */
 
 .locker-hero{
-  background-image:url("changing-room-bg.jpg")!important;
+  background-image:url("/members/changing-room-bg.jpg?v=20260831")!important;
   background-position:center center!important;
   background-size:cover!important;
   background-repeat:no-repeat!important;
@@ -1122,7 +1121,7 @@
       <img
         class="brand-crest"
         id="brandCrest"
-        src="ffredditch-crest.png"
+        src="/members/ffredditch-crest.png?v=20260831"
         alt="FF Redditch"
       >
 
@@ -1256,7 +1255,7 @@
 
       <div class="locker-brand">
         <img
-          src="ffredditch-crest.png"
+          src="/members/ffredditch-crest.png?v=20260831"
           alt=""
         >
         <h1>THE CHANGING ROOM</h1>
@@ -1397,11 +1396,11 @@
 
         <img
           id="recipeImage"
-          src="southern-fried-chicken-gousto.jpg"
+          src="/members/southern-fried-chicken-gousto.jpg?v=20260831"
           alt="Southern Fried Chicken With Creamy Slaw, Gravy & Chips"
           onerror="
             this.onerror=null;
-            this.src='assets/southern-fried-chicken-gousto.jpg';
+            this.src='/members/southern-fried-chicken-gousto.jpg?v=20260831';
           "
         >
 
@@ -1762,7 +1761,7 @@
             <img
               class="player-card-crest"
               id="playerCardCrest"
-              src="ffredditch-crest.png"
+              src="/members/ffredditch-crest.png?v=20260831"
               alt="FF Redditch"
               onerror="
                 this.onerror=null;
@@ -2165,7 +2164,7 @@
      MAIN JAVASCRIPT
      ========================================================= -->
 
-<script src="/changing-room.js?v=20260818-image-fix1"></script>
+<script src="/members/changing-room.js?v=20260831-assets-fix2"></script>
 
 <!-- =========================================================
      IMAGE FALLBACKS + JOINED RIBBON FIX
@@ -2180,9 +2179,9 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const crestCandidates = [
-    "ffredditch-crest.png",
-    "assets/ffredditch-crest.png",
+    "/members/ffredditch-crest.png?v=20260831",
     "/members/ffredditch-crest.png",
+    "ffredditch-crest.png",
     "/members/assets/ffredditch-crest.png",
     "/assets/ffredditch-crest.png"
   ];
@@ -2231,9 +2230,9 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const heroCandidates = [
-    "changing-room-bg.jpg",
-    "assets/changing-room-bg.jpg",
+    "/members/changing-room-bg.jpg?v=20260831",
     "/members/changing-room-bg.jpg",
+    "changing-room-bg.jpg",
     "/members/assets/changing-room-bg.jpg",
     "/assets/changing-room-bg.jpg"
   ];
@@ -2279,11 +2278,10 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const goustoCandidates = [
+    "/members/southern-fried-chicken-gousto.jpg?v=20260831",
+    "/members/southern-fried-chicken-gousto.jpg",
     "southern-fried-chicken-gousto.jpg",
     "southern-fried-chicken-gousto.jpeg",
-    "assets/southern-fried-chicken-gousto.jpg",
-    "assets/southern-fried-chicken-gousto.jpeg",
-    "/members/southern-fried-chicken-gousto.jpg",
     "/members/assets/southern-fried-chicken-gousto.jpg",
     "/assets/southern-fried-chicken-gousto.jpg"
   ];
@@ -2331,4 +2329,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-```
