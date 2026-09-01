@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
 
-  <link rel="stylesheet" href="/members/changing-room.css?v=20260901-newsfix4">
+  <link rel="stylesheet" href="/members/changing-room.css?v=20260901-newsfix5">
 
 <style>
 /* =========================================================
@@ -2179,7 +2179,7 @@
      MAIN JAVASCRIPT
      ========================================================= -->
 
-<script src="/members/changing-room.js?v=20260901-newsfix4"></script>
+<script src="/members/changing-room.js?v=20260901-newsfix5"></script>
 
 <!-- =========================================================
      IMAGE FALLBACKS + JOINED RIBBON FIX
@@ -2345,28 +2345,29 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
+
+
+
 <script>
-/* FORCE CURRENT CLUB NEWS BANNER */
-(function(){
-  function forceClubNews(){
-    const title=document.getElementById("newsTitle");
-    const body=document.getElementById("newsBody");
-    if(title) title.textContent="⚽ THIS WEEK’S TOP SCORER: DAN BOWEN";
-    if(body) body.textContent="🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS";
-  }
-  document.addEventListener("DOMContentLoaded",function(){
-    forceClubNews();
-    const banner=document.getElementById("clubNewsBanner");
-    if(banner){
-      new MutationObserver(forceClubNews).observe(
-        banner,{childList:true,subtree:true,characterData:true}
-      );
+/* CURRENT CLUB NEWS - SAFE OVERRIDE */
+document.addEventListener("DOMContentLoaded", function () {
+  function updateClubNews() {
+    const title = document.getElementById("newsTitle");
+    const body = document.getElementById("newsBody");
+
+    if (title && title.textContent !== "⚽ THIS WEEK’S TOP SCORER: DAN BOWEN") {
+      title.textContent = "⚽ THIS WEEK’S TOP SCORER: DAN BOWEN";
     }
-    setTimeout(forceClubNews,250);
-    setTimeout(forceClubNews,1000);
-    setTimeout(forceClubNews,2500);
-  });
-})();
+    if (body && body.textContent !== "🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS") {
+      body.textContent = "🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS";
+    }
+  }
+
+  updateClubNews();
+  setTimeout(updateClubNews, 500);
+  setTimeout(updateClubNews, 1500);
+  setTimeout(updateClubNews, 3000);
+});
 </script>
 
 </body>
