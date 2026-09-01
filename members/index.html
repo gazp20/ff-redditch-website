@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
 
-  <link rel="stylesheet" href="/members/changing-room.css?v=20260831-assets-fix2">
+  <link rel="stylesheet" href="/members/changing-room.css?v=20260901-update1">
 
 <style>
 /* =========================================================
@@ -14,7 +14,7 @@
    ========================================================= */
 
 .locker-hero{
-  background-image:url("/members/changing-room-bg.jpg?v=20260831")!important;
+  background-image:url("/members/changing-room-bg.jpg?v=20260901")!important;
   background-position:center center!important;
   background-size:cover!important;
   background-repeat:no-repeat!important;
@@ -1121,7 +1121,7 @@
       <img
         class="brand-crest"
         id="brandCrest"
-        src="/members/ffredditch-crest.png?v=20260831"
+        src="/members/ffredditch-crest.png?v=20260901"
         alt="FF Redditch"
       >
 
@@ -1255,7 +1255,7 @@
 
       <div class="locker-brand">
         <img
-          src="/members/ffredditch-crest.png?v=20260831"
+          src="/members/ffredditch-crest.png?v=20260901"
           alt=""
         >
         <h1>THE CHANGING ROOM</h1>
@@ -1396,11 +1396,11 @@
 
         <img
           id="recipeImage"
-          src="/members/southern-fried-chicken-gousto.jpg?v=20260831"
+          src="/members/southern-fried-chicken-gousto.jpg?v=20260901"
           alt="Southern Fried Chicken With Creamy Slaw, Gravy & Chips"
           onerror="
             this.onerror=null;
-            this.src='/members/southern-fried-chicken-gousto.jpg?v=20260831';
+            this.src='assets/southern-fried-chicken-gousto.jpg';
           "
         >
 
@@ -1534,6 +1534,15 @@
                   Score at least one goal on the pitch during a TNF session.
                   Maximum 1 point per session.
                 </small>
+              </div>
+              <b>+1</b>
+            </div>
+
+            <div class="ffr-rule football">
+              <span class="rule-icon">🏆</span>
+              <div>
+                <strong>Finish on the winning team at TNF</strong>
+                <small>Be on the winning team on the night. Maximum 1 point per session.</small>
               </div>
               <b>+1</b>
             </div>
@@ -1761,7 +1770,7 @@
             <img
               class="player-card-crest"
               id="playerCardCrest"
-              src="/members/ffredditch-crest.png?v=20260831"
+              src="/members/ffredditch-crest.png?v=20260901"
               alt="FF Redditch"
               onerror="
                 this.onerror=null;
@@ -2164,7 +2173,7 @@
      MAIN JAVASCRIPT
      ========================================================= -->
 
-<script src="/members/changing-room.js?v=20260831-assets-fix2"></script>
+<script src="/members/changing-room.js?v=20260901-update1"></script>
 
 <!-- =========================================================
      IMAGE FALLBACKS + JOINED RIBBON FIX
@@ -2179,9 +2188,9 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const crestCandidates = [
-    "/members/ffredditch-crest.png?v=20260831",
-    "/members/ffredditch-crest.png",
     "ffredditch-crest.png",
+    "assets/ffredditch-crest.png",
+    "/members/ffredditch-crest.png",
     "/members/assets/ffredditch-crest.png",
     "/assets/ffredditch-crest.png"
   ];
@@ -2230,9 +2239,9 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const heroCandidates = [
-    "/members/changing-room-bg.jpg?v=20260831",
-    "/members/changing-room-bg.jpg",
     "changing-room-bg.jpg",
+    "assets/changing-room-bg.jpg",
+    "/members/changing-room-bg.jpg",
     "/members/assets/changing-room-bg.jpg",
     "/assets/changing-room-bg.jpg"
   ];
@@ -2278,10 +2287,11 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const goustoCandidates = [
-    "/members/southern-fried-chicken-gousto.jpg?v=20260831",
-    "/members/southern-fried-chicken-gousto.jpg",
     "southern-fried-chicken-gousto.jpg",
     "southern-fried-chicken-gousto.jpeg",
+    "assets/southern-fried-chicken-gousto.jpg",
+    "assets/southern-fried-chicken-gousto.jpeg",
+    "/members/southern-fried-chicken-gousto.jpg",
     "/members/assets/southern-fried-chicken-gousto.jpg",
     "/assets/southern-fried-chicken-gousto.jpg"
   ];
@@ -2325,6 +2335,24 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
+</script>
+
+
+<script>
+/* WEEKLY CLUB NEWS */
+(function(){
+  function setWeeklyNews(){
+    const title = document.getElementById("newsTitle");
+    const body = document.getElementById("newsBody");
+    if(title) title.textContent = "This Week’s Top Scorer — Dan Bowen";
+    if(body) body.textContent = "⚽ This week’s top scorer: Dan Bowen  •  🎯 5% Club Winners: Dan Bowen & Mark Sanders";
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    setWeeklyNews();
+    setTimeout(setWeeklyNews, 500);
+    setTimeout(setWeeklyNews, 1500);
+  });
+})();
 </script>
 
 </body>
