@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#071009">
   <title>The Changing Room | FF Redditch</title>
 
-  <link rel="stylesheet" href="/members/changing-room.css?v=20260901-update1">
+  <link rel="stylesheet" href="/members/changing-room.css?v=20260901-newsfix4">
 
 <style>
 /* =========================================================
@@ -1103,6 +1103,17 @@
 }
 </style>
 
+
+<style>
+#clubNewsBanner .news-items{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+#clubNewsBanner #newsTitle,#clubNewsBanner #newsBody{margin:0;font-weight:900}
+@media(max-width:700px){
+ #clubNewsBanner{align-items:flex-start}
+ #clubNewsBanner .news-items{flex-direction:column;align-items:flex-start;gap:4px}
+ #clubNewsBanner #newsTitle,#clubNewsBanner #newsBody{display:block;line-height:1.35}
+}
+</style>
+
 </head>
 
 <body>
@@ -1626,17 +1637,12 @@
          NEWS
          ===================================================== -->
 
-    <section class="news-strip">
-
-      <span>
-        📣 <b>CLUB NEWS</b>
-      </span>
-
-      <div>
-        <strong id="newsTitle">Welcome</strong>
-        <small id="newsBody"></small>
+    <section class="news-strip" id="clubNewsBanner">
+      <span class="news-label">📣 <b>CLUB NEWS</b></span>
+      <div class="news-items">
+        <strong id="newsTitle">⚽ THIS WEEK’S TOP SCORER: DAN BOWEN</strong>
+        <small id="newsBody">🎯 5% CLUB WINNERS: DAN BOWEN &amp; MARK SANDERS</small>
       </div>
-
     </section>
 
     <!-- =====================================================
@@ -2173,7 +2179,7 @@
      MAIN JAVASCRIPT
      ========================================================= -->
 
-<script src="/members/changing-room.js?v=20260901-update1"></script>
+<script src="/members/changing-room.js?v=20260901-newsfix4"></script>
 
 <!-- =========================================================
      IMAGE FALLBACKS + JOINED RIBBON FIX
@@ -2338,19 +2344,27 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 
+
 <script>
-/* WEEKLY CLUB NEWS */
+/* FORCE CURRENT CLUB NEWS BANNER */
 (function(){
-  function setWeeklyNews(){
-    const title = document.getElementById("newsTitle");
-    const body = document.getElementById("newsBody");
-    if(title) title.textContent = "This Week’s Top Scorer — Dan Bowen";
-    if(body) body.textContent = "⚽ This week’s top scorer: Dan Bowen  •  🎯 5% Club Winners: Dan Bowen & Mark Sanders";
+  function forceClubNews(){
+    const title=document.getElementById("newsTitle");
+    const body=document.getElementById("newsBody");
+    if(title) title.textContent="⚽ THIS WEEK’S TOP SCORER: DAN BOWEN";
+    if(body) body.textContent="🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS";
   }
-  document.addEventListener("DOMContentLoaded", function(){
-    setWeeklyNews();
-    setTimeout(setWeeklyNews, 500);
-    setTimeout(setWeeklyNews, 1500);
+  document.addEventListener("DOMContentLoaded",function(){
+    forceClubNews();
+    const banner=document.getElementById("clubNewsBanner");
+    if(banner){
+      new MutationObserver(forceClubNews).observe(
+        banner,{childList:true,subtree:true,characterData:true}
+      );
+    }
+    setTimeout(forceClubNews,250);
+    setTimeout(forceClubNews,1000);
+    setTimeout(forceClubNews,2500);
   });
 })();
 </script>
