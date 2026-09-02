@@ -9,9 +9,6 @@ export default {
 
     // ==========================================
     // STATIC ASSETS
-    // Serve /assets/* directly before any routing.
-    // Includes a cache-busting retry for image files if Cloudflare
-    // has cached an old HTML fallback for a newly-added badge/image.
     // ==========================================
     if (url.pathname.startsWith("/assets/")) {
       let assetResponse = await env.ASSETS.fetch(request);
@@ -58,8 +55,10 @@ export default {
           const base64 = payloadPart.replace(/-/g, "+").replace(/_/g, "/");
           const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
           const payload = JSON.parse(atob(padded));
+
           email = payload.email || payload.sub || "";
           email = String(email).trim().toLowerCase();
+
         } catch (e) {
           email = "";
         }
@@ -105,7 +104,7 @@ export default {
           {
             method: "POST",
             body: JSON.stringify({
-              email: email.trim().toLowerCase(),
+              email: email,
               key: String(env.MEMBERS_API_SECRET).trim()
             }),
             headers: {
@@ -147,9 +146,11 @@ export default {
     // ==========================================
     if (
       url.hostname === "members.ffredditch.co.uk" &&
-      (url.pathname === "/api/rankings" || url.pathname === "/api/rankings/")
+      (url.pathname === "/api/rankings" ||
+       url.pathname === "/api/rankings/")
     ) {
       const cache = caches.default;
+
       const cacheKey = new Request(
         "https://members.ffredditch.co.uk/__ffr_cache/rankings-v1",
         { method: "GET" }
@@ -197,7 +198,9 @@ export default {
         });
 
         if (googleResponse.ok) {
-          ctx.waitUntil(cache.put(cacheKey, response.clone()));
+          ctx.waitUntil(
+            cache.put(cacheKey, response.clone())
+          );
         }
 
         return response;
@@ -220,13 +223,117 @@ export default {
     }
 
     // ==========================================
+    // TNF NEXT SESSION API
+    // READ ONLY
+    // members.ffredditch.co.uk/api/tnf/next
+    // ==========================================
+    if (
+      url.hostname === "members.ffredditch.co.uk" &&
+      (
+        url.pathname === "/api/tnf/next" ||
+        url.pathname === "/api/tnf/next/"
+      )
+    ) {
+      const accessJwt = request.headers.get("Cf-Access-Jwt-Assertion");
+      let email = "";
+
+      if (accessJwt) {
+        try {
+          const payloadPart = accessJwt.split(".")[1];
+          const base64 = payloadPart.replace(/-/g, "+").replace(/_/g, "/");
+          const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+          const payload = JSON.parse(atob(padded));
+
+          email = payload.email || payload.sub || "";
+          email = String(email).trim().toLowerCase();
+
+        } catch (e) {
+          email = "";
+        }
+      }
+
+      if (!email) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "Authenticated member email not found"
+          }),
+          {
+            status: 401,
+            headers: {
+              "content-type": "application/json; charset=UTF-8",
+              "cache-control": "no-store"
+            }
+          }
+        );
+      }
+
+      if (!env.MEMBERS_API_URL || !env.MEMBERS_API_SECRET) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "Members API is not configured"
+          }),
+          {
+            status: 500,
+            headers: {
+              "content-type": "application/json; charset=UTF-8",
+              "cache-control": "no-store"
+            }
+          }
+        );
+      }
+
+      try {
+        const googleResponse = await fetch(
+          String(env.MEMBERS_API_URL).trim(),
+          {
+            method: "POST",
+            body: JSON.stringify({
+              action: "tnf_next_session",
+              email: email,
+              key: String(env.MEMBERS_API_SECRET).trim()
+            }),
+            headers: {
+              "accept": "application/json",
+              "content-type": "application/json"
+            }
+          }
+        );
+
+        const body = await googleResponse.text();
+
+        return new Response(body, {
+          status: googleResponse.ok ? 200 : googleResponse.status,
+          headers: {
+            "content-type": "application/json; charset=UTF-8",
+            "cache-control": "no-store"
+          }
+        });
+
+      } catch (error) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "Could not load TNF session"
+          }),
+          {
+            status: 502,
+            headers: {
+              "content-type": "application/json; charset=UTF-8",
+              "cache-control": "no-store"
+            }
+          }
+        );
+      }
+    }
+
+    // ==========================================
     // MEMBERS SUBDOMAIN ROUTING
     // ==========================================
     if (url.hostname === "members.ffredditch.co.uk") {
       const target = new URL(request.url);
 
-      // Root-level player/media images should be served directly.
-      // Without this, /dan-bowen.jpg becomes /members/dan-bowen.jpg.
       if (
         /\.(?:jpe?g|png|webp|gif|svg)$/i.test(url.pathname) &&
         !url.pathname.startsWith("/members/")
