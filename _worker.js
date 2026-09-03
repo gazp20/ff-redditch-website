@@ -329,6 +329,184 @@ export default {
     }
 
     // ==========================================
+// TNF AVAILABILITY RESPONSE API
+// members.ffredditch.co.uk/api/tnf/respond
+// ==========================================
+if (
+  url.hostname === "members.ffredditch.co.uk" &&
+  (
+    url.pathname === "/api/tnf/respond" ||
+    url.pathname === "/api/tnf/respond/"
+  )
+) {
+  if (request.method !== "POST") {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "POST required"
+      }),
+      {
+        status: 405,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  const accessJwt = request.headers.get("Cf-Access-Jwt-Assertion");
+  let email = "";
+
+  if (accessJwt) {
+    try {
+      const payloadPart = accessJwt.split(".")[1];
+      const base64 = payloadPart.replace(/-/g, "+").replace(/_/g, "/");
+      const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+      const payload = JSON.parse(atob(padded));
+
+      email = payload.email || payload.sub || "";
+      email = String(email).trim().toLowerCase();
+
+    } catch (e) {
+      email = "";
+    }
+  }
+
+  if (!email) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Authenticated member email not found"
+      }),
+      {
+        status: 401,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  if (!env.MEMBERS_API_URL || !env.MEMBERS_API_SECRET) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Members API is not configured"
+      }),
+      {
+        status: 500,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  let body = {};
+
+  try {
+    body = await request.json();
+  } catch (e) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Invalid JSON"
+      }),
+      {
+        status: 400,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  const sessionId = String(body.sessionId || "").trim();
+  const response = String(body.response || "").trim().toUpperCase();
+
+  if (!sessionId) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Session ID required"
+      }),
+      {
+        status: 400,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  if (response !== "IN" && response !== "OUT") {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Response must be IN or OUT"
+      }),
+      {
+        status: 400,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+
+  try {
+    const googleResponse = await fetch(
+      String(env.MEMBERS_API_URL).trim(),
+      {
+        method: "POST",
+        body: JSON.stringify({
+          action: "tnf_set_availability",
+          email: email,
+          sessionId: sessionId,
+          response: response,
+          key: String(env.MEMBERS_API_SECRET).trim()
+        }),
+        headers: {
+          "accept": "application/json",
+          "content-type": "application/json"
+        }
+      }
+    );
+
+    const googleBody = await googleResponse.text();
+
+    return new Response(googleBody, {
+      status: googleResponse.ok ? 200 : googleResponse.status,
+      headers: {
+        "content-type": "application/json; charset=UTF-8",
+        "cache-control": "no-store"
+      }
+    });
+
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Could not save TNF availability"
+      }),
+      {
+        status: 502,
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+          "cache-control": "no-store"
+        }
+      }
+    );
+  }
+}
+
+    // ==========================================
     // MEMBERS SUBDOMAIN ROUTING
     // ==========================================
     if (url.hostname === "members.ffredditch.co.uk") {
