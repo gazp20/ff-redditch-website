@@ -938,13 +938,20 @@ function renderFixtures(rows){
         return false;
       }
 
-      /*
-        A fixture is considered upcoming if its date
-        is today or later.
+      const status =
+        String(r.status || "")
+          .trim()
+          .toLowerCase();
 
-        This deliberately ignores the Status column.
-      */
+      const hasResult =
+        String(r.result || "").trim() !== "";
 
+      // Do not show completed matches as the next fixture
+      if(status === "played" || hasResult){
+        return false;
+      }
+
+      // Only today or future fixtures
       return r.parsedDate >= today;
 
     })
@@ -954,13 +961,6 @@ function renderFixtures(rows){
         a.parsedDate.getTime() -
         b.parsedDate.getTime()
     );
-
-
-  /*
-    The first chronological future fixture is ALWAYS
-    the next fixture.
-  */
-
   const last = played[0];
   const next = upcoming[0];
 
