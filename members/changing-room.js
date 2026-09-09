@@ -265,19 +265,26 @@ function renderTeam(team){
 
 
   const featuredRecipe = {
-  id:"gousto-southern-fried",
-  title:"Southern Fried Chicken With Creamy Slaw, Gravy & Chips",
-  image:"/members/southern-fried-chicken-gousto.jpg",
-    sourceUrl:"https://www.gousto.co.uk/cookbook/recipes/southern-fried-chicken-with-creamy-slaw-gravy-chips",
+    id:"gousto-asian-beef-noodles",
+    title:"Asian Beef Noodles",
+    image:"/members/asian-beef-noodles.jpg",
+    sourceUrl:"https://www.gousto.co.uk/cookbook/beef-recipes/asian-beef-noodles",
     sourceName:"Gousto",
-    calories:617,
-    proteinG:35.8,
-    minutes:45,
+    calories:654,
+    proteinG:38.6,
+    minutes:35,
+    serves:2,
     ingredients:[
-      "Carrot & cabbage slaw mix (160g)",
-      "Skinless chicken thighs (320g)",
-      "Mayonnaise (50ml)",
-      "Southern fried seasoning (1 tbsp)"
+      "1 spring onion",
+      "4 soy sauce sachets (32ml)",
+      "1 red chilli",
+      "2 tbsp rice vinegar",
+      "1 garlic clove",
+      "15g root ginger",
+      "1/2 cucumber",
+      "3 wheat noodle nests (150g)",
+      "2 tbsp toasted sesame oil",
+      "2 British minute steaks"
     ],
     method:[
       "Open the original Gousto recipe for the complete step-by-step cooking method."
@@ -286,7 +293,7 @@ function renderTeam(team){
 
 function renderRecipe(r){
   $("#recipeTitle").textContent=r.title;
-  $("#recipeImage").src = r.image || "/members/southern-fried-chicken-gousto.jpg";
+  $("#recipeImage").src = r.image || "/members/asian-beef-noodles.jpg";
   $("#recipeImage").alt=r.title || "Recipe of the week";
 
   const calories = $("#recipeCalories");
@@ -296,7 +303,7 @@ function renderRecipe(r){
   if(protein) protein.textContent = r.proteinG != null ? `${r.proteinG}g` : "Gousto";
   if(minutes) minutes.textContent = r.minutes ?? "↗";
 
- $("#dialogRecipeImage").src = r.image || "/members/southern-fried-chicken-gousto.jpg";
+ $("#dialogRecipeImage").src = r.image || "/members/asian-beef-noodles.jpg";
   $("#dialogRecipeTitle").textContent=r.title;
   $("#dialogMacros").innerHTML = r.sourceName
     ? `<b>🍽️ Recipe source: ${r.sourceName}</b>`
@@ -476,8 +483,8 @@ if($("#fullWeightLeaderboard")){
     : '<div class="empty-live-state">No live weight-loss data available yet.</div>';
 }
 
-  $("#newsTitle").textContent="TNF RETURNS 1ST SEPTEMBER";
-  $("#newsBody").innerHTML=`Tuesday Night Football is back! <a href="${spond}" target="_blank" rel="noopener">Click on Spond to book your place ↗</a>`;
+  $("#newsTitle").textContent="🏆 PLAYER OF THE WEEK: JAKE OSBORNE";
+  $("#newsBody").textContent="1.6KG LOST THIS WEEK! 🐩💪";
 
   drawChart(history);
   if(!history.length){
