@@ -1407,11 +1407,11 @@
 
         <img
           id="recipeImage"
-          src="/members/southern-fried-chicken-gousto.jpg?v=20260901"
-          alt="Southern Fried Chicken With Creamy Slaw, Gravy & Chips"
+          src="/members/asian-beef-noodles.jpg?v=20260909"
+          alt="Asian Beef Noodles"
           onerror="
             this.onerror=null;
-            this.src='assets/southern-fried-chicken-gousto.jpg';
+            this.src='/members/asian-beef-noodles.jpg';
           "
         >
 
@@ -1640,8 +1640,8 @@
     <section class="news-strip" id="clubNewsBanner">
       <span class="news-label">📣 <b>CLUB NEWS</b></span>
       <div class="news-items">
-        <strong id="newsTitle">⚽ THIS WEEK’S TOP SCORER: DAN BOWEN</strong>
-        <small id="newsBody">🎯 5% CLUB WINNERS: DAN BOWEN &amp; MARK SANDERS</small>
+        <strong id="newsTitle">🏆 PLAYER OF THE WEEK: JAKE OSBORNE</strong>
+        <small id="newsBody">1.6KG LOST THIS WEEK! 🐩💪</small>
       </div>
     </section>
 
@@ -2179,7 +2179,7 @@
      MAIN JAVASCRIPT
      ========================================================= -->
 
-<script src="/members/changing-room.js?v=20260901-newsfix5"></script>
+<script src="/members/changing-room.js?v=20260909-jake-asian-beef"></script>
 
 <!-- =========================================================
      IMAGE FALLBACKS + JOINED RIBBON FIX
@@ -2293,13 +2293,11 @@ document.addEventListener("DOMContentLoaded", function(){
      ------------------------------------------------------- */
 
   const goustoCandidates = [
-    "southern-fried-chicken-gousto.jpg",
-    "southern-fried-chicken-gousto.jpeg",
-    "assets/southern-fried-chicken-gousto.jpg",
-    "assets/southern-fried-chicken-gousto.jpeg",
-    "/members/southern-fried-chicken-gousto.jpg",
-    "/members/assets/southern-fried-chicken-gousto.jpg",
-    "/assets/southern-fried-chicken-gousto.jpg"
+    "/members/asian-beef-noodles.jpg",
+    "asian-beef-noodles.jpg",
+    "assets/asian-beef-noodles.jpg",
+    "/members/assets/asian-beef-noodles.jpg",
+    "/assets/asian-beef-noodles.jpg"
   ];
 
   const recipeImage = document.getElementById("recipeImage");
@@ -2348,27 +2346,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-<script>
-/* CURRENT CLUB NEWS - SAFE OVERRIDE */
-document.addEventListener("DOMContentLoaded", function () {
-  function updateClubNews() {
-    const title = document.getElementById("newsTitle");
-    const body = document.getElementById("newsBody");
-
-    if (title && title.textContent !== "⚽ THIS WEEK’S TOP SCORER: DAN BOWEN") {
-      title.textContent = "⚽ THIS WEEK’S TOP SCORER: DAN BOWEN";
-    }
-    if (body && body.textContent !== "🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS") {
-      body.textContent = "🎯 5% CLUB WINNERS: DAN BOWEN & MARK SANDERS";
-    }
-  }
-
-  updateClubNews();
-  setTimeout(updateClubNews, 500);
-  setTimeout(updateClubNews, 1500);
-  setTimeout(updateClubNews, 3000);
-});
-</script>
 
 </body>
 </html>
