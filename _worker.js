@@ -248,6 +248,28 @@ export default {
       });
     }
 
+    // ==========================================
+    // MEMBERS SUBDOMAIN -> /members/
+    // Keep the public homepage on www/root, but serve the
+    // Changing Room when the request is for members.ffredditch.co.uk.
+    // API routes above are handled first and are not rewritten.
+    // ==========================================
+    if (url.hostname === "members.ffredditch.co.uk") {
+      const target = new URL(request.url);
+
+      if (url.pathname === "/" || url.pathname === "") {
+        target.pathname = "/members/";
+      } else if (
+        !url.pathname.startsWith("/members/") &&
+        !url.pathname.startsWith("/data/")
+      ) {
+        target.pathname = "/members" + url.pathname;
+      }
+
+      return env.ASSETS.fetch(new Request(target, request));
+    }
+
+    // Public FF Redditch website
     return env.ASSETS.fetch(request);
   }
 };
