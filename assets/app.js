@@ -43,11 +43,14 @@ function num(v){const n=parseFloat(v);return Number.isFinite(n)?n:0}
 
 async function homeInit(){
   try{
-    const c=await loadJSON("data/community.json");
-    if($("#communityKgLost")) $("#communityKgLost").textContent=num(c.communityKgLost).toFixed(0)+"kg";
-    if($("#weeklyKgLost")) $("#weeklyKgLost").textContent=num(c.weeklyKgLost).toFixed(1)+"kg";
-    if($("#totalMembers")) $("#totalMembers").textContent=c.totalMembers;
-    if($("#tnfSessions")) $("#tnfSessions").textContent=c.tnfSessions;
+    const r=await fetch("/api/community",{cache:"no-store"});
+    const c=await r.json();
+    if(!r.ok||!c.success) throw new Error(c.error||"Could not load community stats");
+
+    if($("#activeMembers")) $("#activeMembers").textContent=Number(c.activeMembers||0);
+    if($("#minutesPlayed")) $("#minutesPlayed").textContent=Number(c.minutesPlayedThisSeason||0);
+    if($("#seasonKgLost")) $("#seasonKgLost").textContent=Number(c.seasonKgLost||0).toFixed(1)+"kg";
+    if($("#totalKgLost")) $("#totalKgLost").textContent=Number(c.totalKgLost||0).toFixed(1)+"kg";
   }catch(e){console.warn(e)}
 }
 
