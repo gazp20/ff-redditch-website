@@ -323,10 +323,11 @@ function renderRecipe(r){
 }
 
 async function init(){
-  // Only the two live endpoints are requested now.
-  const [team, meData] = await Promise.all([
+  // Live member data, rankings and club news from the Google Sheet API.
+  const [team, meData, clubNewsData] = await Promise.all([
     getJSON("/api/rankings", { success:false, members:[] }, "ffr-live-rankings"),
-    getJSON("/api/me", null, "ffr-live-member")
+    getJSON("/api/me", null, "ffr-live-member"),
+    getJSON("/api/club-news", { success:true, item:null }, "ffr-live-club-news")
   ]);
 
   // Session details and featured recipe are local/static.
@@ -483,8 +484,14 @@ if($("#fullWeightLeaderboard")){
     : '<div class="empty-live-state">No live weight-loss data available yet.</div>';
 }
 
-  $("#newsTitle").textContent="🏆 PLAYER OF THE WEEK: JAKE OSBORNE";
-  $("#newsBody").textContent="1.6KG LOST THIS WEEK! 🐩💪";
+  const clubNews = clubNewsData && clubNewsData.success ? clubNewsData.item : null;
+  if(clubNews){
+    $("#newsTitle").textContent = clubNews.headline || "Club News";
+    $("#newsBody").textContent = clubNews.text || "";
+  }else{
+    $("#newsTitle").textContent = "CLUB NEWS";
+    $("#newsBody").textContent = "Latest club update coming soon.";
+  }
 
   drawChart(history);
   if(!history.length){
