@@ -1114,6 +1114,74 @@
 }
 </style>
 
+
+<style>
+.ffr-season-box{
+  margin:18px 0 22px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+}
+.ffr-season-top{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:12px;
+}
+.ffr-season-top strong{
+  display:block;
+  font-size:1.35rem;
+  line-height:1;
+  margin-top:4px;
+}
+.ffr-season-kicker{
+  display:block;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  opacity:.7;
+}
+.ffr-season-week{
+  font-weight:900;
+  font-size:1.15rem;
+  white-space:nowrap;
+}
+.ffr-season-week span{
+  font-size:.72rem;
+  opacity:.65;
+}
+.ffr-season-progress{
+  height:9px;
+  background:rgba(255,255,255,.1);
+  border-radius:999px;
+  overflow:hidden;
+  margin:0 0 18px;
+}
+.ffr-season-progress span{
+  display:block;
+  height:100%;
+  background:currentColor;
+  border-radius:999px;
+}
+.ffr-season-box h4{
+  margin:0 0 10px;
+  font-size:1rem;
+}
+.ffr-season-box p{
+  margin:0 0 10px;
+  line-height:1.55;
+}
+.ffr-season-note{
+  margin-bottom:0!important;
+  font-weight:700;
+}
+@media(max-width:700px){
+  .ffr-season-top{align-items:flex-start;flex-direction:column}
+}
+</style>
+
 </head>
 
 <body>
@@ -1507,6 +1575,49 @@
             Earn points by making progress, turning up and getting involved at TNF.
             Every point counts towards your position in the FFR League Table.
           </p>
+
+          <div class="ffr-season-box">
+            <div class="ffr-season-top">
+              <div>
+                <span class="ffr-season-kicker">CURRENT FFP SEASON</span>
+                <strong>SEASON 1</strong>
+              </div>
+              <div class="ffr-season-week">
+                WEEK 2 <span>OF 12</span>
+              </div>
+            </div>
+
+            <div class="ffr-season-progress" aria-label="Season progress: week 2 of 12">
+              <span style="width:16.6667%"></span>
+            </div>
+
+            <h4>How FFP seasons work</h4>
+
+            <p>
+              FF Points are competed over a 12-week season. During each season,
+              players earn points through weekly weigh-ins, TNF attendance and
+              performances on the pitch.
+            </p>
+
+            <p>
+              At the end of Week 12, the season is complete and the final FFR
+              League standings are recorded. The season winner is crowned and
+              everybody's FF Points reset to <strong>0</strong> ready for the next
+              12-week season.
+            </p>
+
+            <p>
+              <strong>Your progress does not reset.</strong> Your weight history,
+              total weight lost, milestones and personal achievements continue
+              from season to season. Only your FF Points and seasonal league
+              position reset.
+            </p>
+
+            <p class="ffr-season-note">
+              A fresh season means a fresh opportunity for everyone to compete,
+              whether you've been here from the start or joined along the way.
+            </p>
+          </div>
 
           <div class="ffr-rules">
 
